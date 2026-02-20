@@ -1,6 +1,6 @@
 ---
-title: Sergey's DevOps Notes
-description: Public knowledge base on DevOps, Azure, Kubernetes and homelab — by Sergey Markovich
+title: Serg's DevOps Notes
+description: Public knowledge base on DevOps, Azure, Kubernetes and homelab — by Serg Markovich
 type: MOC
 status: active
 tags:
@@ -9,7 +9,7 @@ tags:
   - kubernetes
   - homelab
 ---
-Hi! I'm Sergey, a DevOps engineer based in Stuttgart, Germany.
+Hi! I'm Serg, a DevOps engineer based in Stuttgart, Germany.
 This is my public knowledge base — notes I write while learning and building.
 
 ## Sections
