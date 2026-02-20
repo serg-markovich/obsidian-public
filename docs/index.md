@@ -1,21 +1,31 @@
-# Welcome to my DevOps Notes
+---
+title: Sergey's DevOps Notes
+description: Public knowledge base on DevOps, Azure, Kubernetes and homelab — by Sergey Markovich
+type: MOC
+status: active
+tags:
+  - devops
+  - azure
+  - kubernetes
+  - homelab
+---
+Hi! I'm Sergey, a DevOps engineer based in Stuttgart, Germany.
+This is my public knowledge base — notes I write while learning and building.
 
-# Hello! 👋
+## Sections
 
-These are my public notes on DevOps, Azure, Kubernetes, homelab and other topics.
+| Section                            | What's inside                   |
+| ---------------------------------- | ------------------------------- |
+| [☁️ Azure](azure/index.md)         | AZ-104, CLI, cloud architecture |
+| [⚙️ DevOps](devops/index.md)       | Docker, Kubernetes, CI/CD, IaC  |
+| [🏠 HomeLab](homelab/index.md)     | VPS, self-hosted, Linux         |
+| [💼 Portfolio](portfolio/index.md) | Projects and case studies       |
+| [📅 TIL](til/index.md)             | Daily findings and fixes        |
 
-## What's here
+## Connect
 
-- **AZ-104** notes and labs
-- Docker, Kubernetes, Terraform, Ansible
-- My homelab on Ubuntu 24.04 (HP EliteBook)
-- TIL (Today I Learned) notes
-- Project portfolio
-
-## Latest updates
-
-```dataview
-LIST FROM "public/docs/til"
-SORT file.ctime DESC
-LIMIT 5
-
+- [serg-markovich.de](https://serg-markovich.de)
+- [notes.serg-markovich.de](https://notes.serg-markovich.de)
+- [my GitHub](https://github.com/serg-markovich)
+- [my LinkedIn](https://www.linkedin.com/in/serg-markovich/)
+- [my email](mailto:me@serg-markovich.de)
