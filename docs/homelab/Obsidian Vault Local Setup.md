@@ -107,5 +107,5 @@ SSL is handled automatically by GitHub Pages via Let's Encrypt.
 
 ## Related
 
-- [Portfolio: Obsidian Public Knowledge Base](/portfolio/2026-02-20-obsidian-public-knowledge-base.md)
-- [MkDocs + GitHub Pages Deployment Patterns](/til/2026-02-20-mkdocs-github-pages-deploy.md)
+- [[Obsidian Public Knowledge Base]]
+- [[MkDocs + GitHub Pages Deployment Patterns]]

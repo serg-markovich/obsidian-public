@@ -1,7 +1,7 @@
-site_name: Sergey DevOps Notes
+site_name: Serg's DevOps Notes
 site_url: https://notes.serg-markovich.de
 site_description: DevOps learning journey, homelab, Azure, Kubernetes
-copyright: Copyright &copy; 2026 Sergey Markovich
+copyright: Copyright &copy; 2026 Serg Markovich
 
 repo_url: https://github.com/serg-markovich/obsidian-public
 edit_uri: edit/main/docs/
@@ -52,6 +52,7 @@ nav:
 plugins:
   - search
   - tags
+  - roamlinks
   - git-revision-date-localized:
       enable_creation_date: true
 

@@ -109,5 +109,5 @@ permissions:
 ```
 
 ## Related Notes
-- [Obsidian Public Knowledge Base](/portfolio/2026-02-20-obsidian-public-knowledge-base.md)
-- [Obsidian Vault Local Setup](/homelab/2026-02-20-obsidian-vault-local-setup.md)
+- [[Obsidian Public Knowledge Base]]
+- [[Obsidian Vault Local Setup]]
