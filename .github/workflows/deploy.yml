@@ -22,5 +22,10 @@ jobs:
       - name: Install dependencies
         run: pip install "mkdocs-material<2.0" mkdocs-git-revision-date-localized-plugin
 
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Deploy
         run: mkdocs gh-deploy --force
