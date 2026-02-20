@@ -1,0 +1,33 @@
+# Obsidian
+.obsidian/workspace
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/workspace-web.json
+.obsidian/graph.json
+.obsidian/graph-mobile.json
+
+# Черновики и входящие
+_inbox/
+
+# Временные файлы
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# Cache
+.cache/
+
+# Canvas (локальные превью)
+*.canvas
+
+# MkDocs build output
+site/
+
+# Python virtual environment
+.venv/
+venv/
+
+# MkDocs cache
+.cache/mkdocs/
+
