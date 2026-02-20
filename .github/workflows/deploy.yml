@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 permissions:
-  contents: write 
+  contents: write
 
 jobs:
   deploy:
@@ -13,14 +13,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # нужно для git-revision-date-localized
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install mkdocs-material mkdocs-git-revision-date-localized-plugin
+        run: pip install "mkdocs-material<2.0" mkdocs-git-revision-date-localized-plugin
 
       - name: Deploy
         run: mkdocs gh-deploy --force
