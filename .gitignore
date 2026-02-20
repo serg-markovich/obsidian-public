@@ -32,3 +32,4 @@ venv/
 # MkDocs cache
 .cache/mkdocs/
 
+*.save
