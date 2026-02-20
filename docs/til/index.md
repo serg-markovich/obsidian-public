@@ -10,4 +10,4 @@ tags:
 ---
 
 # TIL
-[[2026-02-20-mkdocs-github-pages-deploy]]
+[MkDocs + GitHub Pages](2026-02-20-mkdocs-github-pages-deploy.md)
