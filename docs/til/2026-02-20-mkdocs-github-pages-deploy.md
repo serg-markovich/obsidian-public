@@ -108,3 +108,6 @@ permissions:
   contents: write
 ```
 
+## Related Notes
+[Obsidian Public Knowledge Base](2026-02-20-obsidian-public-knowledge-base)
+[Obsidian Vault Local Setup](2026-02-20-obsidian-vault-local-setup)

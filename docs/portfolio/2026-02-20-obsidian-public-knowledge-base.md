@@ -84,4 +84,4 @@ On every push to `main`:
 
 ## Related
 
-- [TIL: MkDocs + GitHub Pages Deployment Patterns](2026-02-20-mkdocs-github-pages-deploy.md)
+[TIL: MkDocs + GitHub Pages Deployment Patterns](2026-02-20-mkdocs-github-pages-deploy.md)
