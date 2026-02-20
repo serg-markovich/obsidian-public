@@ -6,11 +6,11 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="VPS setup, self-hosted services, Linux administration and networking on Ubuntu 24.04">
+        <meta name="description" content="DevOps learning journey, homelab, Azure, Kubernetes">
       
       
       
-        <link rel="canonical" href="https://notes.serg-markovich.de/homelab/">
+        <link rel="canonical" href="https://notes.serg-markovich.de/homelab/2026-02-20-my-homelab-setup/">
       
       
       
@@ -18,19 +18,19 @@
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
     
     
       
-        <title>HomeLab - Sergey DevOps Notes</title>
+        <title>My Homelab Setup - Sergey DevOps Notes</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -49,7 +49,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#homelab" class="md-skip">
+        <a href="#my-homelab-setup" class="md-skip">
           Skip to content
         </a>
       
@@ -88,7 +88,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Sergey DevOps Notes" class="md-header__button md-logo" aria-label="Sergey DevOps Notes" data-md-component="logo">
+    <a href="../.." title="Sergey DevOps Notes" class="md-header__button md-logo" aria-label="Sergey DevOps Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              HomeLab
+              My Homelab Setup
             
           </span>
         </div>
@@ -221,7 +221,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -240,7 +240,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../azure/" class="md-tabs__link">
+      <a href="../../azure/" class="md-tabs__link">
         
   
   
@@ -259,7 +259,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../devops/" class="md-tabs__link">
+      <a href="../../devops/" class="md-tabs__link">
         
   
   
@@ -278,7 +278,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="./" class="md-tabs__link">
+      <a href="../" class="md-tabs__link">
         
   
   
@@ -297,7 +297,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../portfolio/" class="md-tabs__link">
+      <a href="../../portfolio/" class="md-tabs__link">
         
   
   
@@ -316,7 +316,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../til/" class="md-tabs__link">
+      <a href="../../til/" class="md-tabs__link">
         
   
   
@@ -351,7 +351,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Sergey DevOps Notes" class="md-nav__button md-logo" aria-label="Sergey DevOps Notes" data-md-component="logo">
+    <a href="../.." title="Sergey DevOps Notes" class="md-nav__button md-logo" aria-label="Sergey DevOps Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -381,7 +381,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -415,7 +415,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../azure/" class="md-nav__link">
+      <a href="../../azure/" class="md-nav__link">
         
   
   
@@ -442,7 +442,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../devops/" class="md-nav__link">
+      <a href="../../devops/" class="md-nav__link">
         
   
   
@@ -469,7 +469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -496,7 +496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../portfolio/" class="md-nav__link">
+      <a href="../../portfolio/" class="md-nav__link">
         
   
   
@@ -523,7 +523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../til/" class="md-nav__link">
+      <a href="../../til/" class="md-nav__link">
         
   
   
@@ -570,10 +570,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#privacy-principles" class="md-nav__link">
+  <a href="#local-workstation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Privacy principles
+        Local Workstation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vps-contabo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VPS — Contabo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network &amp; DNS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
       
     </span>
   </a>
@@ -601,6 +634,20 @@
       
       
       
+        <span class="md-tag">docker</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">hestia</span>
+      
+    
+      
+      
+      
+      
         <span class="md-tag">homelab</span>
       
     
@@ -609,13 +656,6 @@
       
       
         <span class="md-tag">linux</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">self-hosted</span>
       
     
       
@@ -639,19 +679,175 @@
   
 
 
-<h1 id="homelab">HomeLab</h1>
-<ul>
-<li><a href="2026-02-20-my-homelab-setup/">My Homelab Setup</a></li>
-<li><a href="2026-02-20-obsidian-vault-local-setup/">Obsidian Vault Local Setup</a></li>
-</ul>
+<h1 id="my-homelab-setup">My Homelab Setup</h1>
+<p>Two-node setup: a local workstation (HP EliteBook) and a remote VPS (Contabo), connected via SSH and managed through CLI.</p>
 <hr />
-<h2 id="privacy-principles">Privacy principles</h2>
-<p>All homelab services follow these principles:</p>
+<h2 id="local-workstation">Local Workstation</h2>
+<p><strong>HP EliteBook 845 G8</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OS</td>
+<td>Ubuntu 24.04.4 LTS (kernel 6.8.0)</td>
+</tr>
+<tr>
+<td>CPU</td>
+<td>AMD Ryzen 5 PRO 5650U — 6 cores / 12 threads</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>16 GB</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>1 TB NVMe SSD (LVM + LUKS encryption)</td>
+</tr>
+<tr>
+<td>Network</td>
+<td>WiFi — wlp2s0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Encryption:</strong> Full disk encryption via LUKS on NVMe (<code>nvme0n1p3_crypt</code>) with LVM on top — 929 GB root volume.</p>
+<p><strong>Installed tools:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ubuntu</td>
+<td>24.04.4 LTS</td>
+</tr>
+<tr>
+<td>Docker</td>
+<td>29.2.1</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>3.12.3</td>
+</tr>
+<tr>
+<td>Git</td>
+<td>2.43.0</td>
+</tr>
+<tr>
+<td>Currently learning: <code>kubectl</code>, <code>terraform</code>, <code>ansible</code> — not yet installed.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="vps-contabo">VPS — Contabo</h2>
+<p><strong>Location:</strong> Germany</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OS</td>
+<td>Ubuntu 22.04.5 LTS</td>
+</tr>
+<tr>
+<td>CPU</td>
+<td>AMD EPYC — 6 vCPUs</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>12 GB</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>200 GB SSD</td>
+</tr>
+<tr>
+<td>Provider</td>
+<td>Contabo</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Running services:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nginx</td>
+<td>Reverse proxy / web server</td>
+</tr>
+<tr>
+<td>Apache2</td>
+<td>Web server (HestiaCP managed)</td>
+</tr>
+<tr>
+<td>HestiaCP</td>
+<td>Hosting control panel</td>
+</tr>
+<tr>
+<td>MariaDB 11.4</td>
+<td>Database server</td>
+</tr>
+<tr>
+<td>PHP 8.3 FPM</td>
+<td>PHP runtime</td>
+</tr>
+<tr>
+<td>Dovecot</td>
+<td>IMAP/POP3 mail server</td>
+</tr>
+<tr>
+<td>Exim4</td>
+<td>Mail transfer agent</td>
+</tr>
+<tr>
+<td>BIND (named)</td>
+<td>DNS server</td>
+</tr>
+<tr>
+<td>Docker 28.3.3</td>
+<td>Container runtime</td>
+</tr>
+<tr>
+<td>Fail2ban</td>
+<td>Intrusion prevention</td>
+</tr>
+<tr>
+<td>ClamAV</td>
+<td>Antivirus</td>
+</tr>
+<tr>
+<td>SpamAssassin</td>
+<td>Spam filtering</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="network-dns">Network &amp; DNS</h2>
+<p>DNS and CDN managed through <strong>Cloudflare</strong>:
+- <code>serg-markovich.de</code> → Contabo VPS IP
+- <code>notes.serg-markovich.de</code> → CNAME to <code>serg-markovich.github.io</code> (DNS only, no proxy)</p>
+<hr />
+<h2 id="related">Related</h2>
 <ul>
-<li><strong>Data minimization</strong> — no telemetry, no analytics, no tracking on self-hosted services</li>
-<li><strong>Local first</strong> — sensitive data stays on local hardware or private VPS, never in public cloud</li>
-<li><strong>Self-hosted over SaaS</strong> — where possible, open-source alternatives replace commercial services</li>
-<li><strong>Separation of concerns</strong> — public content is explicitly chosen and committed, never auto-synced</li>
+<li><a href="../2026-02-20-obsidian-vault-local-setup/">Obsidian Vault Local Setup</a></li>
+<li><a href="2026-02-20-obsidian-public-knowledge-base.md">Portfolio: Obsidian Public Knowledge Base</a></li>
 </ul>
 
 
@@ -685,7 +881,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 20, 2026 04:45:51 UTC">February 20, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 20, 2026 15:57:31 UTC">February 20, 2026</span>
   </span>
 
     
@@ -775,10 +971,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.tabs.link", "navigation.indexes", "navigation.tabs", "navigation.sections", "navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.tabs.link", "navigation.indexes", "navigation.tabs", "navigation.sections", "navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
