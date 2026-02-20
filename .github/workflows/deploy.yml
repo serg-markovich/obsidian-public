@@ -20,7 +20,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install "mkdocs-material<2.0" mkdocs-git-revision-date-localized-plugin
+        run: pip install "mkdocs<2.0" mkdocs-material mkdocs-git-revision-date-localized-plugin
 
       - name: Configure git
         run: |
