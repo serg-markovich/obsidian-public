@@ -80,6 +80,5 @@ DNS and CDN managed through **Cloudflare**:
 
 ***
 ## Related
-
-[Obsidian Vault Local Setup](2026-02-20-obsidian-vault-local-setup.md)
-[Portfolio: Obsidian Public Knowledge Base](2026-02-20-obsidian-public-knowledge-base.md)
+- [Obsidian Vault Local Setup](2026-02-20-obsidian-vault-local-setup.md)
+- [Portfolio: Obsidian Public Knowledge Base](2026-02-20-obsidian-public-knowledge-base.md)

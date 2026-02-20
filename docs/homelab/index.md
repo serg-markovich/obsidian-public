@@ -12,8 +12,8 @@ tags:
 ---
 
 # HomeLab
-[My Homelab Setup](2026-02-20-my-homelab-setup.md)
-[Obsidian Vault Local Setup](2026-02-20-obsidian-vault-local-setup.md)
+- [My Homelab Setup](2026-02-20-my-homelab-setup.md)
+- [Obsidian Vault Local Setup](2026-02-20-obsidian-vault-local-setup.md)
 
 ---
 ## Privacy principles
