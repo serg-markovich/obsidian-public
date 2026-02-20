@@ -8,4 +8,28 @@
          <loc>https://notes.serg-markovich.de/tags/</loc>
          <lastmod>2026-02-20</lastmod>
     </url>
+    <url>
+         <loc>https://notes.serg-markovich.de/azure/</loc>
+         <lastmod>2026-02-20</lastmod>
+    </url>
+    <url>
+         <loc>https://notes.serg-markovich.de/devops/</loc>
+         <lastmod>2026-02-20</lastmod>
+    </url>
+    <url>
+         <loc>https://notes.serg-markovich.de/homelab/</loc>
+         <lastmod>2026-02-20</lastmod>
+    </url>
+    <url>
+         <loc>https://notes.serg-markovich.de/portfolio/</loc>
+         <lastmod>2026-02-20</lastmod>
+    </url>
+    <url>
+         <loc>https://notes.serg-markovich.de/til/</loc>
+         <lastmod>2026-02-20</lastmod>
+    </url>
+    <url>
+         <loc>https://notes.serg-markovich.de/til/2026-02-20-mkdocs-github-pages-deploy/</loc>
+         <lastmod>2026-02-20</lastmod>
+    </url>
 </urlset>
