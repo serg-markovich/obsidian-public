@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://notes.serg-markovich.de/homelab/2026-02-20-obsidian-vault-local-setup/">
+        <link rel="canonical" href="https://notes.serg-markovich.de/homelab/My%20Homelab%20Setup/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>Obsidian Vault Local Setup - Sergey DevOps Notes</title>
+        <title>My Homelab Setup - Serg's DevOps Notes</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#obsidian-vault-local-setup" class="md-skip">
+        <a href="#my-homelab-setup" class="md-skip">
           Skip to content
         </a>
       
@@ -88,7 +88,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Sergey DevOps Notes" class="md-header__button md-logo" aria-label="Sergey DevOps Notes" data-md-component="logo">
+    <a href="../.." title="Serg&#39;s DevOps Notes" class="md-header__button md-logo" aria-label="Serg's DevOps Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -102,13 +102,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Sergey DevOps Notes
+            Serg's DevOps Notes
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Obsidian Vault Local Setup
+              My Homelab Setup
             
           </span>
         </div>
@@ -351,13 +351,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Sergey DevOps Notes" class="md-nav__button md-logo" aria-label="Sergey DevOps Notes" data-md-component="logo">
+    <a href="../.." title="Serg&#39;s DevOps Notes" class="md-nav__button md-logo" aria-label="Serg's DevOps Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Sergey DevOps Notes
+    Serg's DevOps Notes
   </label>
   
     <div class="md-nav__source">
@@ -570,10 +570,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#folder-structure" class="md-nav__link">
+  <a href="#local-workstation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Folder structure
+        Local Workstation
       
     </span>
   </a>
@@ -581,10 +581,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#git-isolation-strategy" class="md-nav__link">
+  <a href="#vps-contabo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Git isolation strategy
+        VPS — Contabo
       
     </span>
   </a>
@@ -592,32 +592,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#daily-publishing-workflow" class="md-nav__link">
+  <a href="#network-dns" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Daily publishing workflow
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#github-actions-pipeline" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GitHub Actions pipeline
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dns-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        DNS configuration
+        Network &amp; DNS
       
     </span>
   </a>
@@ -656,7 +634,14 @@
       
       
       
-        <span class="md-tag">git</span>
+        <span class="md-tag">docker</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">hestia</span>
       
     
       
@@ -670,14 +655,7 @@
       
       
       
-        <span class="md-tag">knowledge-management</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">obsidian</span>
+        <span class="md-tag">linux</span>
       
     
       
@@ -687,6 +665,13 @@
         <span class="md-tag">ubuntu</span>
       
     
+      
+      
+      
+      
+        <span class="md-tag">vps</span>
+      
+    
   </nav>
 
 
@@ -694,75 +679,175 @@
   
 
 
-<h1 id="obsidian-vault-local-setup">Obsidian Vault Local Setup</h1>
-<p>Local configuration of the Obsidian vault on Ubuntu 24.04 (HP EliteBook 845 G8) with a public subfolder connected to GitHub and deployed via MkDocs Material.</p>
+<h1 id="my-homelab-setup">My Homelab Setup</h1>
+<p>Two-node setup: a local workstation (HP EliteBook) and a remote VPS (Contabo), connected via SSH and managed through CLI.</p>
 <hr />
-<h2 id="folder-structure">Folder structure</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>~/obsidian/
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── .obsidian/              ← Obsidian config, plugins (local only)
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── 0_inbox/                ← raw captures, voice transcripts
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── 1_journal/
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── 2_areas/
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── 3_projects/
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>├── 4_resources/
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>├── 5_system/               ← templates, workflow notes
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>├── 6_archive/
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>└── public/                 ← separate git repo (obsidian-public)
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    ├── .git/
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    ├── .github/workflows/
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    ├── docs/
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    │   ├── azure/
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    │   ├── devops/
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    │   ├── homelab/
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    │   ├── portfolio/
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    │   └── til/
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    └── mkdocs.yml
-</code></pre></div>
-<p>The <code>public/</code> folder is an independent git repository nested inside the vault. The outer vault has no git — only <code>public/</code> is version controlled.</p>
+<h2 id="local-workstation">Local Workstation</h2>
+<p><strong>HP EliteBook 845 G8</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OS</td>
+<td>Ubuntu 24.04.4 LTS (kernel 6.8.0)</td>
+</tr>
+<tr>
+<td>CPU</td>
+<td>AMD Ryzen 5 PRO 5650U — 6 cores / 12 threads</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>16 GB</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>1 TB NVMe SSD (LVM + LUKS encryption)</td>
+</tr>
+<tr>
+<td>Network</td>
+<td>WiFi — wlp2s0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Encryption:</strong> Full disk encryption via LUKS on NVMe (<code>nvme0n1p3_crypt</code>) with LVM on top — 929 GB root volume.</p>
+<p><strong>Installed tools:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ubuntu</td>
+<td>24.04.4 LTS</td>
+</tr>
+<tr>
+<td>Docker</td>
+<td>29.2.1</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>3.12.3</td>
+</tr>
+<tr>
+<td>Git</td>
+<td>2.43.0</td>
+</tr>
+<tr>
+<td>Currently learning: <code>kubectl</code>, <code>terraform</code>, <code>ansible</code> — not yet installed.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <hr />
-<h2 id="git-isolation-strategy">Git isolation strategy</h2>
-<p>The <code>public/</code> repo <code>.gitignore</code> excludes:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>.obsidian/          ← plugins, API keys, personal config
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>_inbox/             ← raw unprocessed notes
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>site/               ← MkDocs build output
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>*.canvas            ← Obsidian canvas files
-</code></pre></div>
-<p>This ensures only finished, intentional content reaches the public repository.</p>
+<h2 id="vps-contabo">VPS — Contabo</h2>
+<p><strong>Location:</strong> Germany</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OS</td>
+<td>Ubuntu 22.04.5 LTS</td>
+</tr>
+<tr>
+<td>CPU</td>
+<td>AMD EPYC — 6 vCPUs</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>12 GB</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>200 GB SSD</td>
+</tr>
+<tr>
+<td>Provider</td>
+<td>Contabo</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Running services:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nginx</td>
+<td>Reverse proxy / web server</td>
+</tr>
+<tr>
+<td>Apache2</td>
+<td>Web server (HestiaCP managed)</td>
+</tr>
+<tr>
+<td>HestiaCP</td>
+<td>Hosting control panel</td>
+</tr>
+<tr>
+<td>MariaDB 11.4</td>
+<td>Database server</td>
+</tr>
+<tr>
+<td>PHP 8.3 FPM</td>
+<td>PHP runtime</td>
+</tr>
+<tr>
+<td>Dovecot</td>
+<td>IMAP/POP3 mail server</td>
+</tr>
+<tr>
+<td>Exim4</td>
+<td>Mail transfer agent</td>
+</tr>
+<tr>
+<td>BIND (named)</td>
+<td>DNS server</td>
+</tr>
+<tr>
+<td>Docker 28.3.3</td>
+<td>Container runtime</td>
+</tr>
+<tr>
+<td>Fail2ban</td>
+<td>Intrusion prevention</td>
+</tr>
+<tr>
+<td>ClamAV</td>
+<td>Antivirus</td>
+</tr>
+<tr>
+<td>SpamAssassin</td>
+<td>Spam filtering</td>
+</tr>
+</tbody>
+</table>
 <hr />
-<h2 id="daily-publishing-workflow">Daily publishing workflow</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 1. Write note in Obsidian, save to ~/obsidian/public/docs/</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># 2. When ready to publish:</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">cd</span><span class="w"> </span>~/obsidian/public
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>git<span class="w"> </span>add<span class="w"> </span>docs/
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;add: note title&quot;</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>git<span class="w"> </span>push
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># GitHub Actions builds and deploys automatically</span>
-</code></pre></div>
-<p>No auto-commit. Every push is intentional — the public git history is clean and visible to potential employers.</p>
-<hr />
-<h2 id="github-actions-pipeline">GitHub Actions pipeline</h2>
-<p>On every push to <code>main</code>:</p>
-<ol>
-<li>Installs <code>mkdocs&lt;2.0</code> and <code>mkdocs-material</code></li>
-<li>Runs <code>mkdocs gh-deploy --force</code></li>
-<li>Pushes built site to <code>gh-pages</code> branch</li>
-<li>GitHub Pages serves at <code>notes.serg-markovich.de</code></li>
-</ol>
-<p>Full pipeline: <a href="https://github.com/serg-markovich/obsidian-public/blob/main/.github/workflows/deploy.yml">deploy.yml</a></p>
-<hr />
-<h2 id="dns-configuration">DNS configuration</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Cloudflare DNS:
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Type:   CNAME
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Name:   notes
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Target: serg-markovich.github.io
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>Proxy:  DNS only (grey cloud)
-</code></pre></div>
-<p>SSL is handled automatically by GitHub Pages via Let's Encrypt.</p>
+<h2 id="network-dns">Network &amp; DNS</h2>
+<p>DNS and CDN managed through <strong>Cloudflare</strong>:
+- <code>serg-markovich.de</code> → Contabo VPS IP
+- <code>notes.serg-markovich.de</code> → CNAME to <code>serg-markovich.github.io</code> (DNS only, no proxy)</p>
 <hr />
 <h2 id="related">Related</h2>
 <ul>
-<li><a href="/portfolio/2026-02-20-obsidian-public-knowledge-base.md">Portfolio: Obsidian Public Knowledge Base</a></li>
-<li><a href="/til/2026-02-20-mkdocs-github-pages-deploy.md">MkDocs + GitHub Pages Deployment Patterns</a></li>
+<li><a href="../Obsidian%20Vault%20Local%20Setup/">Obsidian Vault Local Setup</a></li>
+<li><a href="../../portfolio/Obsidian%20Public%20Knowledge%20Base/">Obsidian Public Knowledge Base</a></li>
 </ul>
 
 
@@ -835,7 +920,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2026 Sergey Markovich
+      Copyright &copy; 2026 Serg Markovich
     </div>
   
   

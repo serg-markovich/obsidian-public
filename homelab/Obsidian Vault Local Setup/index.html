@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://notes.serg-markovich.de/til/2026-02-20-mkdocs-github-pages-deploy/">
+        <link rel="canonical" href="https://notes.serg-markovich.de/homelab/Obsidian%20Vault%20Local%20Setup/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>MkDocs + GitHub Pages Deployment Patterns - Sergey DevOps Notes</title>
+        <title>Obsidian Vault Local Setup - Serg's DevOps Notes</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#til-publishing-an-obsidian-vault-with-mkdocs-github-pages" class="md-skip">
+        <a href="#obsidian-vault-local-setup" class="md-skip">
           Skip to content
         </a>
       
@@ -88,7 +88,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Sergey DevOps Notes" class="md-header__button md-logo" aria-label="Sergey DevOps Notes" data-md-component="logo">
+    <a href="../.." title="Serg&#39;s DevOps Notes" class="md-header__button md-logo" aria-label="Serg's DevOps Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -102,13 +102,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Sergey DevOps Notes
+            Serg's DevOps Notes
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              MkDocs + GitHub Pages Deployment Patterns
+              Obsidian Vault Local Setup
             
           </span>
         </div>
@@ -278,7 +278,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../homelab/" class="md-tabs__link">
+      <a href="../" class="md-tabs__link">
         
   
   
@@ -316,7 +316,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../" class="md-tabs__link">
+      <a href="../../til/" class="md-tabs__link">
         
   
   
@@ -351,13 +351,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Sergey DevOps Notes" class="md-nav__button md-logo" aria-label="Sergey DevOps Notes" data-md-component="logo">
+    <a href="../.." title="Serg&#39;s DevOps Notes" class="md-nav__button md-logo" aria-label="Serg's DevOps Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Sergey DevOps Notes
+    Serg's DevOps Notes
   </label>
   
     <div class="md-nav__source">
@@ -469,7 +469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../homelab/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -523,7 +523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../til/" class="md-nav__link">
         
   
   
@@ -570,10 +570,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-i-built" class="md-nav__link">
+  <a href="#folder-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What I built
+        Folder structure
       
     </span>
   </a>
@@ -581,154 +581,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#devops-patterns-applied" class="md-nav__link">
+  <a href="#git-isolation-strategy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        DevOps patterns applied
+        Git isolation strategy
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="DevOps patterns applied">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-separation-of-concerns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Separation of concerns
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-everything-as-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Everything as code
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-cicd-with-github-actions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. CI/CD with GitHub Actions
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-immutable-build-artifacts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Immutable build artifacts
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-dns-without-proxy-for-github-pages" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. DNS without proxy for GitHub Pages
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
+  <a href="#daily-publishing-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Troubleshooting
+        Daily publishing workflow
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Troubleshooting">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#actions-runs-in-15s-and-silently-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Actions runs in 15s and silently fails
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#permission-denied-on-git-push" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Permission denied on git push
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#github-pages-shows-jekyll-instead-of-mkdocs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GitHub Pages shows Jekyll instead of MkDocs
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#theme-material-has-no-configuration-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Theme material has no configuration file
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#github-actionsbot-permission-denied-on-push" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        github-actions[bot] permission denied on push
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-notes" class="md-nav__link">
+  <a href="#github-actions-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related Notes
+        GitHub Actions pipeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dns-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DNS configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
       
     </span>
   </a>
@@ -756,20 +656,6 @@
       
       
       
-        <span class="md-tag">cicd</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">dns</span>
-      
-    
-      
-      
-      
-      
         <span class="md-tag">git</span>
       
     
@@ -777,14 +663,14 @@
       
       
       
-        <span class="md-tag">github-actions</span>
+        <span class="md-tag">homelab</span>
       
     
       
       
       
       
-        <span class="md-tag">mkdocs</span>
+        <span class="md-tag">knowledge-management</span>
       
     
       
@@ -794,6 +680,13 @@
         <span class="md-tag">obsidian</span>
       
     
+      
+      
+      
+      
+        <span class="md-tag">ubuntu</span>
+      
+    
   </nav>
 
 
@@ -801,62 +694,75 @@
   
 
 
-<h1 id="til-publishing-an-obsidian-vault-with-mkdocs-github-pages">TIL: Publishing an Obsidian Vault with MkDocs + GitHub Pages</h1>
-<h2 id="what-i-built">What I built</h2>
-<p>A public knowledge base at <a href="https://notes.serg-markovich.de">notes.serg-markovich.de</a>
-from an Obsidian vault using MkDocs Material, GitHub Actions and Cloudflare DNS.</p>
+<h1 id="obsidian-vault-local-setup">Obsidian Vault Local Setup</h1>
+<p>Local configuration of the Obsidian vault on Ubuntu 24.04 (HP EliteBook 845 G8) with a public subfolder connected to GitHub and deployed via MkDocs Material.</p>
 <hr />
-<h2 id="devops-patterns-applied">DevOps patterns applied</h2>
-<h3 id="1-separation-of-concerns">1. Separation of concerns</h3>
-<p>Keep each project in its own repository with independent commit history.
-The public vault is separate from the main website — different content, different deploy pipelines.</p>
-<h3 id="2-everything-as-code">2. Everything as code</h3>
-<p>All config lives in files — never manual changes in GitHub UI:</p>
-<ul>
-<li><code>mkdocs.yml</code> — site configuration</li>
-<li><code>.github/workflows/deploy.yml</code> — CI/CD pipeline</li>
-<li><code>.gitignore</code> / <code>.gitattributes</code> — repo hygiene</li>
-</ul>
-<h3 id="3-cicd-with-github-actions">3. CI/CD with GitHub Actions</h3>
-<p>Every <code>git push</code> to <code>main</code> triggers automatic build and deploy. Pin <code>mkdocs&lt;2.0</code>, not <code>mkdocs-material</code> — MkDocs 2.0 is the breaking change.</p>
-<h3 id="4-immutable-build-artifacts">4. Immutable build artifacts</h3>
-<p>The <code>site/</code> folder is never committed — generated fresh on every deploy. Add <code>site/</code> to <code>.gitignore</code>.</p>
-<h3 id="5-dns-without-proxy-for-github-pages">5. DNS without proxy for GitHub Pages</h3>
-<p>Cloudflare orange cloud breaks GitHub Pages SSL validation. Use grey cloud (DNS only) with CNAME pointing to <code>serg-markovich.github.io</code>.</p>
+<h2 id="folder-structure">Folder structure</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>~/obsidian/
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── .obsidian/              ← Obsidian config, plugins (local only)
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── 0_inbox/                ← raw captures, voice transcripts
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── 1_journal/
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── 2_areas/
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── 3_projects/
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>├── 4_resources/
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>├── 5_system/               ← templates, workflow notes
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>├── 6_archive/
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>└── public/                 ← separate git repo (obsidian-public)
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    ├── .git/
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    ├── .github/workflows/
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    ├── docs/
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    │   ├── azure/
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    │   ├── devops/
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    │   ├── homelab/
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    │   ├── portfolio/
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    │   └── til/
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    └── mkdocs.yml
+</code></pre></div>
+<p>The <code>public/</code> folder is an independent git repository nested inside the vault. The outer vault has no git — only <code>public/</code> is version controlled.</p>
 <hr />
-<h2 id="troubleshooting">Troubleshooting</h2>
-<h3 id="actions-runs-in-15s-and-silently-fails">Actions runs in 15s and silently fails</h3>
-<p><strong>Cause:</strong> YAML syntax error — GitHub ignores invalid workflow files silently.
-<strong>Fix:</strong> Recreate with heredoc to avoid indentation issues:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>.github/workflows/deploy.yml<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="s">...</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="s">EOF</span>
+<h2 id="git-isolation-strategy">Git isolation strategy</h2>
+<p>The <code>public/</code> repo <code>.gitignore</code> excludes:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>.obsidian/          ← plugins, API keys, personal config
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>_inbox/             ← raw unprocessed notes
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>site/               ← MkDocs build output
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>*.canvas            ← Obsidian canvas files
 </code></pre></div>
-<h3 id="permission-denied-on-git-push">Permission denied on git push</h3>
-<p><strong>Cause:</strong> Remote set to SSH, but no key added to GitHub.
-<strong>Fix:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>origin<span class="w"> </span>https://github.com/user/repo.git
+<p>This ensures only finished, intentional content reaches the public repository.</p>
+<hr />
+<h2 id="daily-publishing-workflow">Daily publishing workflow</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 1. Write note in Obsidian, save to ~/obsidian/public/docs/</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># 2. When ready to publish:</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">cd</span><span class="w"> </span>~/obsidian/public
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>git<span class="w"> </span>add<span class="w"> </span>docs/
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;add: note title&quot;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>git<span class="w"> </span>push
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># GitHub Actions builds and deploys automatically</span>
 </code></pre></div>
-<h3 id="github-pages-shows-jekyll-instead-of-mkdocs">GitHub Pages shows Jekyll instead of MkDocs</h3>
-<p><strong>Cause:</strong> Auto-generated <code>jekyll-gh-pages.yml</code> conflicts with custom workflow.
-<strong>Fix:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>rm<span class="w"> </span>.github/workflows/jekyll-gh-pages.yml
+<p>No auto-commit. Every push is intentional — the public git history is clean and visible to potential employers.</p>
+<hr />
+<h2 id="github-actions-pipeline">GitHub Actions pipeline</h2>
+<p>On every push to <code>main</code>:</p>
+<ol>
+<li>Installs <code>mkdocs&lt;2.0</code> and <code>mkdocs-material</code></li>
+<li>Runs <code>mkdocs gh-deploy --force</code></li>
+<li>Pushes built site to <code>gh-pages</code> branch</li>
+<li>GitHub Pages serves at <code>notes.serg-markovich.de</code></li>
+</ol>
+<p>Full pipeline: <a href="https://github.com/serg-markovich/obsidian-public/blob/main/.github/workflows/deploy.yml">deploy.yml</a></p>
+<hr />
+<h2 id="dns-configuration">DNS configuration</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Cloudflare DNS:
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Type:   CNAME
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Name:   notes
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Target: serg-markovich.github.io
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>Proxy:  DNS only (grey cloud)
 </code></pre></div>
-<h3 id="theme-material-has-no-configuration-file">Theme material has no configuration file</h3>
-<p><strong>Cause:</strong> MkDocs 2.0 installed — incompatible with mkdocs-material.
-<strong>Fix:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;mkdocs&lt;2.0&quot;</span><span class="w"> </span>mkdocs-material
-</code></pre></div>
-<h3 id="github-actionsbot-permission-denied-on-push">github-actions[bot] permission denied on push</h3>
-<p><strong>Cause:</strong> Missing permissions block in workflow.
-<strong>Fix:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">permissions</span><span class="p">:</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
-</code></pre></div>
-<h2 id="related-notes">Related Notes</h2>
+<p>SSL is handled automatically by GitHub Pages via Let's Encrypt.</p>
+<hr />
+<h2 id="related">Related</h2>
 <ul>
-<li><a href="/portfolio/2026-02-20-obsidian-public-knowledge-base.md">Obsidian Public Knowledge Base</a></li>
-<li><a href="/homelab/2026-02-20-obsidian-vault-local-setup.md">Obsidian Vault Local Setup</a></li>
+<li><a href="../../portfolio/Obsidian%20Public%20Knowledge%20Base/">Obsidian Public Knowledge Base</a></li>
+<li><a href="../../til/MkDocs%20%2B%20GitHub%20Pages%20Deployment%20Patterns/">MkDocs + GitHub Pages Deployment Patterns</a></li>
 </ul>
 
 
@@ -890,7 +796,7 @@ The public vault is separate from the main website — different content, differ
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 20, 2026 05:43:09 UTC">February 20, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 20, 2026 15:57:31 UTC">February 20, 2026</span>
   </span>
 
     
@@ -929,7 +835,7 @@ The public vault is separate from the main website — different content, differ
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2026 Sergey Markovich
+      Copyright &copy; 2026 Serg Markovich
     </div>
   
   
