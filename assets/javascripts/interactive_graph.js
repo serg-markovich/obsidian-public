@@ -60,18 +60,23 @@ function draw_graph(myChart, global=true) {
 var option;
 
 function graph_links() {
-  id = option.series[0].data.find(it => it.value === window.location.pathname).id;
-  return option.series[0].links.filter(it => it.source === id || it.target === id);
+var currentPath = decodeURIComponent(window.location.pathname).replace(/\/$/, '').toLowerCase();
+var node = option.series[0].data.find(it => it.value.replace(/\/$/, '').toLowerCase() === currentPath);
+if (!node) return [];
+var id = node.id;
+return option.series[0].links.filter(it => it.source === id || it.target === id);
 }
-
 function graph_nodes() {
-  id = option.series[0].data.find(it => it.value === window.location.pathname).id;
-  links = option.series[0].links.filter(it => it.source === id || it.target === id);
-  ids = [];
-  links.forEach(function (link) {
-    ids.push(link.source, link.target);
-  });
-  return option.series[0].data.filter(it => [...new Set(ids)].includes(it.id));
+var currentPath = decodeURIComponent(window.location.pathname).replace(/\/$/, '').toLowerCase();
+var node = option.series[0].data.find(it => it.value.replace(/\/$/, '').toLowerCase() === currentPath);
+if (!node) return [];
+var id = node.id;
+var links = option.series[0].links.filter(it => it.source === id || it.target === id);
+var ids = [];
+links.forEach(function (link) {
+ids.push(link.source, link.target);
+});
+return option.series[0].data.filter(it => [...new Set(ids)].includes(it.id));
 }
 
 $.getJSON('/assets/javascripts/graph.json', function (graph) {
