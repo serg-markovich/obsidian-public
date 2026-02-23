@@ -74,7 +74,7 @@ function graph_nodes() {
   return option.series[0].data.filter(it => [...new Set(ids)].includes(it.id));
 }
 
-$.getJSON('graph.json', function (graph) {
+$.getJSON('/assets/javascripts/graph.json', function (graph) {
   myChart.hideLoading();
 
   // an offset of 5, so the dot/node is not that small
