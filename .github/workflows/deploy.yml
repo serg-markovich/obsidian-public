@@ -25,12 +25,7 @@ jobs:
             mkdocs-material \
             mkdocs-git-revision-date-localized-plugin \
             mkdocs-roamlinks-plugin \
-            mkdocs-obsidian-interactive-graph-plugin
-
-      - name: Verify installed plugins
-        run: |
-          pip list | grep obsidian
-          mkdocs --version
+            mkdocs-obsidian-interactive-graph-plugin   # ✅ правильное имя
 
       - name: Configure git
         run: |
