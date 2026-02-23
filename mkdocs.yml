@@ -82,3 +82,4 @@ extra_javascript:
 extra_css:
   - https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css
   - assets/stylesheets/interactive_graph.css
+
