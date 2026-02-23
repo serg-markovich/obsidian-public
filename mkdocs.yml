@@ -55,11 +55,16 @@ plugins:
   - roamlinks
   - git-revision-date-localized:
       enable_creation_date: true
-  - obsidian-bridge:
-      graph: true
-      graph_style: "force"  # или "tree"
-      show_in_sidebar: true
-      sidebar_height: 400
+  - obsidian-graph:
+      graph_config:
+        show_in_sidebar: true
+        sidebar_height: 400px
+        graph_title: "Note Graph"
+        show_legend: true
+        enable_zoom: true
+        enable_drag: true
+        theme: auto  # или "light", "dark"
+        depth: 2
 
 markdown_extensions:
   - pymdownx.highlight:

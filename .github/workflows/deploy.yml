@@ -25,7 +25,13 @@ jobs:
             mkdocs-material \
             mkdocs-git-revision-date-localized-plugin \
             mkdocs-roamlinks-plugin \
-            mkdocs-obsidian-bridge
+            mkdocs-obsidian-graph
+
+      - name: Verify installed plugins
+        run: |
+          pip list | grep obsidian
+          mkdocs --version
+          python -c "import pkg_resources; print([d.project_name for d in pkg_resources.working_set if 'obsidian' in d.project_name.lower()])"
 
       - name: Configure git
         run: |
