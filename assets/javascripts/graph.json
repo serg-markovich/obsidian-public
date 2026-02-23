@@ -1,0 +1,11 @@
+{
+  "nodes": [
+    {
+      "id": "0",
+      "name": "Home",
+      "symbolSize": 0,
+      "value": "/"
+    }
+  ],
+  "links": []
+}
