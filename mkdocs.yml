@@ -55,6 +55,17 @@ plugins:
   - roamlinks
   - git-revision-date-localized:
       enable_creation_date: true
+  - material-graph:
+      show_in_sidebar: true
+      sidebar_width: 20
+      sidebar_height: 30
+      graph_depth: 2
+      graph_theme: light  # или dark, в зависимости от темы
+      show_legend: true
+      show_buttons: true
+      initial_depth: 2
+      zoomable: true
+      draggable: true
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -71,4 +82,3 @@ markdown_extensions:
   - attr_list
   - footnotes
   - admonition
-
