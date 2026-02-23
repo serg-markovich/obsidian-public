@@ -25,7 +25,7 @@ jobs:
             mkdocs-material \
             mkdocs-git-revision-date-localized-plugin \
             mkdocs-roamlinks-plugin \
-            mkdocs-material-graph
+            mkdocs-obsidian-bridge
 
       - name: Configure git
         run: |
