@@ -11,6 +11,7 @@ tags:
   - github-pages
   - cicd
   - knowledge-management
+done: false
 ---
 
 # Obsidian Public Knowledge Base
