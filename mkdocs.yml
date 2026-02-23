@@ -2,10 +2,8 @@ site_name: Serg's DevOps Notes
 site_url: https://notes.serg-markovich.de
 site_description: DevOps learning journey, homelab, Azure, Kubernetes
 copyright: Copyright © 2026 Serg Markovich
-
 repo_url: https://github.com/serg-markovich/obsidian-public
 edit_uri: edit/main/docs/
-
 docs_dir: docs
 
 theme:
@@ -50,12 +48,12 @@ nav:
   - TIL: til/
 
 plugins:
+  - obsidian-interactive-graph
   - search
   - tags
   - roamlinks
   - git-revision-date-localized:
       enable_creation_date: true
-  - obsidian-interactive-graph
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -73,3 +71,10 @@ markdown_extensions:
   - footnotes
   - admonition
 
+extra_javascript:
+  - https://fastly.jsdelivr.net/npm/jquery/dist/jquery.min.js
+  - https://fastly.jsdelivr.net/npm/echarts/dist/echarts.min.js
+  - assets/javascripts/interactive_graph.js
+
+extra_css:
+  - assets/stylesheets/interactive_graph.css
