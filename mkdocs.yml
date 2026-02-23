@@ -55,16 +55,7 @@ plugins:
   - roamlinks
   - git-revision-date-localized:
       enable_creation_date: true
-  - obsidian-graph:
-      graph_config:
-        show_in_sidebar: true
-        sidebar_height: 400px
-        graph_title: "Note Graph"
-        show_legend: true
-        enable_zoom: true
-        enable_drag: true
-        theme: auto  # или "light", "dark"
-        depth: 2
+  - obsidian-interactive-graph
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -81,3 +72,13 @@ markdown_extensions:
   - attr_list
   - footnotes
   - admonition
+
+# Дополнительные JS и CSS для графа
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js
+  - https://code.jquery.com/jquery-3.6.0.min.js
+  - assets/javascripts/interactive_graph.js
+
+extra_css:
+  - https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css
+  - assets/stylesheets/interactive_graph.css

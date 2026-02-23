@@ -1,0 +1,27 @@
+#interactive-graph {
+    width: 100%;
+    height: 400px;
+    margin: 10px 0;
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 4px;
+    background-color: var(--md-default-bg-color);
+}
+
+/* Dark mode adjustments */
+[data-md-color-scheme="slate"] #interactive-graph {
+    border-color: var(--md-default-fg-color--lightest);
+    background-color: var(--md-default-bg-color);
+}
+
+/* Graph container in sidebar */
+.md-sidebar--secondary .md-sidebar__inner {
+    display: flex;
+    flex-direction: column;
+}
+
+.md-sidebar--secondary .md-sidebar__inner::before {
+    content: "Note Graph";
+    font-weight: bold;
+    margin: 10px 0 5px 0;
+    color: var(--md-default-fg-color);
+}
