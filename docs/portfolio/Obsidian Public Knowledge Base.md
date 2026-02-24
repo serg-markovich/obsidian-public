@@ -86,3 +86,4 @@ On every push to `main`:
 ## Related
 
 - [[MkDocs + GitHub Pages Deployment Patterns]]
+- [[Zero-Maintenance DevOps Portfolio & ATS-Friendly CV]]

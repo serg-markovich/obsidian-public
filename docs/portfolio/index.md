@@ -11,6 +11,7 @@ tags:
 
 # Portfolio
 - [[Obsidian Public Knowledge Base]]
+- [[Zero-Maintenance DevOps Portfolio & ATS-Friendly CV]]
 
 ---
 ## Open to collaboration

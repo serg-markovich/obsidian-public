@@ -11,3 +11,4 @@ tags:
 
 # TIL
 - [[MkDocs + GitHub Pages Deployment Patterns]]
+- [[Vanilla HTML_CSS Portfolio & ATS-Friendly CV]]
