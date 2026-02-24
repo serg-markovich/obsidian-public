@@ -20,7 +20,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install "mkdocs<2.0" mkdocs-material mkdocs-git-revision-date-localized-plugin mkdocs-roamlinks-plugin mkdocs-obsidian-interactive-graph-plugin
+        run: pip install "mkdocs<2.0" mkdocs-material mkdocs-git-revision-date-localized-plugin mkdocs-roamlinks-plugin
 
       - name: Configure git
         run: |

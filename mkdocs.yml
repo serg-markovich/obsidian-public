@@ -48,7 +48,6 @@ nav:
   - TIL: til/
 
 plugins:
-  - obsidian-interactive-graph
   - search
   - tags
   - roamlinks
