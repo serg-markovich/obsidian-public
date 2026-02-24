@@ -17,6 +17,7 @@ tags:
 A lightweight, zero-maintenance personal portfolio and dual-language CV built without frameworks. Designed to serve as both a developer-friendly website (Dark Theme) and a formal, ATS-compliant printable document (Light Theme) using only Vanilla HTML/CSS and GitHub Pages.
 
 **Links:**
+
 *   📄 **Web CV (English):** [serg-markovich.de/cv](https://serg-markovich.de/cv.html)
 *   🇩🇪 **Web Lebenslauf (Deutsch):** [serg-markovich.de/de/cv](https://serg-markovich.de/de/cv.html)
 *   💻 **Source Code:** [GitHub Repository](https://github.com/serg-markovich/serg-markovich.github.io/blob/main/cv.html)
