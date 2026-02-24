@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://notes.serg-markovich.de/homelab/Obsidian%20Vault%20Local%20Setup/">
+        <link rel="canonical" href="https://notes.serg-markovich.de/til/Vanilla%20HTML_CSS%20Portfolio%20%26%20ATS-Friendly%20CV/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>Obsidian Vault Local Setup - Serg's DevOps Notes</title>
+        <title>Vanilla HTML/CSS Portfolio & ATS-Friendly CV - Serg's DevOps Notes</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#obsidian-vault-local-setup" class="md-skip">
+        <a href="#vanilla-htmlcss-portfolio-ats-friendly-cv" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Obsidian Vault Local Setup
+              Vanilla HTML/CSS Portfolio & ATS-Friendly CV
             
           </span>
         </div>
@@ -280,7 +280,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../" class="md-tabs__link">
+      <a href="../../homelab/" class="md-tabs__link">
         
   
   
@@ -318,7 +318,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../til/" class="md-tabs__link">
+      <a href="../" class="md-tabs__link">
         
   
   
@@ -471,7 +471,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../homelab/" class="md-nav__link">
         
   
   
@@ -525,7 +525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../til/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -572,10 +572,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#folder-structure" class="md-nav__link">
+  <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Folder structure
+        Summary
       
     </span>
   </a>
@@ -583,10 +583,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#git-isolation-strategy" class="md-nav__link">
+  <a href="#details" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Git isolation strategy
+        Details
       
     </span>
   </a>
@@ -594,43 +594,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#daily-publishing-workflow" class="md-nav__link">
+  <a href="#commands-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Daily publishing workflow
+        Commands / Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Commands / Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-theme-toggling-css-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Theme Toggling (CSS Variables)
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#github-actions-pipeline" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#2-the-print-superpower-media-print" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GitHub Actions pipeline
+        2. The Print Superpower (@media print)
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#dns-configuration" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#3-minimal-vanilla-js-theme-persister" class="md-nav__link">
     <span class="md-ellipsis">
       
-        DNS configuration
+        3. Minimal Vanilla JS Theme Persister
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#related" class="md-nav__link">
+  <a href="#related-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related
+        Related Notes
       
     </span>
   </a>
@@ -658,35 +675,28 @@
       
       
       
-        <span class="md-tag">git</span>
+        <span class="md-tag">career</span>
       
     
       
       
       
       
-        <span class="md-tag">homelab</span>
+        <span class="md-tag">css</span>
       
     
       
       
       
       
-        <span class="md-tag">knowledge-management</span>
+        <span class="md-tag">github-pages</span>
       
     
       
       
       
       
-        <span class="md-tag">obsidian</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">ubuntu</span>
+        <span class="md-tag">til</span>
       
     
   </nav>
@@ -696,75 +706,79 @@
   
 
 
-<h1 id="obsidian-vault-local-setup">Obsidian Vault Local Setup</h1>
-<p>Local configuration of the Obsidian vault on Ubuntu 24.04 (HP EliteBook 845 G8) with a public subfolder connected to GitHub and deployed via MkDocs Material.</p>
-<hr />
-<h2 id="folder-structure">Folder structure</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>~/obsidian/
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── .obsidian/              ← Obsidian config, plugins (local only)
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── 0_inbox/                ← raw captures, voice transcripts
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── 1_journal/
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── 2_areas/
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── 3_projects/
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>├── 4_resources/
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>├── 5_system/               ← templates, workflow notes
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>├── 6_archive/
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>└── public/                 ← separate git repo (obsidian-public)
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    ├── .git/
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    ├── .github/workflows/
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    ├── docs/
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    │   ├── azure/
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    │   ├── devops/
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    │   ├── homelab/
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    │   ├── portfolio/
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    │   └── til/
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    └── mkdocs.yml
+<h1 id="vanilla-htmlcss-portfolio-ats-friendly-cv">Vanilla HTML/CSS Portfolio &amp; ATS-Friendly CV</h1>
+<h2 id="summary">Summary</h2>
+<p>Building a professional, dual-language (EN/DE) DevOps portfolio and CV. Instead of over-engineering with heavy frameworks (React/Next.js) or maintaining separate Word/LaTeX documents, I used Vanilla HTML/CSS hosted on GitHub Pages. The core achievement is an ATS-friendly, auto-formatting CV that exports perfectly to PDF via the browser's native print function, while maintaining a Dark/Light theme toggle for the web version.</p>
+<h2 id="details">Details</h2>
+<p>The main goal was to have a single source of truth for the CV that looks great on the web (Dark Mode by default) but prints perfectly as a formal document (Light Mode, no UI elements).</p>
+<p><strong>Key Architectural Decisions:</strong>
+1. <strong>Zero-Build Pipeline:</strong> Pure static files (<code>index.html</code>, <code>cv.html</code>, <code>style.css</code>) deployed directly via GitHub Pages. No Node.js vulnerabilities, zero maintenance.
+2. <strong>CSS Custom Properties:</strong> Used CSS variables (<code>:root</code>) and a <code>localStorage</code> JavaScript toggle to switch themes without heavy state-management libraries.
+3. <strong>Print Media Queries:</strong> Used <code>@media print</code> to strip away web UI elements (navigation, buttons) and force a white background with black text when saving to PDF.
+4. <strong>Pragmatic i18n:</strong> Duplicated <code>cv.html</code> to <code>cv-de.html</code> for the German version. For a 2-page static site, file duplication is much simpler to maintain than a JSON translation layer.</p>
+<h2 id="commands-examples">Commands / Examples</h2>
+<h3 id="1-theme-toggling-css-variables">1. Theme Toggling (CSS Variables)</h3>
+<p>This setup allows smooth switching between themes using a simple class on the <code>&lt;body&gt;</code> tag.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c">/* Default Dark Theme */</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nv">--bg-primary</span><span class="p">:</span><span class="w"> </span><span class="mh">#0d1117</span><span class="p">;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nv">--text-primary</span><span class="p">:</span><span class="w"> </span><span class="mh">#c9d1d9</span><span class="p">;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nv">--accent-primary</span><span class="p">:</span><span class="w"> </span><span class="mh">#58a6ff</span><span class="p">;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c">/* Light Theme Override */</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="nt">body</span><span class="p">.</span><span class="nc">light-theme</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nv">--bg-primary</span><span class="p">:</span><span class="w"> </span><span class="mh">#ffffff</span><span class="p">;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nv">--text-primary</span><span class="p">:</span><span class="w"> </span><span class="mh">#24292f</span><span class="p">;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nv">--accent-primary</span><span class="p">:</span><span class="w"> </span><span class="mh">#0969da</span><span class="p">;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">}</span>
 </code></pre></div>
-<p>The <code>public/</code> folder is an independent git repository nested inside the vault. The outer vault has no git — only <code>public/</code> is version controlled.</p>
-<hr />
-<h2 id="git-isolation-strategy">Git isolation strategy</h2>
-<p>The <code>public/</code> repo <code>.gitignore</code> excludes:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>.obsidian/          ← plugins, API keys, personal config
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>_inbox/             ← raw unprocessed notes
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>site/               ← MkDocs build output
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>*.canvas            ← Obsidian canvas files
+<h3 id="2-the-print-superpower-media-print">2. The Print Superpower (<code>@media print</code>)</h3>
+<p>This is the magic that makes the HTML CV export perfectly to an ATS-friendly PDF. It hides the UI and forces page breaks to respect job blocks.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="nt">print</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nt">body</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span><span class="c">/* Force high contrast for printing */</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#ffffff</span><span class="w"> </span><span class="cp">!important</span><span class="p">;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#000000</span><span class="w"> </span><span class="cp">!important</span><span class="p">;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="c">/* Hide navigation and buttons */</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="p">.</span><span class="nc">page-header</span><span class="o">,</span><span class="w"> </span><span class="p">.</span><span class="nc">btn</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">        </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="w"> </span><span class="cp">!important</span><span class="p">;</span><span class="w"> </span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="c">/* Prevent a job block from splitting across two pages */</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="p">.</span><span class="nc">job-block</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">        </span><span class="k">page-break-inside</span><span class="p">:</span><span class="w"> </span><span class="kc">avoid</span><span class="p">;</span><span class="w"> </span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="c">/* Standard A4 margins */</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="p">@</span><span class="k">page</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">        </span><span class="nt">margin</span><span class="o">:</span><span class="w"> </span><span class="nt">1</span><span class="p">.</span><span class="nc">5cm</span><span class="o">;</span><span class="w"> </span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="p">}</span>
 </code></pre></div>
-<p>This ensures only finished, intentional content reaches the public repository.</p>
-<hr />
-<h2 id="daily-publishing-workflow">Daily publishing workflow</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 1. Write note in Obsidian, save to ~/obsidian/public/docs/</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># 2. When ready to publish:</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">cd</span><span class="w"> </span>~/obsidian/public
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>git<span class="w"> </span>add<span class="w"> </span>docs/
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;add: note title&quot;</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>git<span class="w"> </span>push
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># GitHub Actions builds and deploys automatically</span>
+<h3 id="3-minimal-vanilla-js-theme-persister">3. Minimal Vanilla JS Theme Persister</h3>
+<p>A tiny script to remember the user's theme choice across reloads.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">toggleBtn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;theme-toggle&#39;</span><span class="p">);</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1">// Load saved preference</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="kd">const</span><span class="w"> </span><span class="nx">currentTheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;theme&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;dark&#39;</span><span class="p">;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">currentTheme</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;light&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nx">body</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;light-theme&#39;</span><span class="p">);</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">}</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1">// Toggle on click</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="nx">toggleBtn</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="nx">body</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="s1">&#39;light-theme&#39;</span><span class="p">);</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">isLight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">body</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="s1">&#39;light-theme&#39;</span><span class="p">);</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s1">&#39;theme&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">isLight</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;light&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;dark&#39;</span><span class="p">);</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="p">});</span>
 </code></pre></div>
-<p>No auto-commit. Every push is intentional — the public git history is clean and visible to potential employers.</p>
-<hr />
-<h2 id="github-actions-pipeline">GitHub Actions pipeline</h2>
-<p>On every push to <code>main</code>:</p>
-<ol>
-<li>Installs <code>mkdocs&lt;2.0</code> and <code>mkdocs-material</code></li>
-<li>Runs <code>mkdocs gh-deploy --force</code></li>
-<li>Pushes built site to <code>gh-pages</code> branch</li>
-<li>GitHub Pages serves at <code>notes.serg-markovich.de</code></li>
-</ol>
-<p>Full pipeline: <a href="https://github.com/serg-markovich/obsidian-public/blob/main/.github/workflows/deploy.yml">deploy.yml</a></p>
-<hr />
-<h2 id="dns-configuration">DNS configuration</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Cloudflare DNS:
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Type:   CNAME
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Name:   notes
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Target: serg-markovich.github.io
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>Proxy:  DNS only (grey cloud)
-</code></pre></div>
-<p>SSL is handled automatically by GitHub Pages via Let's Encrypt.</p>
-<hr />
-<h2 id="related">Related</h2>
+<h2 id="related-notes">Related Notes</h2>
 <ul>
-<li><a href="../../portfolio/Obsidian%20Public%20Knowledge%20Base/">Obsidian Public Knowledge Base</a></li>
-<li><a href="../../til/MkDocs%20%2B%20GitHub%20Pages%20Deployment%20Patterns/">MkDocs + GitHub Pages Deployment Patterns</a></li>
+<li><a href="../../portfolio/Zero-Maintenance%20DevOps%20Portfolio%20%26%20ATS-Friendly%20CV/">Zero-Maintenance DevOps Portfolio &amp; ATS-Friendly CV</a></li>
 </ul>
 
 
@@ -788,7 +802,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 20, 2026 17:14:26 UTC">February 20, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 24, 2026 19:32:09 UTC">February 24, 2026</span>
   </span>
 
     
@@ -798,7 +812,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 20, 2026 15:57:31 UTC">February 20, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 24, 2026 19:32:09 UTC">February 24, 2026</span>
   </span>
 
     
