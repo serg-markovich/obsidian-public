@@ -12,6 +12,7 @@ tags:
 # Portfolio
 - [[Obsidian Public Knowledge Base]]
 - [[Zero-Maintenance DevOps Portfolio & ATS-Friendly CV]]
+- [[Battery-Optimized Local AI Stack (Open WebUI + Ollama)]]
 
 ---
 ## Open to collaboration
