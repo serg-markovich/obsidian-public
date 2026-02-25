@@ -2,54 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://notes.serg-markovich.de/</loc>
-         <lastmod>2026-02-24</lastmod>
+         <lastmod>2026-02-25</lastmod>
     </url>
     <url>
          <loc>https://notes.serg-markovich.de/tags/</loc>
-         <lastmod>2026-02-24</lastmod>
+         <lastmod>2026-02-25</lastmod>
     </url>
     <url>
          <loc>https://notes.serg-markovich.de/azure/</loc>
-         <lastmod>2026-02-24</lastmod>
+         <lastmod>2026-02-25</lastmod>
     </url>
     <url>
          <loc>https://notes.serg-markovich.de/devops/</loc>
-         <lastmod>2026-02-24</lastmod>
+         <lastmod>2026-02-25</lastmod>
     </url>
     <url>
          <loc>https://notes.serg-markovich.de/homelab/</loc>
-         <lastmod>2026-02-24</lastmod>
+         <lastmod>2026-02-25</lastmod>
     </url>
     <url>
          <loc>https://notes.serg-markovich.de/homelab/My%20Homelab%20Setup/</loc>
-         <lastmod>2026-02-24</lastmod>
+         <lastmod>2026-02-25</lastmod>
     </url>
     <url>
          <loc>https://notes.serg-markovich.de/homelab/Obsidian%20Vault%20Local%20Setup/</loc>
-         <lastmod>2026-02-24</lastmod>
+         <lastmod>2026-02-25</lastmod>
     </url>
     <url>
          <loc>https://notes.serg-markovich.de/portfolio/</loc>
-         <lastmod>2026-02-24</lastmod>
+         <lastmod>2026-02-25</lastmod>
+    </url>
+    <url>
+         <loc>https://notes.serg-markovich.de/portfolio/Battery-Optimized%20Local%20AI%20Stack%20%28Open%20WebUI%20%2B%20Ollama%29/</loc>
+         <lastmod>2026-02-25</lastmod>
     </url>
     <url>
          <loc>https://notes.serg-markovich.de/portfolio/Obsidian%20Public%20Knowledge%20Base/</loc>
-         <lastmod>2026-02-24</lastmod>
+         <lastmod>2026-02-25</lastmod>
     </url>
     <url>
          <loc>https://notes.serg-markovich.de/portfolio/Zero-Maintenance%20DevOps%20Portfolio%20%26%20ATS-Friendly%20CV/</loc>
-         <lastmod>2026-02-24</lastmod>
+         <lastmod>2026-02-25</lastmod>
     </url>
     <url>
          <loc>https://notes.serg-markovich.de/til/</loc>
-         <lastmod>2026-02-24</lastmod>
+         <lastmod>2026-02-25</lastmod>
     </url>
     <url>
          <loc>https://notes.serg-markovich.de/til/MkDocs%20%2B%20GitHub%20Pages%20Deployment%20Patterns/</loc>
-         <lastmod>2026-02-24</lastmod>
+         <lastmod>2026-02-25</lastmod>
+    </url>
+    <url>
+         <loc>https://notes.serg-markovich.de/til/Reliable%20Desktop%20Integration%20for%20Local%20Docker%20Services%20%28XDG%20%26%20systemd%29/</loc>
+         <lastmod>2026-02-25</lastmod>
     </url>
     <url>
          <loc>https://notes.serg-markovich.de/til/Vanilla%20HTML_CSS%20Portfolio%20%26%20ATS-Friendly%20CV/</loc>
-         <lastmod>2026-02-24</lastmod>
+         <lastmod>2026-02-25</lastmod>
     </url>
 </urlset>
