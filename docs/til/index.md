@@ -13,3 +13,4 @@ tags:
 - [[MkDocs + GitHub Pages Deployment Patterns]]
 - [[Vanilla HTML_CSS Portfolio & ATS-Friendly CV]]
 - [[Reliable Desktop Integration for Local Docker Services (XDG & systemd)]]
+- [[Three Patterns for Reliable systemd File Watchers]]

@@ -56,20 +56,22 @@ Currently learning: `kubectl`, `terraform`, `ansible` — not yet installed.
 
 **Running services:**
 
-| Service | Role |
-|---|---|
-| Nginx | Reverse proxy / web server |
-| Apache2 | Web server (HestiaCP managed) |
-| HestiaCP | Hosting control panel |
-| MariaDB 11.4 | Database server |
-| PHP 8.3 FPM | PHP runtime |
-| Dovecot | IMAP/POP3 mail server |
-| Exim4 | Mail transfer agent |
-| BIND (named) | DNS server |
-| Docker 28.3.3 | Container runtime |
-| Fail2ban | Intrusion prevention |
-| ClamAV | Antivirus |
-| SpamAssassin | Spam filtering |
+| Service                | Role                                               |
+| ---------------------- | -------------------------------------------------- |
+| Nginx                  | Reverse proxy / web server                         |
+| Apache2                | Web server (HestiaCP managed)                      |
+| HestiaCP               | Hosting control panel                              |
+| MariaDB 11.4           | Database server                                    |
+| PHP 8.3 FPM            | PHP runtime                                        |
+| Dovecot                | IMAP/POP3 mail server                              |
+| Exim4                  | Mail transfer agent                                |
+| BIND (named)           | DNS server                                         |
+| Docker 28.3.3          | Container runtime                                  |
+| Fail2ban               | Intrusion prevention                               |
+| ClamAV                 | Antivirus                                          |
+| SpamAssassin           | Spam filtering                                     |
+| local-whisper-obsidian | Voice memo transcription (Faster Whisper, systemd) |
+
 
 ***
 
@@ -82,3 +84,4 @@ DNS and CDN managed through **Cloudflare**:
 ## Related
 - [[Obsidian Vault Local Setup]]
 - [[Obsidian Public Knowledge Base]]
+- [[Local Voice Transcription Pipeline]]
