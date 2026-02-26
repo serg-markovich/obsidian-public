@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://notes.serg-markovich.de/homelab/My%20Homelab%20Setup/">
+        <link rel="canonical" href="https://notes.serg-markovich.de/til/Three%20Patterns%20for%20Reliable%20systemd%20File%20Watchers/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>My Homelab Setup - Serg's DevOps Notes</title>
+        <title>Three Patterns for Reliable systemd File Watchers - Serg's DevOps Notes</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#my-homelab-setup" class="md-skip">
+        <a href="#three-patterns-for-reliable-systemd-file-watchers" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              My Homelab Setup
+              Three Patterns for Reliable systemd File Watchers
             
           </span>
         </div>
@@ -280,7 +280,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../" class="md-tabs__link">
+      <a href="../../homelab/" class="md-tabs__link">
         
   
   
@@ -318,7 +318,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../til/" class="md-tabs__link">
+      <a href="../" class="md-tabs__link">
         
   
   
@@ -471,7 +471,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../homelab/" class="md-nav__link">
         
   
   
@@ -525,7 +525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../til/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -572,10 +572,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#local-workstation" class="md-nav__link">
+  <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Local Workstation
+        Summary
       
     </span>
   </a>
@@ -583,10 +583,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#vps-contabo" class="md-nav__link">
+  <a href="#1-create-vs-close_write" class="md-nav__link">
     <span class="md-ellipsis">
       
-        VPS — Contabo
+        1. create vs close_write
       
     </span>
   </a>
@@ -594,10 +594,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#network-dns" class="md-nav__link">
+  <a href="#2-killmodeprocess-leaves-orphan-children" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Network &amp; DNS
+        2. KillMode=process leaves orphan children
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-parallel-processing-of-the-same-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Parallel processing of the same file
       
     </span>
   </a>
@@ -636,21 +647,14 @@
       
       
       
-        <span class="md-tag">docker</span>
+        <span class="md-tag">bash</span>
       
     
       
       
       
       
-        <span class="md-tag">hestia</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">homelab</span>
+        <span class="md-tag">inotify</span>
       
     
       
@@ -664,14 +668,14 @@
       
       
       
-        <span class="md-tag">ubuntu</span>
+        <span class="md-tag">systemd</span>
       
     
       
       
       
       
-        <span class="md-tag">vps</span>
+        <span class="md-tag">til</span>
       
     
   </nav>
@@ -681,179 +685,38 @@
   
 
 
-<h1 id="my-homelab-setup">My Homelab Setup</h1>
-<p>Two-node setup: a local workstation (HP EliteBook) and a remote VPS (Contabo), connected via SSH and managed through CLI.</p>
+<h1 id="three-patterns-for-reliable-systemd-file-watchers">Three Patterns for Reliable systemd File Watchers</h1>
+<h2 id="summary">Summary</h2>
+<p>While building a local voice transcription pipeline triggered by file system events, I ran into three non-obvious problems with <code>inotifywait</code> under systemd. Each has a clean, standard solution.</p>
 <hr />
-<h2 id="local-workstation">Local Workstation</h2>
-<p><strong>HP EliteBook 845 G8</strong></p>
-<table>
-<thead>
-<tr>
-<th>Component</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>OS</td>
-<td>Ubuntu 24.04.4 LTS (kernel 6.8.0)</td>
-</tr>
-<tr>
-<td>CPU</td>
-<td>AMD Ryzen 5 PRO 5650U — 6 cores / 12 threads</td>
-</tr>
-<tr>
-<td>RAM</td>
-<td>16 GB</td>
-</tr>
-<tr>
-<td>Storage</td>
-<td>1 TB NVMe SSD (LVM + LUKS encryption)</td>
-</tr>
-<tr>
-<td>Network</td>
-<td>WiFi — wlp2s0</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Encryption:</strong> Full disk encryption via LUKS on NVMe (<code>nvme0n1p3_crypt</code>) with LVM on top — 929 GB root volume.</p>
-<p><strong>Installed tools:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Tool</th>
-<th>Version</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Ubuntu</td>
-<td>24.04.4 LTS</td>
-</tr>
-<tr>
-<td>Docker</td>
-<td>29.2.1</td>
-</tr>
-<tr>
-<td>Python</td>
-<td>3.12.3</td>
-</tr>
-<tr>
-<td>Git</td>
-<td>2.43.0</td>
-</tr>
-<tr>
-<td>Currently learning: <code>kubectl</code>, <code>terraform</code>, <code>ansible</code> — not yet installed.</td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<h2 id="1-create-vs-close_write">1. <code>create</code> vs <code>close_write</code></h2>
+<p>The instinctive event to watch for new files is <code>-e create</code>. It fires the moment the filesystem entry is created — before the writing application has finished.</p>
+<p><strong>The problem:</strong> transcribing a file that is still being written produces garbage output or an error.</p>
+<p><strong>The fix:</strong> use <code>-e close_write</code> instead. It fires only after the file descriptor is closed by the writing process — guaranteeing the file is complete before any processing begins.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Wrong: fires on file creation, before write is complete</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>inotifywait<span class="w"> </span>-m<span class="w"> </span>-e<span class="w"> </span>create<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$WATCH_PATH</span><span class="s2">&quot;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Correct: fires only after the writing process closes the file</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>inotifywait<span class="w"> </span>-m<span class="w"> </span>-e<span class="w"> </span>close_write<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$WATCH_PATH</span><span class="s2">&quot;</span>
+</code></pre></div>
+<h2 id="2-killmodeprocess-leaves-orphan-children">2. <code>KillMode=process</code> leaves orphan children</h2>
+<p>A systemd service running a Bash watcher script spawns child processes — in this case, <code>inotifywait</code>. With the default <code>KillMode=process</code>, systemd only kills the direct process (bash), leaving <code>inotifywait</code> running as an orphan.</p>
+<p>On the next <code>systemctl restart</code>, the log shows:</p>
+<p>text</p>
+<p><code>Found left-over process (inotifywait) in control group while starting unit. This usually indicates unclean termination of a previous run.</code></p>
+<p><strong>The fix:</strong> <code>KillMode=control-group</code> tells systemd to kill the entire cgroup — the parent process and all its children.</p>
+<p>text</p>
+<p><code>[Service] KillMode=control-group KillSignal=SIGTERM TimeoutStopSec=10s</code></p>
 <hr />
-<h2 id="vps-contabo">VPS — Contabo</h2>
-<p><strong>Location:</strong> Germany</p>
-<table>
-<thead>
-<tr>
-<th>Component</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>OS</td>
-<td>Ubuntu 22.04.5 LTS</td>
-</tr>
-<tr>
-<td>CPU</td>
-<td>AMD EPYC — 6 vCPUs</td>
-</tr>
-<tr>
-<td>RAM</td>
-<td>12 GB</td>
-</tr>
-<tr>
-<td>Storage</td>
-<td>200 GB SSD</td>
-</tr>
-<tr>
-<td>Provider</td>
-<td>Contabo</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Running services:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Service</th>
-<th>Role</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Nginx</td>
-<td>Reverse proxy / web server</td>
-</tr>
-<tr>
-<td>Apache2</td>
-<td>Web server (HestiaCP managed)</td>
-</tr>
-<tr>
-<td>HestiaCP</td>
-<td>Hosting control panel</td>
-</tr>
-<tr>
-<td>MariaDB 11.4</td>
-<td>Database server</td>
-</tr>
-<tr>
-<td>PHP 8.3 FPM</td>
-<td>PHP runtime</td>
-</tr>
-<tr>
-<td>Dovecot</td>
-<td>IMAP/POP3 mail server</td>
-</tr>
-<tr>
-<td>Exim4</td>
-<td>Mail transfer agent</td>
-</tr>
-<tr>
-<td>BIND (named)</td>
-<td>DNS server</td>
-</tr>
-<tr>
-<td>Docker 28.3.3</td>
-<td>Container runtime</td>
-</tr>
-<tr>
-<td>Fail2ban</td>
-<td>Intrusion prevention</td>
-</tr>
-<tr>
-<td>ClamAV</td>
-<td>Antivirus</td>
-</tr>
-<tr>
-<td>SpamAssassin</td>
-<td>Spam filtering</td>
-</tr>
-<tr>
-<td>local-whisper-obsidian</td>
-<td>Voice memo transcription (Faster Whisper, systemd)</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="network-dns">Network &amp; DNS</h2>
-<p>DNS and CDN managed through <strong>Cloudflare</strong>:
-- <code>serg-markovich.de</code> → Contabo VPS IP
-- <code>notes.serg-markovich.de</code> → CNAME to <code>serg-markovich.github.io</code> (DNS only, no proxy)</p>
+<h2 id="3-parallel-processing-of-the-same-file">3. Parallel processing of the same file</h2>
+<p>If two events arrive for the same file in quick succession (which can happen with some sync clients), two instances of the processing script will start concurrently, causing conflicts.</p>
+<p><strong>The fix:</strong> a <code>flock</code> lockfile scoped to the filename. If the lock is already held, the second instance skips immediately instead of queuing.</p>
+<p>bash</p>
+<p><code>LOCK="/tmp/whisper-$(echo "$file" | md5sum | cut -c1-8).lock" exec 9&gt;"$LOCK" flock -n 9 || { echo "Already processing: $file"; continue; } # ... process file ... flock -u 9</code></p>
+<p>The lock filename is derived from an md5 hash of the file path — unique per file, collision-resistant, no cleanup needed.</p>
 <hr />
 <h2 id="related">Related</h2>
 <ul>
-<li><a href="../Obsidian%20Vault%20Local%20Setup/">Obsidian Vault Local Setup</a></li>
-<li><a href="../../portfolio/Obsidian%20Public%20Knowledge%20Base/">Obsidian Public Knowledge Base</a></li>
 <li><a href="../../portfolio/Local%20Voice%20Transcription%20Pipeline/">Local Voice Transcription Pipeline</a></li>
 </ul>
 
@@ -888,7 +751,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 20, 2026 15:57:31 UTC">February 20, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 26, 2026 19:27:40 UTC">February 26, 2026</span>
   </span>
 
     
