@@ -13,6 +13,7 @@ tags:
 - [[Obsidian Public Knowledge Base]]
 - [[Zero-Maintenance DevOps Portfolio & ATS-Friendly CV]]
 - [[Battery-Optimized Local AI Stack (Open WebUI + Ollama)]]
+- [[Local Voice Transcription Pipeline]]
 
 ---
 ## Open to collaboration
