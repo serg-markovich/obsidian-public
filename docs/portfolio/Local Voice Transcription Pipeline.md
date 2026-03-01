@@ -77,7 +77,7 @@ User config lives in `~/.config/local-whisper-obsidian/.env`, separate from sour
 
 ## My Setup
 
-- Model: `medium` — better accuracy for multilingual notes (Ukrainian, Russian, German)
+- Model: `medium` — better accuracy for multilingual notes
 - Sync: Syncthing (Android → Linux)
 - Vault: `0_inbox` for new voice notes, `7_system/files` for Obsidian mobile recordings
 
