@@ -1,7 +1,6 @@
 ---
 title: Local Voice Transcription Pipeline
 date: 2026-02-26
-type: project
 topic: devops
 status: published
 level: intermediate
@@ -12,6 +11,7 @@ tags:
   - obsidian
   - self-hosted
   - homelab
+  - docker
 ---
 
 # Project: local-whisper-obsidian
@@ -75,6 +75,24 @@ User config lives in `~/.config/local-whisper-obsidian/.env`, separate from sour
 
 ---
 
+## Update: Docker / NAS Support (2026-03-02)
+
+Added a parallel execution path for homelab and NAS setups (Unraid, Synology).
+
+**What changed:**
+- `bin/watch-docker.sh` — new container entrypoint (env vars, no .env file)
+- `docker/Dockerfile` — `python:3.11-slim` + `inotify-tools`
+- `docker/docker-compose.yml` — vault volume + model cache volume
+- `Makefile` — `docker-build`, `docker-up`, `docker-down`, `docker-logs`
+
+**Architecture decision:** kept the existing systemd path completely untouched.
+Docker is a third entrypoint alongside `watch-linux.sh` and `watch-macos.sh`,
+not a replacement.
+
+**Trigger:** a comment on r/ObsidianMD asking for Unraid support. Shipped in
+one day after the request.
+
+
 ## My Setup
 
 - Model: `medium` — better accuracy for multilingual notes
@@ -85,3 +103,4 @@ User config lives in `~/.config/local-whisper-obsidian/.env`, separate from sour
 
 ## Related Notes
 - [[Three Patterns for Reliable systemd File Watchers]]
+- [[Docker entrypoint as a drop-in for systemd services]]

@@ -1,7 +1,6 @@
 ---
 title: Obsidian Public Knowledge Base
 date: 2026-02-20
-type: project
 topic: devops
 status: active
 level: intermediate
@@ -11,7 +10,6 @@ tags:
   - github-pages
   - cicd
   - knowledge-management
-done: false
 ---
 
 # Obsidian Public Knowledge Base

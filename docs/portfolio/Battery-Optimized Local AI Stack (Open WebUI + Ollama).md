@@ -1,7 +1,6 @@
 ---
 title: Battery-Optimized Local AI Stack (Open WebUI + Ollama)
 date: 2026-02-25
-type: project
 topic: devops
 status: published
 level: intermediate

@@ -72,3 +72,4 @@ The lock filename is derived from an md5 hash of the file path — unique per fi
 
 ## Related
 - [[Local Voice Transcription Pipeline]]
+- [[Docker entrypoint as a drop-in for systemd services]]

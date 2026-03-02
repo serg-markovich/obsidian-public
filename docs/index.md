@@ -17,7 +17,7 @@ This is my public knowledge base — notes I write while learning and building.
 | Section                            | What's inside                   |
 | ---------------------------------- | ------------------------------- |
 | [☁️ Azure](azure/index.md)         | AZ-104, CLI, cloud architecture |
-| [⚙️ DevOps](devops/index.md)       | Docker, Kubernetes, CI/CD, IaC  |
+| [⚙️ DevOps](public/docs/devops/index.md)       | Docker, Kubernetes, CI/CD, IaC  |
 | [🏠 HomeLab](homelab/index.md)     | VPS, self-hosted, Linux         |
 | [💼 Portfolio](portfolio/index.md) | Projects and case studies       |
 | [📅 TIL](til/index.md)             | Daily findings and fixes        |

@@ -1,7 +1,6 @@
 ---
 title: Zero-Maintenance DevOps Portfolio & ATS-Friendly CV
 date: 2026-02-24
-type: project
 topic: portfolio
 status: published
 level: intermediate
