@@ -57,6 +57,8 @@ Ensures the audio file is fully written before transcription starts. Eliminates 
 
 **`flock` lockfile per file**
 Prevents parallel transcription of the same file if two filesystem events arrive in quick succession.
+...
+macOS: `flock` not available — `fswatch` processes events sequentially by default.
 
 **`KillMode=control-group` in systemd**
 Ensures clean shutdown — kills both the bash watcher and the child `inotifywait` process as a unit.
