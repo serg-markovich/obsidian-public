@@ -12,6 +12,7 @@ tags:
   - self-hosted
   - homelab
   - docker
+  - macos
 ---
 
 # Project: local-whisper-obsidian
@@ -73,7 +74,7 @@ User config lives in `~/.config/local-whisper-obsidian/.env`, separate from sour
 
 ## Stack
 
-`faster-whisper` · `Python 3.11` · `systemd` · `inotify-tools` · `pytest` · `ruff` · `GitHub Actions CI`
+`faster-whisper` · `Python 3.11` · `systemd` · `inotify-tools` · `fswatch` · `pytest` · `ruff` · `GitHub Actions CI`
 
 ---
 
@@ -94,6 +95,30 @@ not a replacement.
 **Trigger:** a comment on r/ObsidianMD asking for Unraid support. Shipped in
 one day after the request.
 
+---
+
+## Update: macOS Reliability & Docker Ownership Fix (2026-03-03)
+
+### macOS watcher hardening
+Three issues discovered during real-world usage on macOS:
+
+- **`wait_for_stable`** — replaced fixed `sleep` with polling loop that checks
+  file size until it stops changing. Fixes truncated transcriptions on slow sync.
+- **Deduplication** — `fswatch` can fire multiple events for the same file.
+  Added in-memory guard to skip already-processing files.
+- **Full Disk Access check** — added explicit check at startup with actionable
+  error message instead of a silent permission failure.
+
+### Docker volume ownership
+Files written by the container were created as `root:root` on the host —
+a common Docker footgun. Fixed via `CURRENT_UID` / `CURRENT_GID` passed
+through `docker/.env`. Model cache relocated from `/root/.cache` to
+`/cache/huggingface` so the non-root user can read it.
+
+**Makefile** now branches by OS for all systemd commands —
+macOS falls back to `nohup` + PID file.
+
+---
 
 ## My Setup
 
