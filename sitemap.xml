@@ -53,6 +53,10 @@
          <lastmod>2026-03-03</lastmod>
     </url>
     <url>
+         <loc>https://notes.serg-markovich.de/til/Docker%20Volumes%20and%20File%20Ownership%20%E2%80%94%20Why%20Your%20Files%20Belong%20to%20Root/</loc>
+         <lastmod>2026-03-03</lastmod>
+    </url>
+    <url>
          <loc>https://notes.serg-markovich.de/til/Docker%20entrypoint%20as%20a%20drop-in%20for%20systemd%20services/</loc>
          <lastmod>2026-03-03</lastmod>
     </url>

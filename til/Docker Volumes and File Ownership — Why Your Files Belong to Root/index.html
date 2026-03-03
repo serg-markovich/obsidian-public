@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://notes.serg-markovich.de/portfolio/Local%20Voice%20Transcription%20Pipeline/">
+        <link rel="canonical" href="https://notes.serg-markovich.de/til/Docker%20Volumes%20and%20File%20Ownership%20%E2%80%94%20Why%20Your%20Files%20Belong%20to%20Root/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>Local Voice Transcription Pipeline - Serg's DevOps Notes</title>
+        <title>Docker Volumes and File Ownership — Why Your Files Belong to Root - Serg's DevOps Notes</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#project-local-whisper-obsidian" class="md-skip">
+        <a href="#til-docker-volumes-and-file-ownership-why-your-files-belong-to-root" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Local Voice Transcription Pipeline
+              Docker Volumes and File Ownership — Why Your Files Belong to Root
             
           </span>
         </div>
@@ -299,7 +299,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../" class="md-tabs__link">
+      <a href="../../portfolio/" class="md-tabs__link">
         
   
   
@@ -318,7 +318,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../til/" class="md-tabs__link">
+      <a href="../" class="md-tabs__link">
         
   
   
@@ -498,7 +498,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../portfolio/" class="md-nav__link">
         
   
   
@@ -525,7 +525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../til/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -572,6 +572,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#the-problem" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -583,10 +594,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
+  <a href="#the-wrong-fix" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Architecture
+        The Wrong Fix
       
     </span>
   </a>
@@ -594,10 +605,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-engineering-decisions" class="md-nav__link">
+  <a href="#the-right-fix" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Engineering Decisions
+        The Right Fix
       
     </span>
   </a>
@@ -605,10 +616,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#stack" class="md-nav__link">
+  <a href="#the-hidden-second-problem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Stack
+        The Hidden Second Problem
       
     </span>
   </a>
@@ -616,10 +627,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#update-docker-nas-support-2026-03-02" class="md-nav__link">
+  <a href="#checklist" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Update: Docker / NAS Support (2026-03-02)
+        Checklist
       
     </span>
   </a>
@@ -627,21 +638,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#my-setup" class="md-nav__link">
+  <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
-        My Setup
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Related Notes
+        Related
       
     </span>
   </a>
@@ -669,6 +669,13 @@
       
       
       
+        <span class="md-tag">devops</span>
+      
+    
+      
+      
+      
+      
         <span class="md-tag">docker</span>
       
     
@@ -676,42 +683,14 @@
       
       
       
-        <span class="md-tag">homelab</span>
+        <span class="md-tag">linux</span>
       
     
       
       
       
       
-        <span class="md-tag">obsidian</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">python</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">self-hosted</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">systemd</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">whisper</span>
+        <span class="md-tag">til</span>
       
     
   </nav>
@@ -721,74 +700,89 @@
   
 
 
-<h1 id="project-local-whisper-obsidian">Project: local-whisper-obsidian</h1>
-<p>A fully local voice-to-Obsidian transcription pipeline. No cloud, no API keys, no subscriptions. Voice memos recorded on mobile sync via Syncthing and are automatically transcribed into structured Markdown notes using Faster Whisper running on CPU.</p>
-<p><strong>Links:</strong></p>
-<ul>
-<li><strong>Source Code:</strong> <a href="https://github.com/serg-markovich/local-whisper-obsidian">serg-markovich/local-whisper-obsidian</a></li>
-</ul>
+<h1 id="til-docker-volumes-and-file-ownership-why-your-files-belong-to-root">TIL: Docker Volumes and File Ownership — Why Your Files Belong to Root</h1>
+<h2 id="summary">Summary</h2>
+<p>When mounting a host directory as a Docker volume, files created inside the
+container are owned by <code>root</code> on the host — even if your host user has full
+access to the directory. There is a clean, repeatable fix that doesn't involve
+prefixing every command with environment variables.</p>
 <hr />
 <h2 id="the-problem">The Problem</h2>
-<p>Obsidian mobile can record voice memos, but does not transcribe them. Cloud transcription services (Whisper API, Otter.ai) require sending private audio to external servers. The goal was a fully offline pipeline that triggers automatically without any manual steps.</p>
-<hr />
-<h2 id="architecture">Architecture</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Voice memo (.m4a / .mp3 / .wav)
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>|
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>inotifywait &lt;-- watches configured vault paths via close_write
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>|
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>faster-whisper (CPU, int8 quantized)
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>|
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>Markdown note with YAML frontmatter + wikilink to audio
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>|
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>Obsidian inbox
+<p>A containerized transcription service writes <code>.md</code> files into a mounted vault:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>volumes:
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  - ${VAULT_PATH}:/vault
 </code></pre></div>
-<p>The pipeline is split into two components with a single responsibility each:</p>
+<p>On the host, the output looks like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>-rw-r--r-- 1 root   root   Recording.md
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>-rw-rw-r-- 1 sergey sergey Recording.m4a
+</code></pre></div>
+<p>The next time a host-side service (systemd) tries to overwrite the same file,
+it gets:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ERROR Transcription failed: [Errno 13] Permission denied: &#39;/vault/Recording.md&#39;
+</code></pre></div>
+<p><strong>Why it happens:</strong> Docker containers run as <code>root</code> (UID 0) by default. Files
+created inside a container on a bind-mounted volume inherit that UID on the
+host — regardless of who owns the directory.</p>
+<hr />
+<h2 id="the-wrong-fix">The Wrong Fix</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Antipattern: leaks into muscle memory, breaks in CI, breaks make targets</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nv">UID</span><span class="o">=</span><span class="k">$(</span>id<span class="w"> </span>-u<span class="k">)</span><span class="w"> </span><span class="nv">GID</span><span class="o">=</span><span class="k">$(</span>id<span class="w"> </span>-g<span class="k">)</span><span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+<p><code>UID</code> is a readonly variable in bash. It breaks. And even if you use a
+different name, you're encoding runtime state into every invocation instead
+of into configuration.</p>
+<hr />
+<h2 id="the-right-fix">The Right Fix</h2>
+<p><strong>Step 1 — <code>docker-compose.yml</code>:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">whisper-obsidian</span><span class="p">:</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${CURRENT_UID}:${CURRENT_GID}&quot;</span>
+</code></pre></div>
+<p><strong>Step 2 — <code>docker/.env.example</code>:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Host user permissions — prevents root-owned files on mounted volumes</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># Run: id -u &amp;&amp; id -g</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nv">CURRENT_UID</span><span class="o">=</span><span class="m">1000</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nv">CURRENT_GID</span><span class="o">=</span><span class="m">1000</span>
+</code></pre></div>
+<p><strong>Step 3 — <code>Makefile</code>:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nf">docker-up</span><span class="o">:</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span>@test<span class="w"> </span>-f<span class="w"> </span>docker/.env<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Error: docker/.env not found. Run: cp docker/.env.example docker/.env&quot;</span><span class="p">;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker/docker-compose.yml<span class="w"> </span>--env-file<span class="w"> </span>docker/.env<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+<p>Docker Compose reads <code>.env</code> automatically. No prefixes. No readonly variable
+errors. The guard ensures users configure before running.</p>
+<hr />
+<h2 id="the-hidden-second-problem">The Hidden Second Problem</h2>
+<p>If the container previously ran as root, the model cache volume is also
+owned by root:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>whisper_models:/root/.cache/huggingface
+</code></pre></div>
+<p>A non-root user inside the container cannot write to <code>/root/.cache</code>.
+The fix: use a neutral mount path and set <code>HF_HOME</code> explicitly.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">environment</span><span class="p">:</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HF_HOME=/cache/huggingface</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nt">volumes</span><span class="p">:</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">whisper_models:/cache/huggingface</span>
+</code></pre></div>
+<p>If the volume was already created as root, recreate it:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>down
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>docker<span class="w"> </span>volume<span class="w"> </span>rm<span class="w"> </span>&lt;project&gt;_whisper_models
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+<hr />
+<h2 id="checklist">Checklist</h2>
+<p>When adding Docker support to any tool that writes files to a host volume:</p>
 <ul>
-<li><code>bin/watch-linux.sh</code> — filesystem watcher only, no processing logic</li>
-<li><code>src/transcribe.py</code> — transcription and note generation only, no filesystem logic</li>
+<li>[ ] Set <code>user: "${CURRENT_UID}:${CURRENT_GID}"</code> in <code>docker-compose.yml</code></li>
+<li>[ ] Add <code>CURRENT_UID</code> / <code>CURRENT_GID</code> to <code>.env.example</code> with <code>id -u</code> / <code>id -g</code> instructions</li>
+<li>[ ] Avoid <code>/root/.cache</code> as a volume mount path — use a neutral path + explicit env var</li>
+<li>[ ] Add a guard in <code>Makefile</code> that fails early if <code>.env</code> is missing</li>
 </ul>
 <hr />
-<h2 id="key-engineering-decisions">Key Engineering Decisions</h2>
-<p><strong><code>close_write</code> instead of <code>create</code></strong>
-Ensures the audio file is fully written before transcription starts. Eliminates race conditions with Syncthing and Obsidian mobile.</p>
-<p><strong><code>flock</code> lockfile per file</strong>
-Prevents parallel transcription of the same file if two filesystem events arrive in quick succession.
-...
-macOS: <code>flock</code> not available — <code>fswatch</code> processes events sequentially by default.</p>
-<p><strong><code>KillMode=control-group</code> in systemd</strong>
-Ensures clean shutdown — kills both the bash watcher and the child <code>inotifywait</code> process as a unit.</p>
-<p><strong>Lazy model loading via <code>class Transcriber</code></strong>
-The Whisper model is initialized once and reused across transcriptions. Avoids 3–10 second cold start per file.</p>
-<p><strong>XDG-compliant config</strong>
-User config lives in <code>~/.config/local-whisper-obsidian/.env</code>, separate from source code. Personal paths never touch the repository.</p>
-<hr />
-<h2 id="stack">Stack</h2>
-<p><code>faster-whisper</code> · <code>Python 3.11</code> · <code>systemd</code> · <code>inotify-tools</code> · <code>pytest</code> · <code>ruff</code> · <code>GitHub Actions CI</code></p>
-<hr />
-<h2 id="update-docker-nas-support-2026-03-02">Update: Docker / NAS Support (2026-03-02)</h2>
-<p>Added a parallel execution path for homelab and NAS setups (Unraid, Synology).</p>
-<p><strong>What changed:</strong>
-- <code>bin/watch-docker.sh</code> — new container entrypoint (env vars, no .env file)
-- <code>docker/Dockerfile</code> — <code>python:3.11-slim</code> + <code>inotify-tools</code>
-- <code>docker/docker-compose.yml</code> — vault volume + model cache volume
-- <code>Makefile</code> — <code>docker-build</code>, <code>docker-up</code>, <code>docker-down</code>, <code>docker-logs</code></p>
-<p><strong>Architecture decision:</strong> kept the existing systemd path completely untouched.
-Docker is a third entrypoint alongside <code>watch-linux.sh</code> and <code>watch-macos.sh</code>,
-not a replacement.</p>
-<p><strong>Trigger:</strong> a comment on r/ObsidianMD asking for Unraid support. Shipped in
-one day after the request.</p>
-<h2 id="my-setup">My Setup</h2>
+<h2 id="related">Related</h2>
 <ul>
-<li>Model: <code>medium</code> — better accuracy for multilingual notes</li>
-<li>Sync: Syncthing (Android → Linux)</li>
-<li>Vault: <code>0_inbox</code> for new voice notes, <code>7_system/files</code> for Obsidian mobile recordings</li>
-</ul>
-<hr />
-<h2 id="related-notes">Related Notes</h2>
-<ul>
-<li><a href="../../til/Three%20Patterns%20for%20Reliable%20systemd%20File%20Watchers/">Three Patterns for Reliable systemd File Watchers</a></li>
-<li><a href="../../til/Docker%20entrypoint%20as%20a%20drop-in%20for%20systemd%20services/">Docker entrypoint as a drop-in for systemd services</a></li>
-<li><a href="../../til/Docker%20Volumes%20and%20File%20Ownership%20%E2%80%94%20Why%20Your%20Files%20Belong%20to%20Root/">Docker Volumes and File Ownership — Why Your Files Belong to Root</a></li>
+<li><a href="../Three%20Patterns%20for%20Reliable%20systemd%20File%20Watchers/">Three Patterns for Reliable systemd File Watchers</a></li>
+<li><a href="../Docker%20entrypoint%20as%20a%20drop-in%20for%20systemd%20services/">Docker entrypoint as a drop-in for systemd services</a></li>
 </ul>
 
 
@@ -822,7 +816,7 @@ one day after the request.</p>
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 26, 2026 19:27:40 UTC">February 26, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 3, 2026 18:51:22 UTC">March 3, 2026</span>
   </span>
 
     
