@@ -15,3 +15,4 @@ tags:
 - [[Reliable Desktop Integration for Local Docker Services (XDG & systemd)]]
 - [[Three Patterns for Reliable systemd File Watchers]]
 - [[Docker entrypoint as a drop-in for systemd services]]
+- [[Docker Volumes and File Ownership — Why Your Files Belong to Root]]

@@ -62,31 +62,31 @@ Two-node setup: a local workstation (HP EliteBook) and a remote VPS (Contabo), c
 
 **Running services:**
 
-| Service                 | Role                                               |
-| ----------------------- | -------------------------------------------------- |
-| Nginx                   | Reverse proxy / web server                         |
-| Apache2                 | Web server (HestiaCP managed)                      |
-| HestiaCP                | Hosting control panel                              |
-| MariaDB 11.4            | Database server                                    |
-| PHP 8.3 FPM             | PHP runtime                                        |
-| Dovecot                 | IMAP/POP3 mail server                              |
-| Exim4                   | Mail transfer agent                                |
-| BIND (named)            | DNS server                                         |
-| Docker 28.3.3           | Container runtime                                  |
-| Fail2ban                | Intrusion prevention                               |
-| ClamAV                  | Antivirus                                          |
-| SpamAssassin            | Spam filtering                                     |
-| local-whisper-obsidian  | Voice memo transcription (Faster Whisper, systemd) |
-| openwebui-systemd-stack | OpenWebUI + Ollama LLM stack (systemd managed)     |
+| Service                 | Role                                                        |
+| ----------------------- | ----------------------------------------------------------- |
+| Nginx                   | Reverse proxy / web server                                  |
+| Apache2                 | Web server (HestiaCP managed)                               |
+| HestiaCP                | Hosting control panel                                       |
+| MariaDB 11.4            | Database server                                             |
+| PHP 8.3 FPM             | PHP runtime                                                 |
+| Dovecot                 | IMAP/POP3 mail server                                       |
+| Exim4                   | Mail transfer agent                                         |
+| BIND (named)            | DNS server                                                  |
+| Docker 28.3.3           | Container runtime                                           |
+| Fail2ban                | Intrusion prevention                                        |
+| ClamAV                  | Antivirus                                                   |
+| SpamAssassin            | Spam filtering                                              |
+| local-whisper-obsidian  | Voice memo transcription (Faster Whisper, systemd + Docker) |
+| openwebui-systemd-stack | OpenWebUI + Ollama LLM stack (systemd managed)              |
 
 ***
 
 ## Repositories
 
-| Repository | Description |
-| ---------- | ----------- |
-| [local-whisper-obsidian](https://github.com/serg-markovich/local-whisper-obsidian) | Local voice transcription pipeline using Faster Whisper, integrated with Obsidian via systemd |
-| [openwebui-systemd-stack](https://github.com/serg-markovich/openwebui-systemd-stack) | Self-hosted OpenWebUI + Ollama stack managed with systemd on VPS |
+| Repository                                                                           | Description                                                                                                                        |
+| ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| [local-whisper-obsidian](https://github.com/serg-markovich/local-whisper-obsidian)   | Local voice transcription pipeline using Faster Whisper,<br>integrated with Obsidian via systemd (laptop) and Docker (NAS/homelab) |
+| [openwebui-systemd-stack](https://github.com/serg-markovich/openwebui-systemd-stack) | Self-hosted OpenWebUI + Ollama stack managed with systemd on VPS                                                                   |
 
 ***
 
