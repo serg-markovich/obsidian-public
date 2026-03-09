@@ -6,11 +6,11 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="DevOps learning journey, homelab, Azure, Kubernetes">
+        <meta name="description" content="Docker architecture, key components, and practical commands">
       
       
       
-        <link rel="canonical" href="https://notes.serg-markovich.de/homelab/My%20Homelab%20Setup/">
+        <link rel="canonical" href="https://notes.serg-markovich.de/devops/Containers%20%26%20Docker/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>My Homelab Setup - Serg's DevOps Notes</title>
+        <title>Containers & Docker - Serg's DevOps Notes</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#my-homelab-setup" class="md-skip">
+        <a href="#why-containers" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              My Homelab Setup
+              Containers & Docker
             
           </span>
         </div>
@@ -261,7 +261,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../devops/" class="md-tabs__link">
+      <a href="../" class="md-tabs__link">
         
   
   
@@ -280,7 +280,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../" class="md-tabs__link">
+      <a href="../../homelab/" class="md-tabs__link">
         
   
   
@@ -444,7 +444,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../devops/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -471,7 +471,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../homelab/" class="md-nav__link">
         
   
   
@@ -562,8 +562,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -572,10 +570,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#local-workstation" class="md-nav__link">
+  <a href="#why-containers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Local Workstation
+        Why Containers?
       
     </span>
   </a>
@@ -583,10 +581,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#vps-contabo" class="md-nav__link">
+  <a href="#docker-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        VPS — Contabo
+        Docker Architecture
       
     </span>
   </a>
@@ -594,10 +592,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#repositories" class="md-nav__link">
+  <a href="#key-commands" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Repositories
+        Key Commands
       
     </span>
   </a>
@@ -605,10 +603,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#network-dns" class="md-nav__link">
+  <a href="#dry-in-docker-compose" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Network &amp; DNS
+        DRY in Docker: Compose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#isolation-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Isolation Note
       
     </span>
   </a>
@@ -647,7 +656,14 @@
       
       
       
-        <span class="md-tag">ansible</span>
+        <span class="md-tag">containers</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">devops</span>
       
     
       
@@ -661,49 +677,7 @@
       
       
       
-        <span class="md-tag">hestia</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">homelab</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">kubectl</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">linux</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">terraform</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">ubuntu</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">vps</span>
+        <span class="md-tag">iac</span>
       
     
   </nav>
@@ -713,216 +687,99 @@
   
 
 
-<h1 id="my-homelab-setup">My Homelab Setup</h1>
-<p>Two-node setup: a local workstation (HP EliteBook) and a remote VPS (Contabo), connected via SSH and managed through CLI.</p>
-<hr />
-<h2 id="local-workstation">Local Workstation</h2>
-<p><strong>HP EliteBook 845 G8</strong></p>
+  <h1>Containers & Docker</h1>
+
+<blockquote>
+<p>🌱 Seedling — core concepts documented, examples being added.</p>
+</blockquote>
+<h2 id="why-containers">Why Containers?</h2>
+<p>Before containers: monolithic apps with heavy dependencies, slow updates,
+unpredictable environments. Virtualisation solved isolation at the hardware level
+but was heavyweight.</p>
+<p>Containers isolate at the <strong>Linux kernel level</strong> (namespaces + cgroups) —
+same kernel, isolated process spaces. Lighter, faster, portable.</p>
+<p><strong>The key shift:</strong> "works on my machine" → "works anywhere the container runs".</p>
+<h2 id="docker-architecture">Docker Architecture</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Docker CLI  →  Docker Daemon (dockerd)  →  containerd
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                      ↓
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>              Docker Registry (Hub / private)
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>                      ↓
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>              Docker Image → Docker Container
+</code></pre></div>
 <table>
 <thead>
 <tr>
 <th>Component</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>OS</td>
-<td>Ubuntu 24.04.4 LTS (kernel 6.8.0)</td>
-</tr>
-<tr>
-<td>CPU</td>
-<td>AMD Ryzen 5 PRO 5650U — 6 cores / 12 threads</td>
-</tr>
-<tr>
-<td>RAM</td>
-<td>16 GB</td>
-</tr>
-<tr>
-<td>Storage</td>
-<td>1 TB NVMe SSD (LVM + LUKS encryption)</td>
-</tr>
-<tr>
-<td>Network</td>
-<td>WiFi — wlp2s0</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Encryption:</strong> Full disk encryption via LUKS on NVMe (<code>nvme0n1p3_crypt</code>) with LVM on top — 929 GB root volume.</p>
-<p><strong>Installed tools:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Tool</th>
-<th>Version</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Ubuntu</td>
-<td>24.04.4 LTS</td>
-</tr>
-<tr>
-<td>Docker</td>
-<td>29.2.1</td>
-</tr>
-<tr>
-<td>Python</td>
-<td>3.12.3</td>
-</tr>
-<tr>
-<td>Git</td>
-<td>2.43.0</td>
-</tr>
-<tr>
-<td>kubectl</td>
-<td>v1.31.14</td>
-</tr>
-<tr>
-<td>Kustomize</td>
-<td>v5.4.2</td>
-</tr>
-<tr>
-<td>Terraform</td>
-<td>v1.14.6</td>
-</tr>
-<tr>
-<td>Ansible</td>
-<td>core 2.20.3</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="vps-contabo">VPS — Contabo</h2>
-<p><strong>Location:</strong> Germany</p>
-<table>
-<thead>
-<tr>
-<th>Component</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>OS</td>
-<td>Ubuntu 22.04.5 LTS</td>
-</tr>
-<tr>
-<td>CPU</td>
-<td>AMD EPYC — 6 vCPUs</td>
-</tr>
-<tr>
-<td>RAM</td>
-<td>12 GB</td>
-</tr>
-<tr>
-<td>Storage</td>
-<td>200 GB SSD</td>
-</tr>
-<tr>
-<td>Provider</td>
-<td>Contabo</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Running services:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Service</th>
 <th>Role</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Nginx</td>
-<td>Reverse proxy / web server</td>
+<td><code>dockerd</code></td>
+<td>Server-side daemon: pulls images, manages containers, networking, logs</td>
 </tr>
 <tr>
-<td>Apache2</td>
-<td>Web server (HestiaCP managed)</td>
+<td>Docker CLI</td>
+<td>Client: sends commands to daemon locally or over network</td>
 </tr>
 <tr>
-<td>HestiaCP</td>
-<td>Hosting control panel</td>
+<td>Dockerfile</td>
+<td>Build instructions → produces image layers</td>
 </tr>
 <tr>
-<td>MariaDB 11.4</td>
-<td>Database server</td>
+<td>Docker Image</td>
+<td>Packaged, layered, immutable application snapshot</td>
 </tr>
 <tr>
-<td>PHP 8.3 FPM</td>
-<td>PHP runtime</td>
+<td>Docker Registry</td>
+<td>Image storage (Docker Hub, Harbor, GHCR)</td>
 </tr>
 <tr>
-<td>Dovecot</td>
-<td>IMAP/POP3 mail server</td>
-</tr>
-<tr>
-<td>Exim4</td>
-<td>Mail transfer agent</td>
-</tr>
-<tr>
-<td>BIND (named)</td>
-<td>DNS server</td>
-</tr>
-<tr>
-<td>Docker 28.3.3</td>
-<td>Container runtime</td>
-</tr>
-<tr>
-<td>Fail2ban</td>
-<td>Intrusion prevention</td>
-</tr>
-<tr>
-<td>ClamAV</td>
-<td>Antivirus</td>
-</tr>
-<tr>
-<td>SpamAssassin</td>
-<td>Spam filtering</td>
-</tr>
-<tr>
-<td>local-whisper-obsidian</td>
-<td>Voice memo transcription (Faster Whisper, systemd + Docker)</td>
-</tr>
-<tr>
-<td>openwebui-systemd-stack</td>
-<td>OpenWebUI + Ollama LLM stack (systemd managed)</td>
+<td>Docker Container</td>
+<td>Running instance of an image (a Linux namespace, essentially)</td>
 </tr>
 </tbody>
 </table>
-<hr />
-<h2 id="repositories">Repositories</h2>
-<table>
-<thead>
-<tr>
-<th>Repository</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://github.com/serg-markovich/local-whisper-obsidian">local-whisper-obsidian</a></td>
-<td>Local voice transcription pipeline using Faster Whisper,<br>integrated with Obsidian via systemd (laptop) and Docker (NAS/homelab)</td>
-</tr>
-<tr>
-<td><a href="https://github.com/serg-markovich/openwebui-systemd-stack">openwebui-systemd-stack</a></td>
-<td>Self-hosted OpenWebUI + Ollama stack managed with systemd on VPS</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="network-dns">Network &amp; DNS</h2>
-<p>DNS and CDN managed through <strong>Cloudflare</strong>:
-- <code>serg-markovich.de</code> → Contabo VPS IP
-- <code>notes.serg-markovich.de</code> → CNAME to <code>serg-markovich.github.io</code> (DNS only, no proxy)</p>
-<hr />
+<h2 id="key-commands">Key Commands</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Images</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docker<span class="w"> </span>pull<span class="w"> </span>nginx:alpine<span class="w">          </span><span class="c1"># pull from registry</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>myapp:1.0<span class="w"> </span>.<span class="w">       </span><span class="c1"># build from Dockerfile</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>docker<span class="w"> </span>rmi<span class="w"> </span>myapp:1.0<span class="w">              </span><span class="c1"># remove image</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1"># Containers</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:80<span class="w"> </span>nginx<span class="w">    </span><span class="c1"># run detached, map port</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>&lt;id&gt;<span class="w"> </span>bash<span class="w">         </span><span class="c1"># shell into running container</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>docker<span class="w"> </span>stop<span class="w"> </span>&lt;id&gt;<span class="w">                  </span><span class="c1"># graceful stop (SIGTERM)</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>docker<span class="w"> </span>rm<span class="w"> </span>&lt;id&gt;<span class="w">                    </span><span class="c1"># remove stopped container</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># Inspect</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>&lt;id&gt;<span class="w">               </span><span class="c1"># follow logs</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>docker<span class="w"> </span>stats<span class="w">                      </span><span class="c1"># live resource usage</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>docker<span class="w"> </span>inspect<span class="w"> </span>&lt;id&gt;<span class="w">               </span><span class="c1"># full JSON config</span>
+</code></pre></div>
+<h2 id="dry-in-docker-compose">DRY in Docker: Compose</h2>
+<p>Avoid running containers with long <code>docker run</code> commands repeated in scripts.
+Use <code>docker-compose.yml</code> as the single source of truth:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># One .env file, referenced everywhere — DRY</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">traefik</span><span class="p">:</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">traefik:v3.0</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">env_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.env</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nt">nextcloud</span><span class="p">:</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nextcloud:latest</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="nt">env_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.env</span><span class="w">          </span><span class="c1"># same .env, not duplicated</span>
+</code></pre></div>
+<p>→ See this pattern in action: <a href="../../portfolio/Eigenstack%20%E2%80%94%20Sovereign%20Self-Hosted%20Cloud%20%28Germany%29/">Eigenstack — Sovereign Self-Hosted Cloud (Germany)</a></p>
+<h2 id="isolation-note">Isolation Note</h2>
+<p>Containers are well-isolated from each other,
+but <strong>less isolated from the host</strong> than VMs — they share the kernel.
+This is why <code>docker-socket-proxy</code> matters in production:
+direct access to <code>/var/run/docker.sock</code> = potential host root escalation.</p>
+<p>→ Mitigated in eigenstack via <code>docker-socket-proxy</code> (no direct socket exposure).</p>
 <h2 id="related">Related</h2>
 <ul>
-<li><a href="../Obsidian%20Vault%20Local%20Setup/">Obsidian Vault Local Setup</a></li>
-<li><a href="../../portfolio/Obsidian%20Public%20Knowledge%20Base/">Obsidian Public Knowledge Base</a></li>
-<li><a href="../../portfolio/Local%20Voice%20Transcription%20Pipeline/">Local Voice Transcription Pipeline</a></li>
+<li><a href="../IaC%20%E2%80%94%20Terraform/">IaC — Terraform</a></li>
+<li><a href="../IaC%20%E2%80%94%20Ansible/">IaC — Ansible</a></li>
 </ul>
 
 
@@ -946,7 +803,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 3, 2026 18:51:22 UTC">March 3, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 9, 2026 19:06:11 UTC">March 9, 2026</span>
   </span>
 
     
@@ -956,7 +813,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 20, 2026 15:57:31 UTC">February 20, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 9, 2026 19:06:11 UTC">March 9, 2026</span>
   </span>
 
     

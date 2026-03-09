@@ -6,11 +6,11 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="DevOps learning journey, homelab, Azure, Kubernetes">
+        <meta name="description" content="Microsoft Azure Administrator — exam preparation notes">
       
       
       
-        <link rel="canonical" href="https://notes.serg-markovich.de/homelab/My%20Homelab%20Setup/">
+        <link rel="canonical" href="https://notes.serg-markovich.de/azure/AZ-104%20Study%20Notes/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>My Homelab Setup - Serg's DevOps Notes</title>
+        <title>AZ-104 Study Notes - Serg's DevOps Notes</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#my-homelab-setup" class="md-skip">
+        <a href="#az-104-study-notes" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              My Homelab Setup
+              AZ-104 Study Notes
             
           </span>
         </div>
@@ -242,7 +242,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../azure/" class="md-tabs__link">
+      <a href="../" class="md-tabs__link">
         
   
   
@@ -280,7 +280,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../" class="md-tabs__link">
+      <a href="../../homelab/" class="md-tabs__link">
         
   
   
@@ -417,7 +417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../azure/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -471,7 +471,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../homelab/" class="md-nav__link">
         
   
   
@@ -572,10 +572,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#local-workstation" class="md-nav__link">
+  <a href="#exam-domains" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Local Workstation
+        Exam Domains
       
     </span>
   </a>
@@ -583,43 +583,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#vps-contabo" class="md-nav__link">
+  <a href="#notes-by-domain" class="md-nav__link">
     <span class="md-ellipsis">
       
-        VPS — Contabo
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#repositories" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Repositories
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#network-dns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Network &amp; DNS
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Related
+        Notes by Domain
       
     </span>
   </a>
@@ -647,63 +614,21 @@
       
       
       
-        <span class="md-tag">ansible</span>
+        <span class="md-tag">az-104</span>
       
     
       
       
       
       
-        <span class="md-tag">docker</span>
+        <span class="md-tag">azure</span>
       
     
       
       
       
       
-        <span class="md-tag">hestia</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">homelab</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">kubectl</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">linux</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">terraform</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">ubuntu</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">vps</span>
+        <span class="md-tag">certification</span>
       
     
   </nav>
@@ -713,217 +638,47 @@
   
 
 
-<h1 id="my-homelab-setup">My Homelab Setup</h1>
-<p>Two-node setup: a local workstation (HP EliteBook) and a remote VPS (Contabo), connected via SSH and managed through CLI.</p>
-<hr />
-<h2 id="local-workstation">Local Workstation</h2>
-<p><strong>HP EliteBook 845 G8</strong></p>
+<blockquote>
+<p>🌱 Being built as I study. Exam planned Spring 2026.</p>
+</blockquote>
+<h1 id="az-104-study-notes">AZ-104 Study Notes</h1>
+<h2 id="exam-domains">Exam Domains</h2>
 <table>
 <thead>
 <tr>
-<th>Component</th>
-<th>Details</th>
+<th>Domain</th>
+<th>Weight</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>OS</td>
-<td>Ubuntu 24.04.4 LTS (kernel 6.8.0)</td>
+<td>Manage Azure identities and governance</td>
+<td>~20–25%</td>
 </tr>
 <tr>
-<td>CPU</td>
-<td>AMD Ryzen 5 PRO 5650U — 6 cores / 12 threads</td>
+<td>Implement and manage storage</td>
+<td>~15–20%</td>
 </tr>
 <tr>
-<td>RAM</td>
-<td>16 GB</td>
+<td>Deploy and manage Azure compute resources</td>
+<td>~20–25%</td>
 </tr>
 <tr>
-<td>Storage</td>
-<td>1 TB NVMe SSD (LVM + LUKS encryption)</td>
+<td>Configure and manage virtual networking</td>
+<td>~25–30%</td>
 </tr>
 <tr>
-<td>Network</td>
-<td>WiFi — wlp2s0</td>
+<td>Monitor and maintain Azure resources</td>
+<td>~10–15%</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Encryption:</strong> Full disk encryption via LUKS on NVMe (<code>nvme0n1p3_crypt</code>) with LVM on top — 929 GB root volume.</p>
-<p><strong>Installed tools:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Tool</th>
-<th>Version</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Ubuntu</td>
-<td>24.04.4 LTS</td>
-</tr>
-<tr>
-<td>Docker</td>
-<td>29.2.1</td>
-</tr>
-<tr>
-<td>Python</td>
-<td>3.12.3</td>
-</tr>
-<tr>
-<td>Git</td>
-<td>2.43.0</td>
-</tr>
-<tr>
-<td>kubectl</td>
-<td>v1.31.14</td>
-</tr>
-<tr>
-<td>Kustomize</td>
-<td>v5.4.2</td>
-</tr>
-<tr>
-<td>Terraform</td>
-<td>v1.14.6</td>
-</tr>
-<tr>
-<td>Ansible</td>
-<td>core 2.20.3</td>
-</tr>
-</tbody>
-</table>
+<h2 id="notes-by-domain">Notes by Domain</h2>
+<p><em>(to be added as I study)</em></p>
 <hr />
-<h2 id="vps-contabo">VPS — Contabo</h2>
-<p><strong>Location:</strong> Germany</p>
-<table>
-<thead>
-<tr>
-<th>Component</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>OS</td>
-<td>Ubuntu 22.04.5 LTS</td>
-</tr>
-<tr>
-<td>CPU</td>
-<td>AMD EPYC — 6 vCPUs</td>
-</tr>
-<tr>
-<td>RAM</td>
-<td>12 GB</td>
-</tr>
-<tr>
-<td>Storage</td>
-<td>200 GB SSD</td>
-</tr>
-<tr>
-<td>Provider</td>
-<td>Contabo</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Running services:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Service</th>
-<th>Role</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Nginx</td>
-<td>Reverse proxy / web server</td>
-</tr>
-<tr>
-<td>Apache2</td>
-<td>Web server (HestiaCP managed)</td>
-</tr>
-<tr>
-<td>HestiaCP</td>
-<td>Hosting control panel</td>
-</tr>
-<tr>
-<td>MariaDB 11.4</td>
-<td>Database server</td>
-</tr>
-<tr>
-<td>PHP 8.3 FPM</td>
-<td>PHP runtime</td>
-</tr>
-<tr>
-<td>Dovecot</td>
-<td>IMAP/POP3 mail server</td>
-</tr>
-<tr>
-<td>Exim4</td>
-<td>Mail transfer agent</td>
-</tr>
-<tr>
-<td>BIND (named)</td>
-<td>DNS server</td>
-</tr>
-<tr>
-<td>Docker 28.3.3</td>
-<td>Container runtime</td>
-</tr>
-<tr>
-<td>Fail2ban</td>
-<td>Intrusion prevention</td>
-</tr>
-<tr>
-<td>ClamAV</td>
-<td>Antivirus</td>
-</tr>
-<tr>
-<td>SpamAssassin</td>
-<td>Spam filtering</td>
-</tr>
-<tr>
-<td>local-whisper-obsidian</td>
-<td>Voice memo transcription (Faster Whisper, systemd + Docker)</td>
-</tr>
-<tr>
-<td>openwebui-systemd-stack</td>
-<td>OpenWebUI + Ollama LLM stack (systemd managed)</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="repositories">Repositories</h2>
-<table>
-<thead>
-<tr>
-<th>Repository</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://github.com/serg-markovich/local-whisper-obsidian">local-whisper-obsidian</a></td>
-<td>Local voice transcription pipeline using Faster Whisper,<br>integrated with Obsidian via systemd (laptop) and Docker (NAS/homelab)</td>
-</tr>
-<tr>
-<td><a href="https://github.com/serg-markovich/openwebui-systemd-stack">openwebui-systemd-stack</a></td>
-<td>Self-hosted OpenWebUI + Ollama stack managed with systemd on VPS</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="network-dns">Network &amp; DNS</h2>
-<p>DNS and CDN managed through <strong>Cloudflare</strong>:
-- <code>serg-markovich.de</code> → Contabo VPS IP
-- <code>notes.serg-markovich.de</code> → CNAME to <code>serg-markovich.github.io</code> (DNS only, no proxy)</p>
-<hr />
-<h2 id="related">Related</h2>
-<ul>
-<li><a href="../Obsidian%20Vault%20Local%20Setup/">Obsidian Vault Local Setup</a></li>
-<li><a href="../../portfolio/Obsidian%20Public%20Knowledge%20Base/">Obsidian Public Knowledge Base</a></li>
-<li><a href="../../portfolio/Local%20Voice%20Transcription%20Pipeline/">Local Voice Transcription Pipeline</a></li>
-</ul>
+<p><strong>Resources:</strong>
+- <a href="https://www.youtube.com/watch?v=uBqp3ivFC_o&amp;list=PLahhVEj9XNTcj4dwEwRHozO3xcxI_UHYG">AZ-104 Full Course — YouTube</a>
+- <a href="https://learn.microsoft.com/en-us/credentials/certifications/azure-administrator/">Microsoft Learn — AZ-104</a></p>
 
 
 
@@ -946,7 +701,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 3, 2026 18:51:22 UTC">March 3, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 9, 2026 19:06:11 UTC">March 9, 2026</span>
   </span>
 
     
@@ -956,7 +711,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 20, 2026 15:57:31 UTC">February 20, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 9, 2026 19:06:11 UTC">March 9, 2026</span>
   </span>
 
     

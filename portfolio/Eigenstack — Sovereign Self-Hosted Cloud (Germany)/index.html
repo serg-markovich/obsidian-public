@@ -6,11 +6,11 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="DevOps learning journey, homelab, Azure, Kubernetes">
+        <meta name="description" content="A reproducible, privacy-first personal cloud infrastructure for IT professionals in Germany. Built with IaC principles on Hetzner VPS.">
       
       
       
-        <link rel="canonical" href="https://notes.serg-markovich.de/homelab/My%20Homelab%20Setup/">
+        <link rel="canonical" href="https://notes.serg-markovich.de/portfolio/Eigenstack%20%E2%80%94%20Sovereign%20Self-Hosted%20Cloud%20%28Germany%29/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>My Homelab Setup - Serg's DevOps Notes</title>
+        <title>Eigenstack — Sovereign Self-Hosted Cloud (Germany) - Serg's DevOps Notes</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#my-homelab-setup" class="md-skip">
+        <a href="#what-is-eigenstack" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              My Homelab Setup
+              Eigenstack — Sovereign Self-Hosted Cloud (Germany)
             
           </span>
         </div>
@@ -280,7 +280,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../" class="md-tabs__link">
+      <a href="../../homelab/" class="md-tabs__link">
         
   
   
@@ -299,7 +299,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../portfolio/" class="md-tabs__link">
+      <a href="../" class="md-tabs__link">
         
   
   
@@ -471,7 +471,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../homelab/" class="md-nav__link">
         
   
   
@@ -498,7 +498,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../portfolio/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -562,8 +562,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -572,10 +570,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#local-workstation" class="md-nav__link">
+  <a href="#what-is-eigenstack" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Local Workstation
+        What is eigenstack?
       
     </span>
   </a>
@@ -583,10 +581,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#vps-contabo" class="md-nav__link">
+  <a href="#the-problem-it-solves" class="md-nav__link">
     <span class="md-ellipsis">
       
-        VPS — Contabo
+        The Problem It Solves
       
     </span>
   </a>
@@ -594,10 +592,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#repositories" class="md-nav__link">
+  <a href="#architecture-overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Repositories
+        Architecture Overview
       
     </span>
   </a>
@@ -605,10 +603,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#network-dns" class="md-nav__link">
+  <a href="#stack" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Network &amp; DNS
+        Stack
       
     </span>
   </a>
@@ -616,10 +614,76 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related" class="md-nav__link">
+  <a href="#deployment-profiles-docker-compose" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related
+        Deployment Profiles (Docker Compose)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-model-defence-in-depth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Model: Defence in Depth
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dsgvo-gdpr-compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DSGVO / GDPR Compliance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iac-dry-triz-in-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IaC = DRY + TRIZ in Practice
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planned-public-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planned Public Release
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Notes
       
     </span>
   </a>
@@ -661,28 +725,42 @@
       
       
       
-        <span class="md-tag">hestia</span>
+        <span class="md-tag">dsgvo</span>
       
     
       
       
       
       
-        <span class="md-tag">homelab</span>
+        <span class="md-tag">hetzner</span>
       
     
       
       
       
       
-        <span class="md-tag">kubectl</span>
+        <span class="md-tag">iac</span>
       
     
       
       
       
       
-        <span class="md-tag">linux</span>
+        <span class="md-tag">nextcloud</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">privacy</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">self-hosting</span>
       
     
       
@@ -696,14 +774,14 @@
       
       
       
-        <span class="md-tag">ubuntu</span>
+        <span class="md-tag">traefik</span>
       
     
       
       
       
       
-        <span class="md-tag">vps</span>
+        <span class="md-tag">vaultwarden</span>
       
     
   </nav>
@@ -713,216 +791,220 @@
   
 
 
-<h1 id="my-homelab-setup">My Homelab Setup</h1>
-<p>Two-node setup: a local workstation (HP EliteBook) and a remote VPS (Contabo), connected via SSH and managed through CLI.</p>
-<hr />
-<h2 id="local-workstation">Local Workstation</h2>
-<p><strong>HP EliteBook 845 G8</strong></p>
+  <h1>Eigenstack — Sovereign Self-Hosted Cloud (Germany)</h1>
+
+<blockquote>
+<p>🌱 This project is actively being built. Architecture is defined, code is in progress.
+GitHub repo is currently private — public release planned after MVP validation.</p>
+</blockquote>
+<h2 id="what-is-eigenstack">What is eigenstack?</h2>
+<p>A sovereign, self-hosted personal cloud infrastructure designed for IT professionals in Germany.
+The goal: full control over your files, passwords, and documents —
+hosted on German infrastructure, DSGVO-compliant, deployed with a single command.</p>
+<p>The name comes from the German <em>eigen</em> — "own", "self" — reflecting digital self-ownership.</p>
+<h2 id="the-problem-it-solves">The Problem It Solves</h2>
 <table>
 <thead>
 <tr>
-<th>Component</th>
-<th>Details</th>
+<th>Challenge</th>
+<th>eigenstack approach</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>OS</td>
-<td>Ubuntu 24.04.4 LTS (kernel 6.8.0)</td>
+<td>Files on US clouds (Google Drive, Dropbox)</td>
+<td>Nextcloud AIO on Hetzner Frankfurt</td>
 </tr>
 <tr>
-<td>CPU</td>
-<td>AMD Ryzen 5 PRO 5650U — 6 cores / 12 threads</td>
+<td>Passwords in closed-source managers</td>
+<td>Vaultwarden (open-source Bitwarden)</td>
 </tr>
 <tr>
-<td>RAM</td>
-<td>16 GB</td>
+<td>German documents lost in paper chaos</td>
+<td>Paperless-ngx with German OCR</td>
 </tr>
 <tr>
-<td>Storage</td>
-<td>1 TB NVMe SSD (LVM + LUKS encryption)</td>
+<td>Admin panels exposed to internet</td>
+<td>WireGuard VPN — zero public exposure</td>
 </tr>
 <tr>
-<td>Network</td>
-<td>WiFi — wlp2s0</td>
+<td>Manual setup that drifts over time</td>
+<td>IaC: Terraform + Ansible + Docker Compose</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Encryption:</strong> Full disk encryption via LUKS on NVMe (<code>nvme0n1p3_crypt</code>) with LVM on top — 929 GB root volume.</p>
-<p><strong>Installed tools:</strong></p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Internet → Hetzner Firewall → Traefik (TLS, rate-limit)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                                    ↓
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                    ┌───────────────┼───────────────┐
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>               Nextcloud AIO   Vaultwarden    Paperless-ngx
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                                    ↓
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                    Fail2ban + AppArmor (host security)
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>                                    ↓
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>               Prometheus / Netdata / Alertmanager → Telegram
+</code></pre></div>
+<p><strong>Hosting:</strong> Hetzner CX32 (4 vCPU, 8GB RAM, Frankfurt) — ~€8.21/month<br />
+<strong>Storage:</strong> 100GB persistent volume + 100GB Storage Box (automated backups)<br />
+<strong>Access:</strong> WireGuard VPN for all admin endpoints — zero public exposure</p>
+<h2 id="stack">Stack</h2>
 <table>
 <thead>
 <tr>
+<th>Layer</th>
 <th>Tool</th>
-<th>Version</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Ubuntu</td>
-<td>24.04.4 LTS</td>
-</tr>
-<tr>
-<td>Docker</td>
-<td>29.2.1</td>
-</tr>
-<tr>
-<td>Python</td>
-<td>3.12.3</td>
-</tr>
-<tr>
-<td>Git</td>
-<td>2.43.0</td>
-</tr>
-<tr>
-<td>kubectl</td>
-<td>v1.31.14</td>
-</tr>
-<tr>
-<td>Kustomize</td>
-<td>v5.4.2</td>
-</tr>
-<tr>
-<td>Terraform</td>
-<td>v1.14.6</td>
-</tr>
-<tr>
-<td>Ansible</td>
-<td>core 2.20.3</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="vps-contabo">VPS — Contabo</h2>
-<p><strong>Location:</strong> Germany</p>
-<table>
-<thead>
-<tr>
-<th>Component</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>OS</td>
-<td>Ubuntu 22.04.5 LTS</td>
-</tr>
-<tr>
-<td>CPU</td>
-<td>AMD EPYC — 6 vCPUs</td>
-</tr>
-<tr>
-<td>RAM</td>
-<td>12 GB</td>
-</tr>
-<tr>
-<td>Storage</td>
-<td>200 GB SSD</td>
-</tr>
-<tr>
-<td>Provider</td>
-<td>Contabo</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Running services:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Service</th>
 <th>Role</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Nginx</td>
-<td>Reverse proxy / web server</td>
+<td>Edge Gateway</td>
+<td>Traefik v3</td>
+<td>Routing, Auto-SSL (Let's Encrypt), HTTP/3</td>
 </tr>
 <tr>
-<td>Apache2</td>
-<td>Web server (HestiaCP managed)</td>
+<td>Files &amp; Calendar</td>
+<td>Nextcloud AIO</td>
+<td>WebDAV, Collectives, Tasks</td>
 </tr>
 <tr>
-<td>HestiaCP</td>
-<td>Hosting control panel</td>
+<td>Passwords</td>
+<td>Vaultwarden</td>
+<td>Bitwarden-compatible API</td>
 </tr>
 <tr>
-<td>MariaDB 11.4</td>
-<td>Database server</td>
+<td>Documents</td>
+<td>Paperless-ngx</td>
+<td>German OCR, filing, retention</td>
 </tr>
 <tr>
-<td>PHP 8.3 FPM</td>
-<td>PHP runtime</td>
+<td>VPN</td>
+<td>WireGuard (systemd)</td>
+<td>Out-of-band management</td>
 </tr>
 <tr>
-<td>Dovecot</td>
-<td>IMAP/POP3 mail server</td>
-</tr>
-<tr>
-<td>Exim4</td>
-<td>Mail transfer agent</td>
-</tr>
-<tr>
-<td>BIND (named)</td>
-<td>DNS server</td>
-</tr>
-<tr>
-<td>Docker 28.3.3</td>
-<td>Container runtime</td>
-</tr>
-<tr>
+<td>IDS</td>
 <td>Fail2ban</td>
-<td>Intrusion prevention</td>
+<td>Brute-force protection</td>
 </tr>
 <tr>
-<td>ClamAV</td>
-<td>Antivirus</td>
+<td>Monitoring</td>
+<td>Netdata + Prometheus</td>
+<td>Realtime + persistent metrics</td>
 </tr>
 <tr>
-<td>SpamAssassin</td>
-<td>Spam filtering</td>
+<td>Alerting</td>
+<td>Alertmanager</td>
+<td>Telegram/Email notifications</td>
 </tr>
 <tr>
-<td>local-whisper-obsidian</td>
-<td>Voice memo transcription (Faster Whisper, systemd + Docker)</td>
+<td>IaC Infra</td>
+<td>Terraform</td>
+<td>Hetzner VPS provisioning</td>
 </tr>
 <tr>
-<td>openwebui-systemd-stack</td>
-<td>OpenWebUI + Ollama LLM stack (systemd managed)</td>
+<td>IaC Config</td>
+<td>Ansible</td>
+<td>Idempotent service configuration</td>
 </tr>
 </tbody>
 </table>
-<hr />
-<h2 id="repositories">Repositories</h2>
+<h2 id="deployment-profiles-docker-compose">Deployment Profiles (Docker Compose)</h2>
+<p>The stack uses Compose profiles for modular, phased deployment:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Minimal — gateway only (testing)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>--profile<span class="w"> </span>core<span class="w"> </span>up
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Production minimal — core apps</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>docker<span class="w"> </span>compose<span class="w"> </span>--profile<span class="w"> </span>core<span class="w"> </span>--profile<span class="w"> </span>apps<span class="w"> </span>up
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Production + monitoring (recommended)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>docker<span class="w"> </span>compose<span class="w"> </span>--profile<span class="w"> </span>core<span class="w"> </span>--profile<span class="w"> </span>apps<span class="w"> </span>--profile<span class="w"> </span>monitoring<span class="w"> </span>up
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># Full stack</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>docker<span class="w"> </span>compose<span class="w"> </span>--profile<span class="w"> </span>full<span class="w"> </span>up
+</code></pre></div>
+<p>Resource footprint (full stack): ~3.5GB RAM — fits CX32 with 50%+ headroom.</p>
+<h2 id="security-model-defence-in-depth">Security Model: Defence in Depth</h2>
+<p>Five layers, each independent:</p>
+<ol>
+<li><strong>Network</strong> — Hetzner Firewall (default-deny) + WireGuard OOB management</li>
+<li><strong>Container runtime</strong> — docker-socket-proxy (no direct socket exposure), resource limits, no privileged containers</li>
+<li><strong>Application</strong> — TLS 1.3 enforcement, rate limiting (10 req/sec), VPN-only admin routes</li>
+<li><strong>Host</strong> — Fail2ban, AppArmor profiles, SSH key-only, unattended-upgrades</li>
+<li><strong>Backup</strong> — Daily encrypted backups to offline Hetzner Storage Box, monthly restore verification</li>
+</ol>
+<p><strong>RTO: ~30 minutes</strong> (Terraform reprovision + volume restore from backup)<br />
+<strong>RPO: &lt;24 hours</strong> (daily backup cadence)</p>
+<h2 id="dsgvo-gdpr-compliance">DSGVO / GDPR Compliance</h2>
+<ul>
+<li>✅ Data stored in Germany (Hetzner Frankfurt)</li>
+<li>✅ TLS 1.3 in transit</li>
+<li>✅ No third-party trackers</li>
+<li>✅ Nextcloud audit log enabled</li>
+<li>✅ Prometheus 30-day retention (aligned with data minimisation)</li>
+<li>✅ Backup deletion policy configurable</li>
+</ul>
+<h2 id="iac-dry-triz-in-practice">IaC = DRY + TRIZ in Practice</h2>
+<p><strong>DRY:</strong> Single <code>.env</code> file as source of truth for all service configs.
+One Makefile (<code>make up</code>, <code>make down</code>, <code>make backup</code>) — no duplicated shell commands.
+Shared Compose network definitions — no per-service copy-paste.</p>
+<p><strong>TRIZ contradiction resolved:</strong></p>
+<blockquote>
+<p><em>Privacy vs convenience</em> — using cloud services is easy but leaks data;
+self-hosting protects data but is "too hard".</p>
+<p>Resolution: Compose profiles + Ansible automation reduce operational overhead
+to near-zero. One command deploys the full stack. Convenience restored,
+privacy preserved. No compromise.</p>
+</blockquote>
+<p>This is the core demonstration of the <a href="../../approach/IaC%20%3D%20DRY%20%2B%20TRIZ%20-%20How%20I%20Approach%20Infrastructure%20Problems/">IaC = DRY + TRIZ - How I Approach Infrastructure Problems</a> framework.</p>
+<h2 id="project-status">Project Status</h2>
 <table>
 <thead>
 <tr>
-<th>Repository</th>
-<th>Description</th>
+<th>Component</th>
+<th>Status</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/serg-markovich/local-whisper-obsidian">local-whisper-obsidian</a></td>
-<td>Local voice transcription pipeline using Faster Whisper,<br>integrated with Obsidian via systemd (laptop) and Docker (NAS/homelab)</td>
+<td>Architecture design</td>
+<td>✅ Complete</td>
 </tr>
 <tr>
-<td><a href="https://github.com/serg-markovich/openwebui-systemd-stack">openwebui-systemd-stack</a></td>
-<td>Self-hosted OpenWebUI + Ollama stack managed with systemd on VPS</td>
+<td>Docker Compose (core + apps profiles)</td>
+<td>🔄 In progress</td>
+</tr>
+<tr>
+<td>Terraform (Hetzner provisioning)</td>
+<td>🔄 In progress</td>
+</tr>
+<tr>
+<td>Ansible playbooks</td>
+<td>📋 Planned</td>
+</tr>
+<tr>
+<td>Monitoring stack</td>
+<td>📋 Planned</td>
+</tr>
+<tr>
+<td>Backup scripts + verification</td>
+<td>📋 Planned</td>
+</tr>
+<tr>
+<td>Public GitHub release</td>
+<td>📋 After MVP validation</td>
 </tr>
 </tbody>
 </table>
-<hr />
-<h2 id="network-dns">Network &amp; DNS</h2>
-<p>DNS and CDN managed through <strong>Cloudflare</strong>:
-- <code>serg-markovich.de</code> → Contabo VPS IP
-- <code>notes.serg-markovich.de</code> → CNAME to <code>serg-markovich.github.io</code> (DNS only, no proxy)</p>
-<hr />
-<h2 id="related">Related</h2>
+<h2 id="planned-public-release">Planned Public Release</h2>
+<p>The repository will be made public after:
+- [ ] <code>docker compose --profile full up</code> runs without errors end-to-end
+- [ ] Terraform provisions a clean Hetzner CX32 reproducibly
+- [ ] Backup and restore verified on fresh VPS
+- [ ] README quick-start tested by one external person</p>
+<h2 id="related-notes">Related Notes</h2>
 <ul>
-<li><a href="../Obsidian%20Vault%20Local%20Setup/">Obsidian Vault Local Setup</a></li>
-<li><a href="../../portfolio/Obsidian%20Public%20Knowledge%20Base/">Obsidian Public Knowledge Base</a></li>
-<li><a href="../../portfolio/Local%20Voice%20Transcription%20Pipeline/">Local Voice Transcription Pipeline</a></li>
+<li><a href="../../approach/IaC%20%3D%20DRY%20%2B%20TRIZ%20-%20How%20I%20Approach%20Infrastructure%20Problems/">IaC = DRY + TRIZ - How I Approach Infrastructure Problems</a></li>
+<li><a href="../Obsidian%20Public%20Knowledge%20Base/">Obsidian Public Knowledge Base</a></li>
 </ul>
 
 
@@ -946,7 +1028,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 3, 2026 18:51:22 UTC">March 3, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 9, 2026 19:06:11 UTC">March 9, 2026</span>
   </span>
 
     
@@ -956,7 +1038,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 20, 2026 15:57:31 UTC">February 20, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 9, 2026 19:06:11 UTC">March 9, 2026</span>
   </span>
 
     
