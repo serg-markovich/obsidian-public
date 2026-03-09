@@ -280,6 +280,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../approach/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Approach
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../homelab/" class="md-tabs__link">
         
   
@@ -452,6 +471,33 @@
     
   
     DevOps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../approach/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Approach
   
 
     
@@ -669,21 +715,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#planned-public-release" class="md-nav__link">
+  <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Planned Public Release
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Related Notes
+        Related
       
     </span>
   </a>
@@ -794,8 +829,8 @@
   <h1>Eigenstack — Sovereign Self-Hosted Cloud (Germany)</h1>
 
 <blockquote>
-<p>🌱 This project is actively being built. Architecture is defined, code is in progress.
-GitHub repo is currently private — public release planned after MVP validation.</p>
+<p>🌱 MVP in progress — core stack (Traefik + Vaultwarden) running locally.
+Repository is public: <a href="https://github.com/serg-markovich/eigen-stack">github.com/serg-markovich/eigen-stack</a></p>
 </blockquote>
 <h2 id="what-is-eigenstack">What is eigenstack?</h2>
 <p>A sovereign, self-hosted personal cloud infrastructure designed for IT professionals in Germany.
@@ -843,8 +878,8 @@ hosted on German infrastructure, DSGVO-compliant, deployed with a single command
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>                                    ↓
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>               Prometheus / Netdata / Alertmanager → Telegram
 </code></pre></div>
-<p><strong>Hosting:</strong> Hetzner CX32 (4 vCPU, 8GB RAM, Frankfurt) — ~€8.21/month<br />
-<strong>Storage:</strong> 100GB persistent volume + 100GB Storage Box (automated backups)<br />
+<p><strong>Hosting:</strong> Hetzner CX32 (4 vCPU, 8GB RAM, Frankfurt) — ~€8.21/month
+<strong>Storage:</strong> 100GB persistent volume + 100GB Storage Box (automated backups)
 <strong>Access:</strong> WireGuard VPN for all admin endpoints — zero public exposure</p>
 <h2 id="stack">Stack</h2>
 <table>
@@ -909,53 +944,43 @@ hosted on German infrastructure, DSGVO-compliant, deployed with a single command
 </tbody>
 </table>
 <h2 id="deployment-profiles-docker-compose">Deployment Profiles (Docker Compose)</h2>
-<p>The stack uses Compose profiles for modular, phased deployment:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Minimal — gateway only (testing)</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>--profile<span class="w"> </span>core<span class="w"> </span>up
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Core only — gateway + security (local dev)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Production minimal — core apps</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Production minimal</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>docker<span class="w"> </span>compose<span class="w"> </span>--profile<span class="w"> </span>core<span class="w"> </span>--profile<span class="w"> </span>apps<span class="w"> </span>up
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Production + monitoring (recommended)</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>docker<span class="w"> </span>compose<span class="w"> </span>--profile<span class="w"> </span>core<span class="w"> </span>--profile<span class="w"> </span>apps<span class="w"> </span>--profile<span class="w"> </span>monitoring<span class="w"> </span>up
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># Full stack</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>docker<span class="w"> </span>compose<span class="w"> </span>--profile<span class="w"> </span>full<span class="w"> </span>up
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Full stack</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>docker<span class="w"> </span>compose<span class="w"> </span>--profile<span class="w"> </span>full<span class="w"> </span>up
 </code></pre></div>
 <p>Resource footprint (full stack): ~3.5GB RAM — fits CX32 with 50%+ headroom.</p>
 <h2 id="security-model-defence-in-depth">Security Model: Defence in Depth</h2>
-<p>Five layers, each independent:</p>
 <ol>
 <li><strong>Network</strong> — Hetzner Firewall (default-deny) + WireGuard OOB management</li>
-<li><strong>Container runtime</strong> — docker-socket-proxy (no direct socket exposure), resource limits, no privileged containers</li>
-<li><strong>Application</strong> — TLS 1.3 enforcement, rate limiting (10 req/sec), VPN-only admin routes</li>
-<li><strong>Host</strong> — Fail2ban, AppArmor profiles, SSH key-only, unattended-upgrades</li>
+<li><strong>Container runtime</strong> — docker-socket-proxy (no direct socket exposure), resource limits</li>
+<li><strong>Application</strong> — TLS 1.3, rate limiting, VPN-only admin routes</li>
+<li><strong>Host</strong> — Fail2ban, AppArmor, SSH key-only, unattended-upgrades</li>
 <li><strong>Backup</strong> — Daily encrypted backups to offline Hetzner Storage Box, monthly restore verification</li>
 </ol>
-<p><strong>RTO: ~30 minutes</strong> (Terraform reprovision + volume restore from backup)<br />
-<strong>RPO: &lt;24 hours</strong> (daily backup cadence)</p>
+<p><strong>RTO: ~30 minutes</strong> | <strong>RPO: &lt;24 hours</strong></p>
 <h2 id="dsgvo-gdpr-compliance">DSGVO / GDPR Compliance</h2>
 <ul>
 <li>✅ Data stored in Germany (Hetzner Frankfurt)</li>
 <li>✅ TLS 1.3 in transit</li>
 <li>✅ No third-party trackers</li>
 <li>✅ Nextcloud audit log enabled</li>
-<li>✅ Prometheus 30-day retention (aligned with data minimisation)</li>
-<li>✅ Backup deletion policy configurable</li>
+<li>✅ Prometheus 30-day retention (data minimisation)</li>
 </ul>
 <h2 id="iac-dry-triz-in-practice">IaC = DRY + TRIZ in Practice</h2>
-<p><strong>DRY:</strong> Single <code>.env</code> file as source of truth for all service configs.
-One Makefile (<code>make up</code>, <code>make down</code>, <code>make backup</code>) — no duplicated shell commands.
+<p><strong>DRY:</strong> Single <code>.env</code> as source of truth. One <code>Makefile</code> (<code>make up</code>, <code>make down</code>, <code>make backup</code>).
 Shared Compose network definitions — no per-service copy-paste.</p>
 <p><strong>TRIZ contradiction resolved:</strong></p>
 <blockquote>
-<p><em>Privacy vs convenience</em> — using cloud services is easy but leaks data;
-self-hosting protects data but is "too hard".</p>
-<p>Resolution: Compose profiles + Ansible automation reduce operational overhead
-to near-zero. One command deploys the full stack. Convenience restored,
-privacy preserved. No compromise.</p>
+<p><em>Privacy vs convenience</em> — cloud is easy but leaks data; self-hosting protects but feels "too hard".
+Resolution: Compose + Ansible reduce ops overhead to near-zero. One command deploys the full stack.
+Convenience restored, privacy preserved. No compromise.</p>
 </blockquote>
-<p>This is the core demonstration of the <a href="../../approach/IaC%20%3D%20DRY%20%2B%20TRIZ%20-%20How%20I%20Approach%20Infrastructure%20Problems/">IaC = DRY + TRIZ - How I Approach Infrastructure Problems</a> framework.</p>
+<p>→ <a href="../../approach/IaC%20%3D%20DRY%20%2B%20TRIZ%20-%20How%20I%20Approach%20Infrastructure%20Problems/">IaC = DRY + TRIZ - How I Approach Infrastructure Problems</a></p>
 <h2 id="project-status">Project Status</h2>
 <table>
 <thead>
@@ -970,12 +995,16 @@ privacy preserved. No compromise.</p>
 <td>✅ Complete</td>
 </tr>
 <tr>
-<td>Docker Compose (core + apps profiles)</td>
-<td>🔄 In progress</td>
+<td>Docker Compose — core + Vaultwarden</td>
+<td>✅ Written, local testing</td>
+</tr>
+<tr>
+<td>Docker Compose — Nextcloud AIO</td>
+<td>📋 Next</td>
 </tr>
 <tr>
 <td>Terraform (Hetzner provisioning)</td>
-<td>🔄 In progress</td>
+<td>📋 Planned</td>
 </tr>
 <tr>
 <td>Ansible playbooks</td>
@@ -990,18 +1019,12 @@ privacy preserved. No compromise.</p>
 <td>📋 Planned</td>
 </tr>
 <tr>
-<td>Public GitHub release</td>
-<td>📋 After MVP validation</td>
+<td>Hetzner VPS deployment</td>
+<td>📋 After local MVP validated</td>
 </tr>
 </tbody>
 </table>
-<h2 id="planned-public-release">Planned Public Release</h2>
-<p>The repository will be made public after:
-- [ ] <code>docker compose --profile full up</code> runs without errors end-to-end
-- [ ] Terraform provisions a clean Hetzner CX32 reproducibly
-- [ ] Backup and restore verified on fresh VPS
-- [ ] README quick-start tested by one external person</p>
-<h2 id="related-notes">Related Notes</h2>
+<h2 id="related">Related</h2>
 <ul>
 <li><a href="../../approach/IaC%20%3D%20DRY%20%2B%20TRIZ%20-%20How%20I%20Approach%20Infrastructure%20Problems/">IaC = DRY + TRIZ - How I Approach Infrastructure Problems</a></li>
 <li><a href="../Obsidian%20Public%20Knowledge%20Base/">Obsidian Public Knowledge Base</a></li>
@@ -1028,7 +1051,7 @@ privacy preserved. No compromise.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 9, 2026 19:06:11 UTC">March 9, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 9, 2026 19:27:28 UTC">March 9, 2026</span>
   </span>
 
     
