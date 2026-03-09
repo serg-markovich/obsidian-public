@@ -17,8 +17,8 @@ tags:
   - terraform
 ---
 
-> 🌱 This project is actively being built. Architecture is defined, code is in progress.
-> GitHub repo is currently private — public release planned after MVP validation.
+> 🌱 MVP in progress — core stack (Traefik + Vaultwarden) running locally.
+> Repository is public: [github.com/serg-markovich/eigen-stack](https://github.com/serg-markovich/eigen-stack)
 
 ## What is eigenstack?
 
@@ -51,8 +51,8 @@ Internet → Hetzner Firewall → Traefik (TLS, rate-limit)
                Prometheus / Netdata / Alertmanager → Telegram
 ```
 
-**Hosting:** Hetzner CX32 (4 vCPU, 8GB RAM, Frankfurt) — ~€8.21/month  
-**Storage:** 100GB persistent volume + 100GB Storage Box (automated backups)  
+**Hosting:** Hetzner CX32 (4 vCPU, 8GB RAM, Frankfurt) — ~€8.21/month
+**Storage:** 100GB persistent volume + 100GB Storage Box (automated backups)
 **Access:** WireGuard VPN for all admin endpoints — zero public exposure
 
 ## Stack
@@ -72,17 +72,12 @@ Internet → Hetzner Firewall → Traefik (TLS, rate-limit)
 
 ## Deployment Profiles (Docker Compose)
 
-The stack uses Compose profiles for modular, phased deployment:
-
 ```bash
-# Minimal — gateway only (testing)
-docker compose --profile core up
+# Core only — gateway + security (local dev)
+docker compose up -d
 
-# Production minimal — core apps
+# Production minimal
 docker compose --profile core --profile apps up
-
-# Production + monitoring (recommended)
-docker compose --profile core --profile apps --profile monitoring up
 
 # Full stack
 docker compose --profile full up
@@ -92,16 +87,13 @@ Resource footprint (full stack): ~3.5GB RAM — fits CX32 with 50%+ headroom.
 
 ## Security Model: Defence in Depth
 
-Five layers, each independent:
-
 1. **Network** — Hetzner Firewall (default-deny) + WireGuard OOB management
-2. **Container runtime** — docker-socket-proxy (no direct socket exposure), resource limits, no privileged containers
-3. **Application** — TLS 1.3 enforcement, rate limiting (10 req/sec), VPN-only admin routes
-4. **Host** — Fail2ban, AppArmor profiles, SSH key-only, unattended-upgrades
+2. **Container runtime** — docker-socket-proxy (no direct socket exposure), resource limits
+3. **Application** — TLS 1.3, rate limiting, VPN-only admin routes
+4. **Host** — Fail2ban, AppArmor, SSH key-only, unattended-upgrades
 5. **Backup** — Daily encrypted backups to offline Hetzner Storage Box, monthly restore verification
 
-**RTO: ~30 minutes** (Terraform reprovision + volume restore from backup)  
-**RPO: <24 hours** (daily backup cadence)
+**RTO: ~30 minutes** | **RPO: <24 hours**
 
 ## DSGVO / GDPR Compliance
 
@@ -109,48 +101,34 @@ Five layers, each independent:
 - ✅ TLS 1.3 in transit
 - ✅ No third-party trackers
 - ✅ Nextcloud audit log enabled
-- ✅ Prometheus 30-day retention (aligned with data minimisation)
-- ✅ Backup deletion policy configurable
+- ✅ Prometheus 30-day retention (data minimisation)
 
 ## IaC = DRY + TRIZ in Practice
 
-**DRY:** Single `.env` file as source of truth for all service configs.
-One Makefile (`make up`, `make down`, `make backup`) — no duplicated shell commands.
+**DRY:** Single `.env` as source of truth. One `Makefile` (`make up`, `make down`, `make backup`).
 Shared Compose network definitions — no per-service copy-paste.
 
 **TRIZ contradiction resolved:**
-> *Privacy vs convenience* — using cloud services is easy but leaks data;
-> self-hosting protects data but is "too hard".
->
-> Resolution: Compose profiles + Ansible automation reduce operational overhead
-> to near-zero. One command deploys the full stack. Convenience restored,
-> privacy preserved. No compromise.
+> *Privacy vs convenience* — cloud is easy but leaks data; self-hosting protects but feels "too hard".
+> Resolution: Compose + Ansible reduce ops overhead to near-zero. One command deploys the full stack.
+> Convenience restored, privacy preserved. No compromise.
 
-This is the core demonstration of the [[IaC = DRY + TRIZ - How I Approach Infrastructure Problems]] framework.
+→ [[IaC = DRY + TRIZ - How I Approach Infrastructure Problems]]
 
 ## Project Status
 
 | Component | Status |
 |---|---|
 | Architecture design | ✅ Complete |
-| Docker Compose (core + apps profiles) | 🔄 In progress |
-| Terraform (Hetzner provisioning) | 🔄 In progress |
+| Docker Compose — core + Vaultwarden | ✅ Written, local testing |
+| Docker Compose — Nextcloud AIO | 📋 Next |
+| Terraform (Hetzner provisioning) | 📋 Planned |
 | Ansible playbooks | 📋 Planned |
 | Monitoring stack | 📋 Planned |
 | Backup scripts + verification | 📋 Planned |
-| Public GitHub release | 📋 After MVP validation |
+| Hetzner VPS deployment | 📋 After local MVP validated |
 
-## Planned Public Release
+## Related
 
-The repository will be made public after:
-- [ ] `docker compose --profile full up` runs without errors end-to-end
-- [ ] Terraform provisions a clean Hetzner CX32 reproducibly
-- [ ] Backup and restore verified on fresh VPS
-- [ ] README quick-start tested by one external person
-
-## Related Notes
-
--  [[IaC = DRY + TRIZ - How I Approach Infrastructure Problems]]
+- [[IaC = DRY + TRIZ - How I Approach Infrastructure Problems]]
 - [[Obsidian Public Knowledge Base]]
-
-

@@ -43,6 +43,7 @@ nav:
   - Home: index.md
   - Azure: azure/
   - DevOps: devops/
+  - Approach: approach/
   - HomeLab: homelab/
   - Portfolio: portfolio/
   - TIL: til/
