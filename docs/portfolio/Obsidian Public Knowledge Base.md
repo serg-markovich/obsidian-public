@@ -81,6 +81,12 @@ On every push to `main`:
 
 ***
 
+> [!NOTE]
+> This setup applies the DRY principle at the workflow level:
+one push triggers the entire build/deploy chain — no manual steps.
+[[IaC = DRY + TRIZ - How I Approach Infrastructure Problems]]
+
+
 ## Related
 
 - [[MkDocs + GitHub Pages Deployment Patterns]]

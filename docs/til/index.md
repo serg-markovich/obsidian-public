@@ -8,7 +8,9 @@ tags:
   - devops
   - linux
 ---
-цц
+> Short daily findings — commands, fixes, patterns and insights from hands-on DevOps work
+
+
 # TIL
 - [[MkDocs + GitHub Pages Deployment Patterns]]
 - [[Vanilla HTML_CSS Portfolio & ATS-Friendly CV]]
