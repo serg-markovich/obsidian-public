@@ -14,6 +14,7 @@ tags:
 # Approach
 
 - [[IaC = DRY + TRIZ - How I Approach Infrastructure Problems]]
+- [[Reliable Chaos — Designing Infrastructure That Fails Predictably]]
 
 ---
 
