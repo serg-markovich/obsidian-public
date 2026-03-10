@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A practical framework for solving infrastructure problems by combining DRY principles with TRIZ inventive thinking">
+        <meta name="description" content="Two principles I apply before writing any infrastructure code: DRY to eliminate duplication, TRIZ to resolve contradictions.">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>IaC = DRY + TRIZ - How I Approach Infrastructure Problems - Serg's DevOps Notes</title>
+        <title>IaC Is a Medium, Not a Method — DRY + TRIZ as a Thinking Framework - Serg's DevOps Notes</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#the-problem-with-just-automate-it" class="md-skip">
+        <a href="#iac-is-a-medium-not-a-method" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              IaC = DRY + TRIZ - How I Approach Infrastructure Problems
+              IaC Is a Medium, Not a Method — DRY + TRIZ as a Thinking Framework
             
           </span>
         </div>
@@ -616,10 +616,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-problem-with-just-automate-it" class="md-nav__link">
+  <a href="#iac-is-a-medium-not-a-method" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Problem with "Just Automate It"
+        IaC Is a Medium, Not a Method
       
     </span>
   </a>
@@ -627,22 +627,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dry-in-infrastructure" class="md-nav__link">
+  <a href="#dry-one-source-of-truth" class="md-nav__link">
     <span class="md-ellipsis">
       
-        DRY in Infrastructure
+        DRY: One Source of Truth
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="DRY in Infrastructure">
+    <nav class="md-nav" aria-label="DRY: One Source of Truth">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#real-example-eigenstack" class="md-nav__link">
+  <a href="#example-eigenstack" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Real example: eigenstack
+        Example: eigenstack
       
     </span>
   </a>
@@ -655,22 +655,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#triz-resolving-contradictions-not-compromising" class="md-nav__link">
+  <a href="#triz-resolve-contradictions-dont-compromise" class="md-nav__link">
     <span class="md-ellipsis">
       
-        TRIZ: Resolving Contradictions, Not Compromising
+        TRIZ: Resolve Contradictions, Don't Compromise
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="TRIZ: Resolving Contradictions, Not Compromising">
+    <nav class="md-nav" aria-label="TRIZ: Resolve Contradictions, Don&#39;t Compromise">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#real-example-local-whisper-obsidian" class="md-nav__link">
+  <a href="#example-local-whisper-obsidian" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Real example: local-whisper-obsidian
+        Example: local-whisper-obsidian
       
     </span>
   </a>
@@ -683,32 +683,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reliable-chaos-what-the-framework-produces" class="md-nav__link">
+  <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Reliable Chaos: What the Framework Produces
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#in-practice-the-three-pillars" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        In Practice: The Three Pillars
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#further-reading" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Further Reading
+        Related
       
     </span>
   </a>
@@ -764,13 +742,6 @@
       
       
       
-        <span class="md-tag">systemd</span>
-      
-    
-      
-      
-      
-      
         <span class="md-tag">terraform</span>
       
     
@@ -788,43 +759,42 @@
   
 
 
-  <h1>IaC = DRY + TRIZ - How I Approach Infrastructure Problems</h1>
+  <h1>IaC Is a Medium, Not a Method — DRY + TRIZ as a Thinking Framework</h1>
 
 <blockquote>
-<p>Most infrastructure pain comes from two sources: duplication and unresolved contradictions.
+<p>Most infrastructure pain comes from two sources: duplication and unresolved contradictions.<br />
 DRY eliminates the first. TRIZ resolves the second.</p>
 </blockquote>
-<h2 id="the-problem-with-just-automate-it">The Problem with "Just Automate It"</h2>
-<p>Automation without a framework tends to accumulate technical debt fast.
-Scripts multiply. Pipelines diverge. The same secret lives in four places.
-A month later, nobody knows which copy is the source of truth.</p>
-<p>The standard answer is "just use IaC" — Terraform, Ansible, Kubernetes manifests.
+<h2 id="iac-is-a-medium-not-a-method">IaC Is a Medium, Not a Method</h2>
+<p>The standard answer to infrastructure pain is "just use IaC" — Terraform, Ansible, Kubernetes manifests.
 But IaC is a medium, not a method. You can write terrible, duplicated,
 contradictory infrastructure code just as easily as terrible application code.</p>
-<p>What's missing is a <strong>thinking framework</strong> for <em>what</em> to put in the code and <em>how</em> to structure it.</p>
-<h2 id="dry-in-infrastructure">DRY in Infrastructure</h2>
+<p>Scripts multiply. Pipelines diverge. The same secret lives in four places.
+A month later, nobody knows which copy is the source of truth.</p>
+<p>What's missing is a <strong>thinking framework</strong> for <em>what</em> to put in the code and <em>how</em> to structure it.
+I use two: DRY and TRIZ.</p>
+<hr />
+<h2 id="dry-one-source-of-truth">DRY: One Source of Truth</h2>
 <p><strong>Don't Repeat Yourself</strong> is well-known in software development,
-but its application to infrastructure is underestimated.</p>
+but underestimated in infrastructure.</p>
 <p>In practice, DRY in IaC means:</p>
 <ul>
 <li><strong>One source of truth</strong> for every variable, secret, and config value</li>
 <li><strong>Modules and roles</strong> instead of copy-pasted resource blocks</li>
-<li><strong>Templated pipelines</strong> (GitHub Actions reusable workflows, Ansible roles)
-  instead of per-project YAML duplication</li>
-<li><strong>Parameterised manifests</strong> — one Helm chart or Kustomize base,
-  not three slightly-different copies for dev/staging/prod</li>
+<li><strong>Reusable workflows</strong> — GitHub Actions reusable workflows, Ansible roles — instead of per-project YAML duplication</li>
+<li><strong>Parameterised manifests</strong> — one Helm chart or Kustomize base, not three slightly-different copies for dev/staging/prod</li>
 </ul>
-<h3 id="real-example-eigenstack">Real example: eigenstack</h3>
-<p>In my self-hosted stack (<a href="../portfolio/eigenstack.md">eigenstack</a>),
-every service shares a single <code>docker-compose.override.yml</code> pattern.
+<h3 id="example-eigenstack">Example: eigenstack</h3>
+<p>In my self-hosted stack, every service shares a single <code>docker-compose.override.yml</code> pattern.
 Environment variables are defined once in <code>.env</code> and referenced everywhere.
 Backup logic lives in one Makefile target, not in three separate cron scripts.</p>
 <p>When I need to add a new service, I copy one template block and fill in four variables.
 No duplication, no drift.</p>
-<h2 id="triz-resolving-contradictions-not-compromising">TRIZ: Resolving Contradictions, Not Compromising</h2>
-<p><strong>TRIZ</strong> (Theory of Inventive Problem Solving) is a systematic method
-for resolving technical contradictions — situations where improving one parameter
-makes another worse.</p>
+<p>→ <a href="../../portfolio/Eigenstack%20%E2%80%94%20Sovereign%20Self-Hosted%20Cloud%20%28Germany%29/">Eigenstack — Sovereign Self-Hosted Cloud (Germany)</a></p>
+<hr />
+<h2 id="triz-resolve-contradictions-dont-compromise">TRIZ: Resolve Contradictions, Don't Compromise</h2>
+<p><strong>TRIZ</strong> (Theory of Inventive Problem Solving) is a method for resolving
+technical contradictions — situations where improving one parameter makes another worse.</p>
 <p>Infrastructure is full of these:</p>
 <table>
 <thead>
@@ -838,78 +808,40 @@ makes another worse.</p>
 <tr>
 <td>Fast deploys vs stable production</td>
 <td>Deploy less often</td>
-<td>Segmentation: separate deploy pipeline per environment</td>
+<td>Segmentation: separate pipeline per environment</td>
 </tr>
 <tr>
 <td>Open API vs security</td>
-<td>Add authentication everywhere</td>
-<td>Trimming: remove the surface, not add guards</td>
+<td>Add auth everywhere</td>
+<td>Trimming: reduce surface, don't add guards</td>
 </tr>
 <tr>
 <td>Observability vs performance</td>
 <td>Log less</td>
-<td>Preliminary action: async log buffer, structured logs</td>
+<td>Preliminary action: async buffer + structured logs</td>
 </tr>
 <tr>
 <td>Privacy vs functionality</td>
 <td>Disable features</td>
-<td>Transitioning to another dimension: local-first processing</td>
+<td>Dimension shift: local-first processing</td>
 </tr>
 </tbody>
 </table>
-<p>The key insight from TRIZ: <strong>a compromise is not a solution</strong>.
+<p>The key insight: <strong>a compromise is not a solution</strong>.
 A real solution eliminates the contradiction at the architectural level.</p>
-<h3 id="real-example-local-whisper-obsidian">Real example: local-whisper-obsidian</h3>
+<h3 id="example-local-whisper-obsidian">Example: local-whisper-obsidian</h3>
 <p>The contradiction: I want voice notes transcribed automatically (convenience)
 but I don't want audio leaving my device (privacy).</p>
-<p>A compromise would be: use a cloud API but "trust" the vendor.
+<p>A compromise: use a cloud API and "trust" the vendor.<br />
 The TRIZ resolution: move the processing to the same device as the data.
-Local Whisper model, triggered by inotifywait, writes directly to Obsidian vault.
+Local Whisper model, triggered by <code>inotifywait</code>, writes directly to Obsidian vault.
 No cloud. No compromise. Contradiction resolved.</p>
-<p>→ See: <a href="../../portfolio/Local%20Voice%20Transcription%20Pipeline/">Local Voice Transcription Pipeline</a></p>
-<h2 id="reliable-chaos-what-the-framework-produces">Reliable Chaos: What the Framework Produces</h2>
-<p>When DRY is applied consistently and contradictions are resolved rather than patched,
-something predictable happens: the system becomes resilient not by avoiding failure,
-but by making failure <strong>observable, bounded, and recoverable</strong>.</p>
-<p>This is the SRE insight applied at the architectural level:
-- Define SLOs before you build (what does "working" look like?)
-- Design for failure (what happens when this service goes down?)
-- Test the failure (chaos engineering: actually kill it and watch)</p>
-<p>I call this <strong>Reliable Chaos</strong> — the system is internally flexible and adaptive,
-but externally predictable and stable.</p>
-<h2 id="in-practice-the-three-pillars">In Practice: The Three Pillars</h2>
-<p>This framework is the foundation of my three main infrastructure projects:</p>
-<table>
-<thead>
-<tr>
-<th>Project</th>
-<th>DRY application</th>
-<th>TRIZ contradiction resolved</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../portfolio/eigenstack.md">eigenstack</a></td>
-<td>Single compose template, one <code>.env</code></td>
-<td>Privacy vs convenience → local-first</td>
-</tr>
-<tr>
-<td><a href="../portfolio/azure-de-stack.md">azure-de-stack</a></td>
-<td>Reusable Bicep/Terraform modules</td>
-<td>Cost vs reliability → reserved instances + autoscale</td>
-</tr>
-<tr>
-<td><a href="../portfolio/ukraine-transparency.md">ukraine-transparency</a></td>
-<td>Shared schema, one audit log pattern</td>
-<td>Openness vs integrity → append-only log</td>
-</tr>
-</tbody>
-</table>
-<h2 id="further-reading">Further Reading</h2>
+<p>→ <a href="../../portfolio/Local%20Voice%20Transcription%20Pipeline/">Local Voice Transcription Pipeline</a></p>
+<hr />
+<h2 id="related">Related</h2>
 <ul>
-<li><a href="https://www.dioneo.net/triz-for-software/">TRIZ for Software Engineering</a> — practical mapping of TRIZ principles to software components</li>
-<li>Google SRE Book — <a href="https://sre.google/books/">sre.google/books</a></li>
-<li><a href="https://www.thoughtworks.com/insights/blog/agile-engineering-practices/building-resiliency-chaos-engineering">Chaos Engineering (Thoughtworks)</a></li>
+<li><a href="../Reliable%20Chaos%20%E2%80%94%20Designing%20Infrastructure%20That%20Fails%20Predictably/">Reliable Chaos — Designing Infrastructure That Fails Predictably</a></li>
+<li><a href="../../portfolio/Local%20Voice%20Transcription%20Pipeline/">Local Voice Transcription Pipeline</a></li>
 </ul>
 
 
@@ -933,7 +865,7 @@ but externally predictable and stable.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 9, 2026 19:06:11 UTC">March 9, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 10, 2026 05:01:27 UTC">March 10, 2026</span>
   </span>
 
     

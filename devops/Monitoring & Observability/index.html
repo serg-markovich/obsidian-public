@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Prometheus, Grafana, Alertmanager, Netdata — metrics, dashboards, alerting">
+        <meta name="description" content="How I monitor eigenstack — Prometheus, Netdata, Alertmanager. SLOs, alerting to Telegram, and what's still missing.">
       
       
       
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#the-three-pillars-of-observability" class="md-skip">
+        <a href="#the-problem-i-was-solving" class="md-skip">
           Skip to content
         </a>
       
@@ -616,10 +616,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-three-pillars-of-observability" class="md-nav__link">
+  <a href="#the-problem-i-was-solving" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Three Pillars of Observability
+        The Problem I Was Solving
       
     </span>
   </a>
@@ -627,10 +627,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#stack-in-eigenstack" class="md-nav__link">
+  <a href="#stack" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Stack in eigenstack
+        Stack
       
     </span>
   </a>
@@ -638,10 +638,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#slos-defined-for-eigenstack" class="md-nav__link">
+  <a href="#slos-for-eigenstack" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SLOs Defined for eigenstack
+        SLOs for eigenstack
       
     </span>
   </a>
@@ -649,10 +649,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-tools" class="md-nav__link">
+  <a href="#alerting" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Tools
+        Alerting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-still-missing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's Still Missing
       
     </span>
   </a>
@@ -746,53 +757,36 @@
   <h1>Monitoring & Observability</h1>
 
 <blockquote>
-<p>🌱 Seedling — stack defined, eigenstack monitoring patterns being documented.</p>
+<p>🌱 Seedling — SLOs and alerting stack documented. Loki and Grafana dashboards as code still TODO.</p>
 </blockquote>
-<h2 id="the-three-pillars-of-observability">The Three Pillars of Observability</h2>
-<table>
-<thead>
-<tr>
-<th>Pillar</th>
-<th>What it answers</th>
-<th>Tools</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Metrics</strong></td>
-<td>Is the system healthy? (numbers over time)</td>
-<td>Prometheus, Netdata</td>
-</tr>
-<tr>
-<td><strong>Logs</strong></td>
-<td>What happened? (events)</td>
-<td>Docker logs, Loki</td>
-</tr>
-<tr>
-<td><strong>Traces</strong></td>
-<td>Where did the request go? (flow)</td>
-<td>Jaeger, Tempo</td>
-</tr>
-</tbody>
-</table>
-<p>For a self-hosted personal stack, metrics + logs cover 95% of needs.</p>
-<h2 id="stack-in-eigenstack">Stack in eigenstack</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Netdata     → realtime metrics (1h retention, web UI built-in)
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Prometheus  → persistent metrics (30-day retention, queryable)
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Alertmanager→ alert routing → Telegram / Email
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>node-exporter → host-level metrics for Prometheus
-</code></pre></div>
-<p><strong>Why both Netdata and Prometheus?</strong>
-TRIZ contradiction: <em>realtime visibility</em> vs <em>persistent history</em>.
-Netdata excels at live dashboards (zero config). Prometheus handles long-term storage and alerting rules.
-Both solve different problems — no compromise needed.</p>
-<h2 id="slos-defined-for-eigenstack">SLOs Defined for eigenstack</h2>
+<h2 id="the-problem-i-was-solving">The Problem I Was Solving</h2>
+<p>A self-hosted stack with no monitoring is a black box.
+You find out something is broken when a service stops responding —
+not when it starts degrading.</p>
+<p>I wanted to know about problems before users do (even if the only "user" is me).</p>
+<hr />
+<h2 id="stack">Stack</h2>
+<p>Netdata → realtime metrics, live web UI, zero config
+Prometheus → persistent metrics, 30-day retention, PromQL
+node-exporter → host-level metrics scraped by Prometheus
+Alertmanager → routes Prometheus alerts → Telegram</p>
+<p>text</p>
+<p><strong>Why both Netdata and Prometheus?</strong></p>
+<p>TRIZ contradiction: <em>realtime visibility</em> vs <em>persistent history</em>.</p>
+<p>Netdata is great for "what is happening right now" — auto-discovers Docker
+containers, shows per-container CPU/RAM without any configuration.
+But it keeps only ~1 hour of history.</p>
+<p>Prometheus solves the retention problem and handles alerting rules.
+They don't overlap — both stay.</p>
+<hr />
+<h2 id="slos-for-eigenstack">SLOs for eigenstack</h2>
+<p>Defined before setting up alerts, not after.</p>
 <table>
 <thead>
 <tr>
 <th>Metric</th>
 <th>Target</th>
-<th>Alert threshold</th>
+<th>Alert</th>
 </tr>
 </thead>
 <tbody>
@@ -804,7 +798,7 @@ Both solve different problems — no compromise needed.</p>
 <tr>
 <td>Response time</td>
 <td>&lt; 500ms p95</td>
-<td>—</td>
+<td>— (tracked, not alerted)</td>
 </tr>
 <tr>
 <td>Disk usage</td>
@@ -819,7 +813,7 @@ Both solve different problems — no compromise needed.</p>
 <tr>
 <td>Backup success</td>
 <td>100% daily</td>
-<td>Failure → CRITICAL</td>
+<td>Any failure → CRITICAL</td>
 </tr>
 <tr>
 <td>SSL expiry</td>
@@ -828,18 +822,29 @@ Both solve different problems — no compromise needed.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="key-tools">Key Tools</h2>
-<p><strong>Prometheus</strong> — open-source, pull-based metrics. Integrates natively with Docker and Kubernetes.
-Scrapes <code>/metrics</code> endpoints from exporters. PromQL for querying.</p>
-<p><strong>Grafana</strong> — visualisation layer on top of Prometheus (and other sources).
-Dashboards as JSON — can be stored in git (IaC for dashboards).</p>
-<p><strong>Netdata</strong> — zero-config realtime monitoring. Auto-discovers Docker containers.
-Useful for immediate visibility without setup overhead.</p>
-<p><strong>Alertmanager</strong> — routes Prometheus alerts to notification channels.
-In eigenstack: routes to Telegram for immediate mobile notifications.</p>
+<hr />
+<h2 id="alerting">Alerting</h2>
+<p>Alertmanager routes everything to <strong>Telegram</strong>.
+One bot, one chat, immediate mobile notification.</p>
+<p>Rules live in <code>prometheus/alerts.yml</code> — stored in git alongside the rest
+of eigenstack config. Changing an alert threshold is a commit, not a
+click in a UI.</p>
+<hr />
+<h2 id="whats-still-missing">What's Still Missing</h2>
+<ul>
+<li><strong>Loki</strong> — no log aggregation yet. Currently: <code>docker logs</code> + grep when something breaks.
+  Works, but painful for post-incident review.</li>
+<li><strong>Grafana dashboards as code</strong> — Grafana is running, but dashboards were
+  clicked together manually. They should be JSON files in git.</li>
+<li><strong>Alerting on backup content, not just backup job</strong> — current alert fires
+  if the cron job fails. It does NOT verify the backup is actually restorable.</li>
+</ul>
+<hr />
 <h2 id="related">Related</h2>
 <ul>
 <li><a href="../../approach/IaC%20%3D%20DRY%20%2B%20TRIZ%20-%20How%20I%20Approach%20Infrastructure%20Problems/">IaC = DRY + TRIZ - How I Approach Infrastructure Problems</a></li>
+<li><a href="../../portfolio/Eigenstack%20%E2%80%94%20Sovereign%20Self-Hosted%20Cloud%20%28Germany%29/">Eigenstack — Sovereign Self-Hosted Cloud (Germany)</a></li>
+<li><a href="../../approach/Reliable%20Chaos%20%E2%80%94%20Designing%20Infrastructure%20That%20Fails%20Predictably/">Reliable Chaos — Designing Infrastructure That Fails Predictably</a></li>
 </ul>
 
 
@@ -863,7 +868,7 @@ In eigenstack: routes to Telegram for immediate mobile notifications.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 9, 2026 19:06:11 UTC">March 9, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 10, 2026 05:01:27 UTC">March 10, 2026</span>
   </span>
 
     
