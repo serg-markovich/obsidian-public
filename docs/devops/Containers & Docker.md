@@ -78,7 +78,7 @@ services:
     env_file: .env          # same .env, not duplicated
 ```
 
-→ See this pattern in action: [[Eigenstack — Sovereign Self-Hosted Cloud (Germany)]]
+→ See this pattern in action: [[Eigen-Stack — Sovereign Self-Hosted Cloud (Germany)]]
 
 ## Isolation Note
 
