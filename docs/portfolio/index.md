@@ -14,7 +14,7 @@ tags:
 - [[Zero-Maintenance DevOps Portfolio & ATS-Friendly CV]]
 - [[Battery-Optimized Local AI Stack (Open WebUI + Ollama)]]
 - [[Local Voice Transcription Pipeline]]
-- [[Eigen-Stack — Sovereign Self-Hosted Cloud (Germany)]]
+- [[Eigenstack — Sovereign Self-Hosted Cloud (Germany)]]
 
 ---
 ## Open to collaboration

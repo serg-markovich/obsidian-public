@@ -23,7 +23,7 @@ tags:
 > 🌱 MVP in progress — core stack (Traefik + Vaultwarden) running locally.
 > Repository: [github.com/serg-markovich/eigen-stack](https://github.com/serg-markovich/eigen-stack)
 
-## What is Eigen-Stack?
+## What is Eigenstack?
 
 Eigenstack replaces Google Drive, Dropbox, and LastPass with open-source
 equivalents — hosted on German infrastructure, owned by you, compliant
@@ -36,7 +36,7 @@ with DSGVO from day one.
 
 **How to use it:**
 - Self-deploy: clone, fill `.env`, run `make up`
-- Managed setup: [contact](mailto:eigen-stack@serg-markovich.de) — I deploy and maintain it for you
+- Managed setup: [contact](mailto:eigenstack@serg-markovich.de) — I deploy and maintain it for you
 
 > *The name: German eigen — "own" — digital self-ownership.*
 

@@ -17,7 +17,7 @@ tags:
 
 ---
 
-Built alongside AZ-104 preparation and the [[Eigen-Stack — Sovereign Self-Hosted Cloud (Germany)]] project.
+Built alongside AZ-104 preparation and the [[Eigenstack — Sovereign Self-Hosted Cloud (Germany)]] project.
 
 **Study resources:**
 - [AZ-104 Full Course — YouTube](https://www.youtube.com/watch?v=uBqp3ivFC_o&list=PLahhVEj9XNTcj4dwEwRHozO3xcxI_UHYG)

@@ -90,5 +90,5 @@ click in a UI.
 ## Related
 
 - [[IaC = DRY + TRIZ - How I Approach Infrastructure Problems]]
-- [[Eigen-Stack — Sovereign Self-Hosted Cloud (Germany)]]
+- [[Eigenstack — Sovereign Self-Hosted Cloud (Germany)]]
 - [[Reliable Chaos — Designing Infrastructure That Fails Predictably]]

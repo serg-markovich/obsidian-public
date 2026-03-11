@@ -53,7 +53,7 @@ Backup logic lives in one Makefile target, not in three separate cron scripts.
 When I need to add a new service, I copy one template block and fill in four variables.
 No duplication, no drift.
 
-→ [[Eigen-Stack — Sovereign Self-Hosted Cloud (Germany)]]
+→ [[Eigenstack — Sovereign Self-Hosted Cloud (Germany)]]
 
 ---
 
