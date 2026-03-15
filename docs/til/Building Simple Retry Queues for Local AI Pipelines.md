@@ -12,7 +12,7 @@ tags:
   - ollama
 ---
 
-When building `whisper-ollama-enricher` (the second stage of my local voice-to-knowledge pipeline), I ran into a classic infrastructure contradiction. 
+When building [whisper-ollama-enricher](https://github.com/serg-markovich/whisper-ollama-enricher) (the second stage of my local voice-to-knowledge pipeline), I ran into a classic infrastructure contradiction. 
 
 The problem: My Python watchdog script sends raw transcripts to a local Ollama API for enrichment. But homelab services go down, and models take time to load. If the API is unreachable, the event is lost. 
 
@@ -25,8 +25,22 @@ Instead of complex message passing, I implemented a lightweight file-based retry
 
 This keeps the architecture purely event-driven and strictly aligned with the Unix philosophy. No database, no heavy message brokers, and zero data loss during reboots. 
 
+```python
+try:
+    enrich(file)
+except OllamaUnavailableError:
+    retry_path = RETRY_DIR / file.name
+    shutil.move(str(file), retry_path)
+    logger.warning("Ollama unavailable, queued for retry: %s", file.name)
+
+```
+
+> **What this doesn't handle:** if the process crashes while a file is
+> in `.retry`, the file stays there and gets picked up on next start.
+> That's intentional — the filesystem is the durability layer.
+
 **Related Notes:**
 - [[Local Voice Transcription Pipeline]]
 - [[IaC = DRY + TRIZ - How I Approach Infrastructure Problems]]
-- [[Local AI Knowledge Enricher]]
+- [[Local AI Knowledge Enricher (Ollama + Obsidian)]]
 
