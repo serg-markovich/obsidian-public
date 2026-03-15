@@ -656,7 +656,7 @@
 
   <h1>Building Simple Retry Queues for Local AI Pipelines</h1>
 
-<p>When building <code>whisper-ollama-enricher</code> (the second stage of my local voice-to-knowledge pipeline), I ran into a classic infrastructure contradiction. </p>
+<p>When building <a href="https://github.com/serg-markovich/whisper-ollama-enricher">whisper-ollama-enricher</a> (the second stage of my local voice-to-knowledge pipeline), I ran into a classic infrastructure contradiction. </p>
 <p>The problem: My Python watchdog script sends raw transcripts to a local Ollama API for enrichment. But homelab services go down, and models take time to load. If the API is unreachable, the event is lost. </p>
 <p>The standard solution adds a message broker like RabbitMQ — now you've traded one problem for three: deployment, ops overhead, and a new failure point. The TRIZ resolution is to eliminate the contradiction: keep the system simple but make the filesystem itself act as the queue.</p>
 <p>Instead of complex message passing, I implemented a lightweight file-based retry mechanism:
@@ -664,10 +664,22 @@
 2. A background daemon thread wakes up every 30 seconds (<code>RETRY_INTERVAL</code>).
 3. It checks the <code>.retry</code> folder and moves files back to the inbox for reprocessing.</p>
 <p>This keeps the architecture purely event-driven and strictly aligned with the Unix philosophy. No database, no heavy message brokers, and zero data loss during reboots. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">enrich</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">except</span> <span class="n">OllamaUnavailableError</span><span class="p">:</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">retry_path</span> <span class="o">=</span> <span class="n">RETRY_DIR</span> <span class="o">/</span> <span class="n">file</span><span class="o">.</span><span class="n">name</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">file</span><span class="p">),</span> <span class="n">retry_path</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Ollama unavailable, queued for retry: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p><strong>What this doesn't handle:</strong> if the process crashes while a file is
+in <code>.retry</code>, the file stays there and gets picked up on next start.
+That's intentional — the filesystem is the durability layer.</p>
+</blockquote>
 <p><strong>Related Notes:</strong>
 - <a href="../../portfolio/Local%20Voice%20Transcription%20Pipeline/">Local Voice Transcription Pipeline</a>
 - <a href="../../approach/IaC%20%3D%20DRY%20%2B%20TRIZ%20-%20How%20I%20Approach%20Infrastructure%20Problems/">IaC = DRY + TRIZ - How I Approach Infrastructure Problems</a>
-- [[Local AI Knowledge Enricher]]</p>
+- <a href="../../portfolio/Local%20AI%20Knowledge%20Enricher%20%28Ollama%20%2B%20Obsidian%29/">Local AI Knowledge Enricher (Ollama + Obsidian)</a></p>
 
 
 
@@ -690,7 +702,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 15, 2026 10:09:04 UTC">March 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 15, 2026 13:59:00 UTC">March 15, 2026</span>
   </span>
 
     
