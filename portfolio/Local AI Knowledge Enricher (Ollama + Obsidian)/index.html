@@ -6,11 +6,11 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="DevOps projects, infrastructure setups and case studies">
+        <meta name="description" content="DevOps learning journey, homelab, Azure, Kubernetes">
       
       
       
-        <link rel="canonical" href="https://notes.serg-markovich.de/portfolio/">
+        <link rel="canonical" href="https://notes.serg-markovich.de/portfolio/Local%20AI%20Knowledge%20Enricher%20%28Ollama%20%2B%20Obsidian%29/">
       
       
       
@@ -18,19 +18,19 @@
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
     
     
       
-        <title>Portfolio - Serg's DevOps Notes</title>
+        <title>Local AI Knowledge Enricher (Ollama + Obsidian) - Serg's DevOps Notes</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -49,9 +49,9 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/interactive_graph.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/interactive_graph.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#portfolio" class="md-skip">
+        <a href="#the-architecture" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Serg&#39;s DevOps Notes" class="md-header__button md-logo" aria-label="Serg's DevOps Notes" data-md-component="logo">
+    <a href="../.." title="Serg&#39;s DevOps Notes" class="md-header__button md-logo" aria-label="Serg's DevOps Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Portfolio
+              Local AI Knowledge Enricher (Ollama + Obsidian)
             
           </span>
         </div>
@@ -223,7 +223,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -242,7 +242,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../azure/" class="md-tabs__link">
+      <a href="../../azure/" class="md-tabs__link">
         
   
   
@@ -261,7 +261,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../devops/" class="md-tabs__link">
+      <a href="../../devops/" class="md-tabs__link">
         
   
   
@@ -280,7 +280,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../approach/" class="md-tabs__link">
+      <a href="../../approach/" class="md-tabs__link">
         
   
   
@@ -299,7 +299,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../homelab/" class="md-tabs__link">
+      <a href="../../homelab/" class="md-tabs__link">
         
   
   
@@ -318,7 +318,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="./" class="md-tabs__link">
+      <a href="../" class="md-tabs__link">
         
   
   
@@ -337,7 +337,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../til/" class="md-tabs__link">
+      <a href="../../til/" class="md-tabs__link">
         
   
   
@@ -372,7 +372,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Serg&#39;s DevOps Notes" class="md-nav__button md-logo" aria-label="Serg's DevOps Notes" data-md-component="logo">
+    <a href="../.." title="Serg&#39;s DevOps Notes" class="md-nav__button md-logo" aria-label="Serg's DevOps Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -402,7 +402,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -436,7 +436,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../azure/" class="md-nav__link">
+      <a href="../../azure/" class="md-nav__link">
         
   
   
@@ -463,7 +463,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../devops/" class="md-nav__link">
+      <a href="../../devops/" class="md-nav__link">
         
   
   
@@ -490,7 +490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../approach/" class="md-nav__link">
+      <a href="../../approach/" class="md-nav__link">
         
   
   
@@ -517,7 +517,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../homelab/" class="md-nav__link">
+      <a href="../../homelab/" class="md-nav__link">
         
   
   
@@ -544,7 +544,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -571,7 +571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../til/" class="md-nav__link">
+      <a href="../../til/" class="md-nav__link">
         
   
   
@@ -608,8 +608,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -618,10 +616,93 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#open-to-collaboration" class="md-nav__link">
+  <a href="#the-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Open to collaboration
+        The Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-engineering-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Engineering Decisions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Engineering Decisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-graceful-degradation-zero-data-loss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Graceful Degradation (Zero Data Loss)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-solving-the-docker-rootroot-volume-footgun" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Solving the Docker root:root Volume Footgun
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pkm-agnosticism-no-vendor-lock-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. PKM Agnosticism (No Vendor Lock-in)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-hardware-efficiency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Hardware Efficiency
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
       
     </span>
   </a>
@@ -649,21 +730,42 @@
       
       
       
-        <span class="md-tag">devops</span>
+        <span class="md-tag">architecture</span>
       
     
       
       
       
       
-        <span class="md-tag">portfolio</span>
+        <span class="md-tag">docker</span>
       
     
       
       
       
       
-        <span class="md-tag">projects</span>
+        <span class="md-tag">eigenstack</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">local-ai</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">python</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">systemd</span>
       
     
   </nav>
@@ -673,20 +775,42 @@
   
 
 
-<h1 id="portfolio">Portfolio</h1>
+  <h1>Local AI Knowledge Enricher (Ollama + Obsidian)</h1>
+
+<p><code>whisper-ollama-enricher</code> is the second stage of my fully local, privacy-first voice-to-knowledge pipeline. It watches a folder for raw voice transcripts, enriches them via a local Ollama LLM (extracting titles, summaries, tags, and action items), and writes structured Markdown notes.</p>
+<p>No cloud. No API keys. Runs entirely on CPU.</p>
+<p><strong>Links:</strong>
+- GitHub: <a href="https://github.com/serg-markovich/whisper-ollama-enricher">serg-markovich/whisper-ollama-enricher</a>
+- Stage 1: <a href="../Local%20Voice%20Transcription%20Pipeline/">Local Voice Transcription Pipeline</a>
+- Architecture overview: [[eigenstack]]</p>
+<h2 id="the-architecture">The Architecture</h2>
+<p>The pipeline is designed using a strict <strong>Pipes and Filters</strong> pattern to ensure each component does only one thing.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>vault/0_inbox/*.md   ← JSON transcript from local-whisper-obsidian
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>        │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  Watcher            watchdog, non-recursive, skips non-whisper files
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        │
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  Enricher           Ollama → title, summary, tags, action_items
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        │
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  Writer      ──►    Obsidian REST API :27124
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>              └─►    Direct file write → OUTPUT_PATH  (fallback)
+</code></pre></div>
+<h2 id="key-engineering-decisions">Key Engineering Decisions</h2>
+<h3 id="1-graceful-degradation-zero-data-loss">1. Graceful Degradation (Zero Data Loss)</h3>
+<p>Local infrastructure is inherently volatile. Models take time to load, and services restart. If the pipeline cannot reach the Ollama endpoint, it does not crash or drop the event. Instead, it falls back to writing the note <em>without</em> enrichment (using the filename as the title). 
+Similarly, if the Obsidian REST API is unavailable, the <code>Writer</code> component catches the exception and falls back to a direct filesystem write. The data always reaches the vault.</p>
+<h3 id="2-solving-the-docker-rootroot-volume-footgun">2. Solving the Docker <code>root:root</code> Volume Footgun</h3>
+<p>A classic issue with Dockerized file-processing apps is that output files are created as <code>root:root</code> inside mounted volumes, making them unreadable by the host user (and tools like Obsidian).
+To solve this for NAS/headless deployments, the pipeline explicitly requires <code>CURRENT_UID</code> and <code>CURRENT_GID</code> in the <code>.env</code> file, passing them to the container to ensure correct host-level permissions.</p>
+<h3 id="3-pkm-agnosticism-no-vendor-lock-in">3. PKM Agnosticism (No Vendor Lock-in)</h3>
+<p>While optimized for Obsidian, the output is pure <code>.md</code> with YAML frontmatter. By decoupling the processing logic from the knowledge management tool, the enricher works seamlessly with Logseq, Foam, Dendron, or any plain-text system. </p>
+<h3 id="4-hardware-efficiency">4. Hardware Efficiency</h3>
+<p>This pipeline proves you don't need a massive GPU rig for local AI. Developed on an HP EliteBook 845 G8 running Ubuntu 24.04, it uses <code>mistral</code> by default, but is optimized to run on as little as 4GB total system RAM using <code>gemma3:1b</code>.</p>
+<h2 id="deployment">Deployment</h2>
+<p>Supported via <code>systemd</code> (Linux), <code>launchd</code> (macOS), or <code>docker-compose</code> for NAS setups. Everything is orchestrated through a standard <code>Makefile</code> for a reproducible "one-command" setup.</p>
+<h2 id="related">Related</h2>
 <ul>
-<li><a href="Obsidian%20Public%20Knowledge%20Base/">Obsidian Public Knowledge Base</a></li>
-<li><a href="Zero-Maintenance%20DevOps%20Portfolio%20%26%20ATS-Friendly%20CV/">Zero-Maintenance DevOps Portfolio &amp; ATS-Friendly CV</a></li>
-<li><a href="Battery-Optimized%20Local%20AI%20Stack%20%28Open%20WebUI%20%2B%20Ollama%29/">Battery-Optimized Local AI Stack (Open WebUI + Ollama)</a></li>
-<li><a href="Local%20Voice%20Transcription%20Pipeline/">Local Voice Transcription Pipeline</a></li>
-<li><a href="Eigenstack%20%E2%80%94%20Sovereign%20Self-Hosted%20Cloud%20%28Germany%29/">Eigenstack — Sovereign Self-Hosted Cloud (Germany)</a></li>
-<li><a href="Local%20AI%20Knowledge%20Enricher%20%28Ollama%20%2B%20Obsidian%29/">Local AI Knowledge Enricher (Ollama + Obsidian)</a></li>
+<li><a href="../../til/Building%20Simple%20Retry%20Queues%20for%20Local%20AI%20Pipelines/">Building Simple Retry Queues for Local AI Pipelines</a></li>
 </ul>
-<hr />
-<h2 id="open-to-collaboration">Open to collaboration</h2>
-<p>If you have an interesting project, idea or want to discuss DevOps topics —
-feel free to reach out.
-<a href="mailto:me@serg-markovich.de">me@serg-markovich.de</a></p>
 
 
 
@@ -719,7 +843,7 @@ feel free to reach out.
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 20, 2026 04:45:51 UTC">February 20, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 15, 2026 10:09:04 UTC">March 15, 2026</span>
   </span>
 
     
@@ -809,16 +933,16 @@ feel free to reach out.
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.tabs.link", "navigation.indexes", "navigation.tabs", "navigation.sections", "navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.tabs.link", "navigation.indexes", "navigation.tabs", "navigation.sections", "navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="https://fastly.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
       
         <script src="https://fastly.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
       
-        <script src="../assets/javascripts/interactive_graph.js"></script>
+        <script src="../../assets/javascripts/interactive_graph.js"></script>
       
     
   </body>
