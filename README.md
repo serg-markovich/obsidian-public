@@ -12,6 +12,7 @@ published via [MkDocs Material](https://squidfunk.github.io/mkdocs-material/).
 - **HomeLab** — VPS setup, self-hosted services, networking
 - **Portfolio** — projects and case studies
 - **TIL** — Today I Learned, quick findings and fixes
+- **APPROACH** —  Daily development through an engineering lens
 
 ## Stack
 

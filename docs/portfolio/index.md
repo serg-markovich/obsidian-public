@@ -15,6 +15,7 @@ tags:
 - [[Battery-Optimized Local AI Stack (Open WebUI + Ollama)]]
 - [[Local Voice Transcription Pipeline]]
 - [[Eigenstack — Sovereign Self-Hosted Cloud (Germany)]]
+- [[Local AI Knowledge Enricher (Ollama + Obsidian)]]
 
 ---
 ## Open to collaboration
