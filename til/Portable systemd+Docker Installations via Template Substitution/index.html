@@ -9,8 +9,10 @@
         <meta name="description" content="DevOps learning journey, homelab, Azure, Kubernetes">
       
       
+        <meta name="author" content="Serg Markovych">
       
-        <link rel="canonical" href="https://notes.serg-markovich.de/til/%22Deployed%22%20Is%20Not%20the%20Same%20as%20%22Running%20the%20New%20Code%22/">
+      
+        <link rel="canonical" href="https://notes.serg-markovich.de/til/Portable%20systemd%2BDocker%20Installations%20via%20Template%20Substitution/">
       
       
       
@@ -23,7 +25,7 @@
     
     
       
-        <title>"Deployed" Is Not the Same as "Running the New Code" - Serg's DevOps Notes</title>
+        <title>TIL: Portable systemd+Docker Installations via Template Substitution - Serg's DevOps Notes</title>
       
     
     
@@ -76,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#til-deployed-is-not-the-same-as-running-the-new-code" class="md-skip">
+        <a href="#the-problem" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              "Deployed" Is Not the Same as "Running the New Code"
+              TIL: Portable systemd+Docker Installations via Template Substitution
             
           </span>
         </div>
@@ -608,25 +610,12 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary
-      
-    </span>
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#the-problem" class="md-nav__link">
@@ -640,10 +629,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#root-cause-1-the-deployed-script-was-not-updated" class="md-nav__link">
+  <a href="#the-pattern" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Root Cause 1: The Deployed Script Was Not Updated
+        The Pattern
       
     </span>
   </a>
@@ -651,10 +640,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#root-cause-2-grep-with-no-matches-kills-the-pipeline" class="md-nav__link">
+  <a href="#critical-details-most-guides-skip" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Root Cause 2: grep with No Matches Kills the Pipeline
+        Critical Details Most Guides Skip
       
     </span>
   </a>
@@ -662,10 +651,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#checklist" class="md-nav__link">
+  <a href="#verification-30-seconds" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Checklist
+        Verification (30 seconds)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-this-matters-for-local-first-devops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why This Matters for Local-First DevOps
       
     </span>
   </a>
@@ -704,21 +704,21 @@
       
       
       
-        <span class="md-tag">bash</span>
+        <span class="md-tag">docker</span>
       
     
       
       
       
       
-        <span class="md-tag">linux</span>
+        <span class="md-tag">makefile</span>
       
     
       
       
       
       
-        <span class="md-tag">pipefail</span>
+        <span class="md-tag">portability</span>
       
     
       
@@ -742,84 +742,83 @@
   
 
 
-<h1 id="til-deployed-is-not-the-same-as-running-the-new-code">TIL: "Deployed" Is Not the Same as "Running the New Code"</h1>
-<h2 id="summary">Summary</h2>
-<p>A systemd service was active and healthy. Audio files sat unprocessed in the
-inbox. No errors in the logs. The bug was not in the code — it was in the gap
-between the code on disk and the code actually running.</p>
-<hr />
+  <h1>TIL: Portable systemd+Docker Installations via Template Substitution</h1>
+
 <h2 id="the-problem">The Problem</h2>
-<p>I added a startup scan to a file watcher: on service init, process any audio
-files that arrived while the service was offline.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Startup scan: checking for unprocessed files...&quot;</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">for</span><span class="w"> </span>p<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">VALID</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span>find<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$p</span><span class="s2">&quot;</span><span class="w"> </span>-maxdepth<span class="w"> </span><span class="m">1</span><span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-iE<span class="w"> </span><span class="s1">&#39;\.(m4a|mp3|wav|ogg|opus|webm|flac)$&#39;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>file<span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">            </span><span class="s2">&quot;</span><span class="nv">$PYTHON</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SCRIPT</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="k">done</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">done</span>
+<p>Hardcoded paths in systemd units and <code>.desktop</code> files break when you move a project. Manual <code>cp</code> workflows don't scale. Users report "it works on my machine" — but not after <code>mv ~/old ~/new</code>.</p>
+<h2 id="the-pattern">The Pattern</h2>
+<p><strong>Store templates, not working copies. Substitute at install time.</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># systemd/openwebui.service.template</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">[Service]</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">%%INSTALL_PATH%%</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/docker compose up -d</span>
 </code></pre></div>
-<p>The service was running. The files were there. Nothing was transcribed.
-<code>journalctl</code> showed a healthy start — and stopped at <code>Watches established.</code>
-No startup scan output at all.</p>
-<hr />
-<h2 id="root-cause-1-the-deployed-script-was-not-updated">Root Cause 1: The Deployed Script Was Not Updated</h2>
-<p>systemd's <code>ExecStart</code> pointed to <code>~/.config/local-whisper-obsidian/watch.sh</code>.
-The new code lived in <code>bin/watch-linux.sh</code>. <code>make install</code> copies one to the
-other — but it had not been run since the new code was added.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># This tells you what is actually running — not what you think is running</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>cat<span class="w"> </span>/proc/&lt;PID&gt;/cmdline<span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">&#39;\0&#39;</span><span class="w"> </span><span class="s1">&#39; &#39;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c"># Makefile</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nf">install</span><span class="o">:</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span>sed<span class="w"> </span><span class="s2">&quot;s|%%INSTALL_PATH%%|</span><span class="k">$(</span>PWD<span class="k">)</span><span class="s2">|g&quot;</span><span class="w"> </span>systemd/openwebui.service.template<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span>&gt;<span class="w"> </span>~/.config/systemd/user/openwebui.service
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span>systemctl<span class="w"> </span>--user<span class="w"> </span>daemon-reload
 </code></pre></div>
-<p>Output:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>/bin/bash /home/sergey/.config/local-whisper-obsidian/watch.sh
-</code></pre></div></p>
-<p>The new script with startup scan had never been deployed.</p>
-<p><strong>Rule:</strong> changing <code>bin/</code> without running <code>make install</code> is not a deployment.
-It is a local edit.</p>
-<hr />
-<h2 id="root-cause-2-grep-with-no-matches-kills-the-pipeline">Root Cause 2: <code>grep</code> with No Matches Kills the Pipeline</h2>
-<p>After deploying the fix, the service started — and immediately crashed with
-<code>exit-code 1</code>. The startup scan ran, then <code>inotifywait</code> never launched.</p>
-<p>The culprit: <code>set -euo pipefail</code> combined with <code>grep</code> returning exit 1
-when no audio files matched in a directory:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Broken: exit 1 from grep on empty directory kills the script</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>find<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$p</span><span class="s2">&quot;</span><span class="w"> </span>-maxdepth<span class="w"> </span><span class="m">1</span><span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-iE<span class="w"> </span><span class="s1">&#39;\.(m4a|mp3|wav|ogg|opus|webm|flac)$&#39;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>file<span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="s2">&quot;</span><span class="nv">$PYTHON</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SCRIPT</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="k">done</span>
+<h2 id="critical-details-most-guides-skip">Critical Details Most Guides Skip</h2>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Wrong</th>
+<th>Right</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.desktop</code> Exec</td>
+<td><code>bash -c '%%PATH%%/script.sh'</code></td>
+<td><code>bash %%PATH%%/script.sh</code></td>
+<td><code>-c</code> executes <em>contents</em> of file, not the file itself</td>
+</tr>
+<tr>
+<td>Multi-command Exec</td>
+<td><code>bash -c 'cmd1; cmd2'</code></td>
+<td><code>bash -c "cmd1; cmd2"</code></td>
+<td>Single quotes prevent variable expansion</td>
+</tr>
+<tr>
+<td>Makefile indentation</td>
+<td>Spaces</td>
+<td><strong>Tabs</strong></td>
+<td>Make silently fails with spaces</td>
+</tr>
+<tr>
+<td>systemd WorkingDirectory</td>
+<td><code>%h/project</code></td>
+<td><code>%%INSTALL_PATH%%</code> + substitution</td>
+<td><code>%h</code> is static; template enables portability</td>
+</tr>
+</tbody>
+</table>
+<h2 id="verification-30-seconds">Verification (30 seconds)</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># After make install, verify substitution worked</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>grep<span class="w"> </span>WorkingDirectory<span class="w"> </span>~/.config/systemd/user/openwebui.service
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># Expected: /your/actual/path, not %%INSTALL_PATH%%</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># Test portability: clone to /tmp and reinstall</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nb">cd</span><span class="w"> </span>/tmp<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>&lt;repo&gt;<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>install
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>grep<span class="w"> </span>WorkingDirectory<span class="w"> </span>~/.config/systemd/user/openwebui.service
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># Should show /tmp/test — no manual edits needed</span>
 </code></pre></div>
-<p>Under <code>pipefail</code>, a non-zero exit from any command in a pipe kills the script.
-An empty directory is not an error — but bash treated it as one.</p>
-<p>The fix:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Fixed: empty result is treated as success</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>find<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$p</span><span class="s2">&quot;</span><span class="w"> </span>-maxdepth<span class="w"> </span><span class="m">1</span><span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>grep<span class="w"> </span>-iE<span class="w"> </span><span class="s1">&#39;\.(m4a|mp3|wav|ogg|opus|webm|flac)$&#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>file<span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="s2">&quot;</span><span class="nv">$PYTHON</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SCRIPT</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="k">done</span>
-</code></pre></div>
-<p><code>{ grep ... || true; }</code> wraps grep in a group. If no files match, the group
-exits 0. The pipeline continues. The service stays alive.</p>
-<p>Note: the <code>grep -q ... || continue</code> pattern inside the <code>inotifywait</code> loop is
-intentionally different — there, a non-match means "skip this file", which is
-correct logic, not a failure condition.</p>
-<hr />
-<h2 id="checklist">Checklist</h2>
-<p>When a service is running but not doing what the new code says:</p>
+<h2 id="why-this-matters-for-local-first-devops">Why This Matters for Local-First DevOps</h2>
 <ul>
-<li>[ ] Check <code>ExecStart</code> in the unit file — what path is actually invoked?</li>
-<li>[ ] Check <code>/proc/&lt;PID&gt;/cmdline</code> — what binary is actually running?</li>
-<li>[ ] Run <code>make install</code> (or equivalent deploy step) — not just <code>make restart</code></li>
-<li>[ ] Under <code>pipefail</code>, wrap <code>grep</code> used as a filter with <code>|| true</code></li>
+<li>🧳 <strong>Portable</strong>: Clone anywhere, <code>make install</code> just works</li>
+<li>🔧 <strong>Maintainable</strong>: One source of truth (templates), not scattered working copies</li>
+<li>🤝 <strong>User-respectful</strong>: No "edit this config file" for new users</li>
+<li>🇩🇪 <strong>Stuttgart-grade</strong>: Precision engineering for privacy-first infrastructure</li>
 </ul>
+<p>This pattern now powers all my eigenstack projects — because infrastructure should move with you, not trap you.</p>
 <hr />
 <h2 id="related">Related</h2>
 <ul>
-<li><a href="../Three%20Patterns%20for%20Reliable%20systemd%20File%20Watchers/">Three Patterns for Reliable systemd File Watchers</a></li>
-<li><a href="../Building%20Simple%20Retry%20Queues%20for%20Local%20AI%20Pipelines/">Building Simple Retry Queues for Local AI Pipelines</a></li>
-<li><a href="../../portfolio/Local%20AI%20Knowledge%20Enricher%20%28Ollama%20%2B%20Obsidian%29/">Local AI Knowledge Enricher (Ollama + Obsidian)</a></li>
+<li><a href="../../portfolio/Battery-Optimized%20Local%20AI%20Stack%20%28Open%20WebUI%20%2B%20Ollama%29/">Battery-Optimized Local AI Stack (Open WebUI + Ollama)</a></li>
+<li><a href="../../approach/Reliable%20Chaos%20%E2%80%94%20Designing%20Infrastructure%20That%20Fails%20Predictably/">Reliable Chaos — Designing Infrastructure That Fails Predictably</a></li>
 </ul>
 
 
@@ -843,7 +842,7 @@ correct logic, not a failure condition.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 15, 2026 13:59:00 UTC">March 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 18, 2026 19:47:36 UTC">March 18, 2026</span>
   </span>
 
     
@@ -853,7 +852,7 @@ correct logic, not a failure condition.</p>
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 15, 2026 13:59:00 UTC">March 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 18, 2026 19:47:36 UTC">March 18, 2026</span>
   </span>
 
     
