@@ -57,6 +57,4 @@ To avoid opening a terminal every time I wanted to chat with an LLM, I created s
 * **UX:** One-click launch from the application menu, indistinguishable from a native app.
 
 ## Related
-
 - [[Reliable Desktop Integration for Local Docker Services (XDG & systemd)]]
-- [[Portable systemd+Docker Installations via Template Substitution]]

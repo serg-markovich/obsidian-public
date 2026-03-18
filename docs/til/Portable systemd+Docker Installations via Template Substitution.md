@@ -1,22 +1,24 @@
 ---
-title: "TIL: Portable systemd+Docker Installations via Template Substitution"
+title: Portable systemd+Docker via Makefile Template Substitution
 date: 2026-03-19
-type: guide
+type: til
 topic: devops
 status: published
 level: intermediate
-tags: [til, systemd, docker, makefile, portability]
-author: Serg Markovych
-location: Stuttgart, Germany
+tags:
+  - systemd
+  - makefile
+  - portability
+  - linux
 ---
 
 ## The Problem
 
-Hardcoded paths in systemd units and `.desktop` files break when you move a project. Manual `cp` workflows don't scale. Users report "it works on my machine" — but not after `mv ~/old ~/new`.
+Hardcoded paths break silently after `mv ~/projects ~/work`. No errors — just services that don't start. 
 
 ## The Pattern
 
-**Store templates, not working copies. Substitute at install time.**
+Store templates with `%%INSTALL_PATH%%`. Substitute at install time.
 
 ```ini
 # systemd/openwebui.service.template
@@ -26,10 +28,9 @@ ExecStart=/usr/bin/docker compose up -d
 ```
 
 ```makefile
-# Makefile
 install:
-	sed "s|%%INSTALL_PATH%%|$(PWD)|g" systemd/openwebui.service.template \
-		> ~/.config/systemd/user/openwebui.service
+	sed "s|%%INSTALL_PATH%%|$(PWD)|g" systemd/*.template \
+		> ~/.config/systemd/user/*.service
 	systemctl --user daemon-reload
 ```
 
@@ -37,8 +38,8 @@ install:
 
 | Issue | Wrong | Right | Why |
 |-------|-------|-------|-----|
-| `.desktop` Exec | `bash -c '%%PATH%%/script.sh'` | `bash %%PATH%%/script.sh` | `-c` executes *contents* of file, not the file itself |
-| Multi-command Exec | `bash -c 'cmd1; cmd2'` | `bash -c "cmd1; cmd2"` | Single quotes prevent variable expansion |
+| `.desktop` Exec | `bash -c \'%%PATH%%/script.sh\'` | `bash %%PATH%%/script.sh` | `-c` executes *contents* of file, not the file itself |
+| Multi-command Exec | `bash -c \'cmd1; cmd2\'` | `bash -c "cmd1; cmd2"` | Single quotes prevent variable expansion |
 | Makefile indentation | Spaces | **Tabs** | Make silently fails with spaces |
 | systemd WorkingDirectory | `%h/project` | `%%INSTALL_PATH%%` + substitution | `%h` is static; template enables portability |
 
@@ -55,17 +56,16 @@ grep WorkingDirectory ~/.config/systemd/user/openwebui.service
 # Should show /tmp/test — no manual edits needed
 ```
 
-## Why This Matters for Local-First DevOps
+## Why This Matters
 
-- 🧳 **Portable**: Clone anywhere, `make install` just works
-- 🔧 **Maintainable**: One source of truth (templates), not scattered working copies
-- 🤝 **User-respectful**: No "edit this config file" for new users
-- 🇩🇪 **Stuttgart-grade**: Precision engineering for privacy-first infrastructure
+- Portable: clone anywhere, `make install` works
+- Maintainable: templates = one source of truth
+- User-friendly: no "edit config" instructions
 
-This pattern now powers all my eigenstack projects — because infrastructure should move with you, not trap you.
+Tested on Ubuntu 24.04 - [[My Homelab Setup]]
 
----
-## Related
+Infrastructure should move with you, not trap you.
+
+## Related Notes
 
 - [[Battery-Optimized Local AI Stack (Open WebUI + Ollama)]]
-- [[Reliable Chaos — Designing Infrastructure That Fails Predictably]]
