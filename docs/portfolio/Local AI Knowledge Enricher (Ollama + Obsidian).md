@@ -58,4 +58,4 @@ Supported via `systemd` (Linux), `launchd` (macOS), or `docker-compose` for NAS 
 
 ## Related
 - [[Building Simple Retry Queues for Local AI Pipelines]]
-- [["Deployed" Is Not the Same as "Running the New Code"]]
+- [[Deployed Is Not the Same as Running the New Code]]
