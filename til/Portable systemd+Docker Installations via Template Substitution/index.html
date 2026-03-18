@@ -9,8 +9,6 @@
         <meta name="description" content="DevOps learning journey, homelab, Azure, Kubernetes">
       
       
-        <meta name="author" content="Serg Markovych">
-      
       
         <link rel="canonical" href="https://notes.serg-markovich.de/til/Portable%20systemd%2BDocker%20Installations%20via%20Template%20Substitution/">
       
@@ -25,7 +23,7 @@
     
     
       
-        <title>TIL: Portable systemd+Docker Installations via Template Substitution - Serg's DevOps Notes</title>
+        <title>Portable systemd+Docker via Makefile Template Substitution - Serg's DevOps Notes</title>
       
     
     
@@ -112,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              TIL: Portable systemd+Docker Installations via Template Substitution
+              Portable systemd+Docker via Makefile Template Substitution
             
           </span>
         </div>
@@ -662,10 +660,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-this-matters-for-local-first-devops" class="md-nav__link">
+  <a href="#why-this-matters" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why This Matters for Local-First DevOps
+        Why This Matters
       
     </span>
   </a>
@@ -673,10 +671,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related" class="md-nav__link">
+  <a href="#related-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Related
+        Related Notes
       
     </span>
   </a>
@@ -704,7 +702,7 @@
       
       
       
-        <span class="md-tag">docker</span>
+        <span class="md-tag">linux</span>
       
     
       
@@ -728,13 +726,6 @@
         <span class="md-tag">systemd</span>
       
     
-      
-      
-      
-      
-        <span class="md-tag">til</span>
-      
-    
   </nav>
 
 
@@ -742,22 +733,21 @@
   
 
 
-  <h1>TIL: Portable systemd+Docker Installations via Template Substitution</h1>
+  <h1>Portable systemd+Docker via Makefile Template Substitution</h1>
 
 <h2 id="the-problem">The Problem</h2>
-<p>Hardcoded paths in systemd units and <code>.desktop</code> files break when you move a project. Manual <code>cp</code> workflows don't scale. Users report "it works on my machine" — but not after <code>mv ~/old ~/new</code>.</p>
+<p>Hardcoded paths break silently after <code>mv ~/projects ~/work</code>. No errors — just services that don't start. </p>
 <h2 id="the-pattern">The Pattern</h2>
-<p><strong>Store templates, not working copies. Substitute at install time.</strong></p>
+<p>Store templates with <code>%%INSTALL_PATH%%</code>. Substitute at install time.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># systemd/openwebui.service.template</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">[Service]</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">%%INSTALL_PATH%%</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/docker compose up -d</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c"># Makefile</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nf">install</span><span class="o">:</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span>sed<span class="w"> </span><span class="s2">&quot;s|%%INSTALL_PATH%%|</span><span class="k">$(</span>PWD<span class="k">)</span><span class="s2">|g&quot;</span><span class="w"> </span>systemd/openwebui.service.template<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span>&gt;<span class="w"> </span>~/.config/systemd/user/openwebui.service
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span>systemctl<span class="w"> </span>--user<span class="w"> </span>daemon-reload
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nf">install</span><span class="o">:</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span>sed<span class="w"> </span><span class="s2">&quot;s|%%INSTALL_PATH%%|</span><span class="k">$(</span>PWD<span class="k">)</span><span class="s2">|g&quot;</span><span class="w"> </span>systemd/*.template<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span>&gt;<span class="w"> </span>~/.config/systemd/user/*.service
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span>systemctl<span class="w"> </span>--user<span class="w"> </span>daemon-reload
 </code></pre></div>
 <h2 id="critical-details-most-guides-skip">Critical Details Most Guides Skip</h2>
 <table>
@@ -772,13 +762,13 @@
 <tbody>
 <tr>
 <td><code>.desktop</code> Exec</td>
-<td><code>bash -c '%%PATH%%/script.sh'</code></td>
+<td><code>bash -c \'%%PATH%%/script.sh\'</code></td>
 <td><code>bash %%PATH%%/script.sh</code></td>
 <td><code>-c</code> executes <em>contents</em> of file, not the file itself</td>
 </tr>
 <tr>
 <td>Multi-command Exec</td>
-<td><code>bash -c 'cmd1; cmd2'</code></td>
+<td><code>bash -c \'cmd1; cmd2\'</code></td>
 <td><code>bash -c "cmd1; cmd2"</code></td>
 <td>Single quotes prevent variable expansion</td>
 </tr>
@@ -806,19 +796,17 @@
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>grep<span class="w"> </span>WorkingDirectory<span class="w"> </span>~/.config/systemd/user/openwebui.service
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># Should show /tmp/test — no manual edits needed</span>
 </code></pre></div>
-<h2 id="why-this-matters-for-local-first-devops">Why This Matters for Local-First DevOps</h2>
+<h2 id="why-this-matters">Why This Matters</h2>
 <ul>
-<li>🧳 <strong>Portable</strong>: Clone anywhere, <code>make install</code> just works</li>
-<li>🔧 <strong>Maintainable</strong>: One source of truth (templates), not scattered working copies</li>
-<li>🤝 <strong>User-respectful</strong>: No "edit this config file" for new users</li>
-<li>🇩🇪 <strong>Stuttgart-grade</strong>: Precision engineering for privacy-first infrastructure</li>
+<li>Portable: clone anywhere, <code>make install</code> works</li>
+<li>Maintainable: templates = one source of truth</li>
+<li>User-friendly: no "edit config" instructions</li>
 </ul>
-<p>This pattern now powers all my eigenstack projects — because infrastructure should move with you, not trap you.</p>
-<hr />
-<h2 id="related">Related</h2>
+<p>Tested on Ubuntu 24.04 - <a href="../../homelab/My%20Homelab%20Setup/">My Homelab Setup</a></p>
+<p>Infrastructure should move with you, not trap you.</p>
+<h2 id="related-notes">Related Notes</h2>
 <ul>
 <li><a href="../../portfolio/Battery-Optimized%20Local%20AI%20Stack%20%28Open%20WebUI%20%2B%20Ollama%29/">Battery-Optimized Local AI Stack (Open WebUI + Ollama)</a></li>
-<li><a href="../../approach/Reliable%20Chaos%20%E2%80%94%20Designing%20Infrastructure%20That%20Fails%20Predictably/">Reliable Chaos — Designing Infrastructure That Fails Predictably</a></li>
 </ul>
 
 
@@ -842,7 +830,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 18, 2026 19:47:36 UTC">March 18, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 18, 2026 20:03:10 UTC">March 18, 2026</span>
   </span>
 
     
