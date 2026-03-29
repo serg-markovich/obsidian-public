@@ -20,3 +20,4 @@ tags:
 - [[Docker Volumes and File Ownership — Why Your Files Belong to Root]]
 - [[Building Simple Retry Queues for Local AI Pipelines]]
 - [[Portable systemd+Docker Installations via Template Substitution]]
+- [[Ansible Collections Must Be Declared for CI]]

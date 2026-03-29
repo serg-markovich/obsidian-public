@@ -16,6 +16,7 @@ tags:
 - [[Local Voice Transcription Pipeline]]
 - [[Eigenstack — Sovereign Self-Hosted Cloud (Germany)]]
 - [[Local AI Knowledge Enricher (Ollama + Obsidian)]]
+- [[eigenbase — Ansible Workstation Provisioning]]
 
 ---
 ## Open to collaboration
