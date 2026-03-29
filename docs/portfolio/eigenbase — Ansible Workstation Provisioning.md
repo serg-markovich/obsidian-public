@@ -109,7 +109,6 @@ Both caught immediately on a clean CI runner.
 
 ---
 
-> [!NOTE]
 > eigenbase is part of a larger project:
 > [[Eigenstack — Sovereign Self-Hosted Cloud (Germany)]]
 > This role provisions the machine. The next layer runs services on it.
